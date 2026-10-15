@@ -1,106 +1,113 @@
+import { useState } from 'react';
 import { useAuth } from '../../../hooks/useAuth';
-import { User, LogOut, CheckCircle, Mail, Shield } from 'lucide-react';
-import EmailVerificationBanner from '../../../components/common/EmailVerificationBanner';
+import MainLayout from '../../../components/layouts/userLayout/home/MainLayout';
+import WelcomeBanner from '../../../components/feed/userFeed/WelcomeBanner';
+import CreatePost from '../../../components/feed/userFeed/CreatePost';
+import FeedList from '../../../components/feed/userFeed/FeedList';
+import RecommendedJobs from '../../../components/sidebar/RecommendedJobs';
+import TrendingTopics from '../../../components/sidebar/TrendingTopics';
+import PeopleYouMayKnow from '../../../components/sidebar/PeopleYouMayKnow';
+import UpgradeSkills from '../../../components/sidebar/UpgradeSkills';
 
 export default function UserDashboard() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
+
+  const [activeNav, setActiveNav] = useState('home');
+  const [activeMenu, setActiveMenu] = useState('my-feed');
+
+  // User Profile Data
+  const userProfile = {
+    name: user?.name || 'Debjit Pal',
+    headline: user?.headline || 'Aspiring Full Stack Developer',
+    avatar: user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+    profileCompletion: user?.profileCompletion || 80,
+  };
+
+  // Mock Feed Posts mirroring the screenshot
+  const [posts, setPosts] = useState([
+    {
+      id: 1,
+      author: {
+        name: 'Rohit Sharma',
+        role: 'Software Engineer @ TechNova',
+        avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80',
+      },
+      timeAgo: '2h ago',
+      content:
+        'Just completed my first project using Next.js and deployed it on Vercel. The experience was amazing! 🚀 Learned a lot about server components, API routes and deployment.\n\nIf anyone is also learning Next.js, feel free to connect. Let\'s learn together!',
+      articlePreview: {
+        title: 'Building a Modern Web App with Next.js',
+        subtitle: 'From development to deployment — a complete journey with Next.js and Vercel.',
+        domain: 'dev.to',
+        url: 'https://dev.to',
+      },
+      likesCount: 42,
+      commentsCount: 8,
+      isLiked: false,
+      isSaved: false,
+    },
+    {
+      id: 2,
+      author: {
+        name: 'Priya Das',
+        role: 'Frontend Developer @ BrightTech',
+        avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80',
+      },
+      timeAgo: '4h ago',
+      content:
+        'Excited to share that I\'ve started working on a new project using React + Node.js + Express for a job portal. Looking forward to building more cool features. #WebDevelopment #React',
+      articlePreview: null,
+      likesCount: 27,
+      commentsCount: 5,
+      isLiked: false,
+      isSaved: false,
+    },
+  ]);
+
+  const handleCreatePost = (newPostText) => {
+    const newPost = {
+      id: Date.now(),
+      author: {
+        name: userProfile.name,
+        role: userProfile.headline,
+        avatar: userProfile.avatar,
+      },
+      timeAgo: 'Just now',
+      content: newPostText,
+      articlePreview: null,
+      likesCount: 0,
+      commentsCount: 0,
+      isLiked: false,
+      isSaved: false,
+    };
+    setPosts([newPost, ...posts]);
+  };
+
+  const rightSidebarContent = (
+    <>
+      <RecommendedJobs />
+      <TrendingTopics />
+      <PeopleYouMayKnow />
+      <UpgradeSkills />
+    </>
+  );
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--pale-blue)', padding: '2rem' }}>
-      <EmailVerificationBanner />
-      <header style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        background: 'var(--white)',
-        padding: '1rem 2rem',
-        borderRadius: '12px',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
-        marginBottom: '2rem'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '8px',
-            backgroundColor: 'var(--primary-blue)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'var(--white)'
-          }}>
-            <User size={22} />
-          </div>
-          <div>
-            <h1 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--dark-navy)' }}>
-              Candidate Dashboard
-            </h1>
-            <p style={{ fontSize: '0.875rem', color: 'var(--supporting-text)' }}>
-              Welcome back, {user?.name || 'Candidate'}!
-            </p>
-          </div>
-        </div>
-
-        <button
-          onClick={logout}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '0.625rem 1.25rem',
-            borderRadius: '8px',
-            border: '1px solid var(--input-border)',
-            background: 'var(--white)',
-            color: 'var(--dark-navy)',
-            fontWeight: '600',
-            cursor: 'pointer'
-          }}
-        >
-          <LogOut size={16} /> Log Out
-        </button>
-      </header>
-
-      <main style={{
-        background: 'var(--white)',
-        borderRadius: '12px',
-        padding: '2rem',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
-        maxWidth: '800px'
-      }}>
-        <h2 style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--dark-navy)', marginBottom: '1.5rem' }}>
-          Account Details
-        </h2>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-          <div style={{ padding: '1rem', borderRadius: '8px', background: 'var(--pale-blue)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--supporting-text)', fontSize: '0.875rem', marginBottom: '4px' }}>
-              <User size={16} /> Full Name
-            </div>
-            <div style={{ fontWeight: '600', color: 'var(--dark-navy)' }}>{user?.name || 'N/A'}</div>
-          </div>
-
-          <div style={{ padding: '1rem', borderRadius: '8px', background: 'var(--pale-blue)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--supporting-text)', fontSize: '0.875rem', marginBottom: '4px' }}>
-              <Mail size={16} /> Email Address
-            </div>
-            <div style={{ fontWeight: '600', color: 'var(--dark-navy)' }}>{user?.email || 'N/A'}</div>
-          </div>
-
-          <div style={{ padding: '1rem', borderRadius: '8px', background: 'var(--pale-blue)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--supporting-text)', fontSize: '0.875rem', marginBottom: '4px' }}>
-              <Shield size={16} /> Role
-            </div>
-            <div style={{ fontWeight: '600', color: 'var(--primary-blue)' }}>{user?.role || 'JOB_SEEKER'}</div>
-          </div>
-
-          <div style={{ padding: '1rem', borderRadius: '8px', background: 'var(--pale-blue)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--supporting-text)', fontSize: '0.875rem', marginBottom: '4px' }}>
-              <CheckCircle size={16} /> Status
-            </div>
-            <div style={{ fontWeight: '600', color: '#10B981' }}>{user?.status || 'ACTIVE'}</div>
-          </div>
-        </div>
-      </main>
-    </div>
+    <MainLayout
+      activeNav={activeNav}
+      onNavClick={setActiveNav}
+      activeMenu={activeMenu}
+      onMenuClick={setActiveMenu}
+      userProfile={userProfile}
+      rightSidebar={rightSidebarContent}
+    >
+      <WelcomeBanner />
+      <CreatePost
+        userAvatar={userProfile.avatar}
+        userName={userProfile.name}
+        onPost={handleCreatePost}
+      />
+      <FeedList posts={posts} />
+    </MainLayout>
   );
 }

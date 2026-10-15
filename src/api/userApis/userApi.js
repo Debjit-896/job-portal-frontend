@@ -1,4 +1,4 @@
-import { apiClient } from '../services/api/apiClient';
+import { apiClient } from '../../services/api/apiClient';
 
 /**
  * User, Account, Profile and Session API service layer.

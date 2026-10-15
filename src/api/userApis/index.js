@@ -6,8 +6,8 @@
  */
 
 // A. Authentication (17 APIs)
-export * from '../services/api/authApi';
-export { authApi } from '../services/api/authApi';
+export * from '../../services/api/authApi';
+export { authApi } from '../../services/api/authApi';
 
 // B. User / Account / Profile / Sessions (16 APIs)
 export { userApi } from './userApi';
@@ -19,28 +19,28 @@ export { educationApi } from './educationApi';
 export { experienceApi } from './experienceApi';
 
 // E. Skills (4 APIs)
-export { skillsApi } from './skillsApi';
+export { skillsApi } from '../skillsApi';
 
 // F. Certifications (4 APIs)
 export { certificationsApi } from './certificationsApi';
 
 // G. Projects (4 APIs)
-export { projectsApi } from './projectsApi';
+export { projectsApi } from '../projectsApi';
 
 // H. Languages (4 APIs)
-export { languagesApi } from './languagesApi';
+export { languagesApi } from '../languagesApi';
 
 // I. Locations (4 APIs)
-export { locationsApi } from './locationsApi';
+export { locationsApi } from '../locationsApi';
 
 // J. Preferences (3 APIs)
-export { preferencesApi } from './preferencesApi';
+export { preferencesApi } from '../preferencesApi';
 
 // K. Public Master Data (2 APIs)
-export { masterDataApi } from './masterDataApi';
+export { masterDataApi } from '../masterDataApi';
 
 // L. Health Check (1 API)
 export { healthApi } from './healthApi';
 
 // Shared Axios client and error helper
-export { apiClient, getErrorMessage } from '../services/api/apiClient';
+export { apiClient, getErrorMessage } from '../../services/api/apiClient';

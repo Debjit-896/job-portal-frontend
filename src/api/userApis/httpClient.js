@@ -13,4 +13,4 @@
  *  - response : Transparent token-refresh on 401 with queue; session-expired
  *               event dispatched when refresh also fails.
  */
-export { apiClient as default, apiClient, getErrorMessage } from '../services/api/apiClient';
+export { apiClient as default, apiClient, getErrorMessage } from '../../services/api/apiClient';
