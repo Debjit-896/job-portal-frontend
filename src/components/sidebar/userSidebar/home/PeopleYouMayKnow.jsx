@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { UserPlus, Check, ArrowRight } from 'lucide-react';
-import SectionCard from '../common/userCommon/SectionCard';
-import Avatar from '../common/userCommon/Avatar';
+import SectionCard from '../../../common/userCommon/SectionCard';
+import Avatar from '../../../common/userCommon/Avatar';
 
 export default function PeopleYouMayKnow({
   people = [

@@ -10,6 +10,7 @@ import VerifyEmailForm from './components/forms/authentication/otp/VerifyEmailFo
 import ForgotPasswordForm from './components/forms/authentication/password/ForgotPasswordForm';
 import ResetPasswordForm from './components/forms/authentication/password/ResetPasswordForm';
 import UserDashboard from './panels/users/pages/UserDashboard';
+import UserJobPage from './panels/users/pages/UserJobPage';
 import RecruiterDashboard from './panels/recruiter/pages/RecruiterDashboard';
 import AdminDashboard from './panels/admin/pages/AdminDashboard';
 import ProtectedRoute from './components/routing/ProtectedRoute';
@@ -117,6 +118,15 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/user/dashboard" element={<Navigate to="/candidate/dashboard" replace />} />
+
+            <Route path="/candidate/jobs" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <UserJobPage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
+            <Route path="/user/jobs" element={<Navigate to="/candidate/jobs" replace />} />
 
             {/* Employer / Recruiter */}
             <Route path="/employer/dashboard" element={

@@ -11,8 +11,8 @@ import {
   User,
   Settings,
 } from 'lucide-react';
-import { useAuth } from '../../../hooks/useAuth';
-import Avatar from '../../common/userCommon/Avatar';
+import { useAuth } from '../../../../hooks/useAuth';
+import Avatar from '../../../common/userCommon/Avatar';
 
 export default function Header({
   activeNav = 'home',

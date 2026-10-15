@@ -1,6 +1,6 @@
 import { Flame } from 'lucide-react';
-import SectionCard from '../common/userCommon/SectionCard';
-import Badge from '../common/userCommon/Badge';
+import SectionCard from '../../../common/userCommon/SectionCard';
+import Badge from '../../../common/userCommon/Badge';
 
 export default function TrendingTopics({
   topics = [

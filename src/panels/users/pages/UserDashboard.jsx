@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
 import MainLayout from '../../../components/layouts/userLayout/home/MainLayout';
 import WelcomeBanner from '../../../components/feed/userFeed/WelcomeBanner';
 import CreatePost from '../../../components/feed/userFeed/CreatePost';
 import FeedList from '../../../components/feed/userFeed/FeedList';
-import RecommendedJobs from '../../../components/sidebar/RecommendedJobs';
-import TrendingTopics from '../../../components/sidebar/TrendingTopics';
-import PeopleYouMayKnow from '../../../components/sidebar/PeopleYouMayKnow';
-import UpgradeSkills from '../../../components/sidebar/UpgradeSkills';
+import {
+  RecommendedJobs,
+  TrendingTopics,
+  PeopleYouMayKnow,
+  UpgradeSkills,
+} from '../../../components/sidebar/userSidebar';
 
 export default function UserDashboard() {
   const { user } = useAuth();
@@ -92,10 +95,19 @@ export default function UserDashboard() {
     </>
   );
 
+  const navigate = useNavigate();
+
+  const handleNavClick = (navId) => {
+    setActiveNav(navId);
+    if (navId === 'jobs') {
+      navigate('/candidate/jobs');
+    }
+  };
+
   return (
     <MainLayout
       activeNav={activeNav}
-      onNavClick={setActiveNav}
+      onNavClick={handleNavClick}
       activeMenu={activeMenu}
       onMenuClick={setActiveMenu}
       userProfile={userProfile}

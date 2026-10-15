@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Bookmark, MapPin, Clock, ArrowRight } from 'lucide-react';
-import SectionCard from '../common/userCommon/SectionCard';
-import Badge from '../common/userCommon/Badge';
+import SectionCard from '../../../common/userCommon/SectionCard';
+import Badge from '../../../common/userCommon/Badge';
 
 export default function RecommendedJobs({
   jobs = [
