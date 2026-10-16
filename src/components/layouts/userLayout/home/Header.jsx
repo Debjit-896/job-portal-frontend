@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Briefcase,
   Search,
   Home,
   BriefcaseBusiness,
+  Building2,
   MessageSquare,
   Bell,
   ChevronDown,
@@ -15,24 +17,45 @@ import { useAuth } from '../../../../hooks/useAuth';
 import Avatar from '../../../common/userCommon/Avatar';
 
 export default function Header({
-  activeNav = 'home',
+  activeNav,
   onNavClick,
   unreadMessages = 3,
   unreadNotifications = 5,
 }) {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const userName = user?.name || 'Debjit Pal';
   const userAvatar = user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80';
 
+  // Automatically determine active nav based on current path if activeNav is not explicitly provided
+  const currentActiveNav =
+    activeNav ||
+    (location.pathname.startsWith('/candidate/companies') || location.pathname.startsWith('/user/companies')
+      ? 'companies'
+      : location.pathname.startsWith('/candidate/jobs') || location.pathname.startsWith('/user/jobs')
+      ? 'jobs'
+      : 'home');
+
   const navItems = [
-    { id: 'home', label: 'Home', icon: Home, badge: null },
-    { id: 'jobs', label: 'Jobs', icon: BriefcaseBusiness, badge: null },
-    { id: 'messages', label: 'Messages', icon: MessageSquare, badge: unreadMessages },
-    { id: 'notifications', label: 'Notifications', icon: Bell, badge: unreadNotifications },
+    { id: 'home', label: 'Home', icon: Home, path: '/candidate/dashboard', badge: null },
+    { id: 'jobs', label: 'Jobs', icon: BriefcaseBusiness, path: '/candidate/jobs', badge: null },
+    { id: 'companies', label: 'Companies', icon: Building2, path: '/candidate/companies', badge: null },
+    { id: 'messages', label: 'Messages', icon: MessageSquare, path: null, badge: unreadMessages },
+    { id: 'notifications', label: 'Notifications', icon: Bell, path: null, badge: unreadNotifications },
   ];
+
+  const handleNavItemClick = (item) => {
+    if (onNavClick) {
+      onNavClick(item.id);
+    }
+    if (item.path) {
+      navigate(item.path);
+    }
+  };
 
   return (
     <header
@@ -61,7 +84,10 @@ export default function Header({
       >
         {/* Left Section: Brand Logo & Links */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '32px', flexShrink: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
+          <div
+            onClick={() => navigate('/candidate/dashboard')}
+            style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
+          >
             <div
               style={{
                 width: '38px',
@@ -99,7 +125,12 @@ export default function Header({
               fontWeight: 500,
             }}
           >
-            <span style={{ cursor: 'pointer', transition: 'color 0.2s' }}>Jobs</span>
+            <span
+              onClick={() => navigate('/candidate/jobs')}
+              style={{ cursor: 'pointer', transition: 'color 0.2s' }}
+            >
+              Jobs
+            </span>
             <span style={{ color: '#CBD5E1' }}>•</span>
             <span style={{ cursor: 'pointer', transition: 'color 0.2s' }}>Network</span>
             <span style={{ color: '#CBD5E1' }}>•</span>
@@ -145,11 +176,11 @@ export default function Header({
           <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = activeNav === item.id;
+              const isActive = currentActiveNav === item.id;
               return (
                 <button
                   key={item.id}
-                  onClick={() => onNavClick && onNavClick(item.id)}
+                  onClick={() => handleNavItemClick(item)}
                   style={{
                     display: 'flex',
                     flexDirection: 'column',

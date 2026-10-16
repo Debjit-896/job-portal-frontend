@@ -1,4 +1,4 @@
-import JobHeader from './JobHeader';
+import Header from '../home/Header';
 import JobFilterSidebar from './JobFilterSidebar';
 
 export default function JobLayout({
@@ -9,8 +9,8 @@ export default function JobLayout({
 }) {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#F8FAFC', display: 'flex', flexDirection: 'column' }}>
-      {/* Top Job Header */}
-      <JobHeader activeNav={activeNav} />
+      {/* Top Header */}
+      <Header activeNav={activeNav} />
 
       {/* Main 3-Column Layout: Filter Sidebar (Left), Center Feed/List, Right Sidebar */}
       <div

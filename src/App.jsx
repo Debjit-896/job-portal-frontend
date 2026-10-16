@@ -11,6 +11,7 @@ import ForgotPasswordForm from './components/forms/authentication/password/Forgo
 import ResetPasswordForm from './components/forms/authentication/password/ResetPasswordForm';
 import UserDashboard from './panels/users/pages/UserDashboard';
 import UserJobPage from './panels/users/pages/UserJobPage';
+import UserCompaniesPage from './panels/users/pages/UserCompaniesPage';
 import RecruiterDashboard from './panels/recruiter/pages/RecruiterDashboard';
 import AdminDashboard from './panels/admin/pages/AdminDashboard';
 import ProtectedRoute from './components/routing/ProtectedRoute';
@@ -127,6 +128,15 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/user/jobs" element={<Navigate to="/candidate/jobs" replace />} />
+
+            <Route path="/candidate/companies" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <UserCompaniesPage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
+            <Route path="/user/companies" element={<Navigate to="/candidate/companies" replace />} />
 
             {/* Employer / Recruiter */}
             <Route path="/employer/dashboard" element={

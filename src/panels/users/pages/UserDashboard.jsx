@@ -101,6 +101,15 @@ export default function UserDashboard() {
     setActiveNav(navId);
     if (navId === 'jobs') {
       navigate('/candidate/jobs');
+    } else if (navId === 'companies') {
+      navigate('/candidate/companies');
+    }
+  };
+
+  const handleMenuClick = (menuId) => {
+    setActiveMenu(menuId);
+    if (menuId === 'companies') {
+      navigate('/candidate/companies');
     }
   };
 
@@ -109,7 +118,7 @@ export default function UserDashboard() {
       activeNav={activeNav}
       onNavClick={handleNavClick}
       activeMenu={activeMenu}
-      onMenuClick={setActiveMenu}
+      onMenuClick={handleMenuClick}
       userProfile={userProfile}
       rightSidebar={rightSidebarContent}
     >
