@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CompaniesLayout } from '../../../components/layouts/userLayout/companies';
 import {
   CompaniesHeroBanner,
@@ -12,10 +13,22 @@ import {
 } from '../../../components/sidebar/userSidebar/companies';
 
 export default function UserCompaniesPage() {
+  const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState('companies');
   const [industryFilter, setIndustryFilter] = useState('All Industries');
   const [locationFilter, setLocationFilter] = useState('All Locations');
   const [sortFilter, setSortFilter] = useState('Most Followed');
+
+  const handleMenuClick = (menuId) => {
+    setActiveMenu(menuId);
+    if (menuId === 'saved' || menuId === 'saved-jobs') {
+      navigate('/candidate/saved-jobs');
+    } else if (menuId === 'home') {
+      navigate('/candidate/dashboard');
+    } else if (menuId === 'jobs') {
+      navigate('/candidate/jobs');
+    }
+  };
 
   // Top 8 Companies matching screenshot exactly
   const [topCompanies, setTopCompanies] = useState([
@@ -252,7 +265,7 @@ export default function UserCompaniesPage() {
     <CompaniesLayout
       activeNav="companies"
       activeMenu={activeMenu}
-      onMenuClick={setActiveMenu}
+      onMenuClick={handleMenuClick}
       rightSidebar={rightSidebarContent}
     >
       {/* 1. Discover Great Companies Hero Banner */}

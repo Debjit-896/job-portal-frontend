@@ -31,10 +31,10 @@ export default function CompaniesLeftSidebar({
   ];
 
   const exploreNavItems = [
-    { id: 'for-you', label: 'For You', icon: Compass },
-    { id: 'trending', label: 'Trending', icon: TrendingUp },
-    { id: 'saved', label: 'Saved', icon: Bookmark },
-    { id: 'following', label: 'Following', icon: Users },
+    { id: 'for-you', label: 'For You', icon: Compass, path: '#' },
+    { id: 'trending', label: 'Trending', icon: TrendingUp, path: '#' },
+    { id: 'saved', label: 'Saved', icon: Bookmark, path: '/candidate/saved-jobs' },
+    { id: 'following', label: 'Following', icon: Users, path: '#' },
   ];
 
   const handleNav = (item) => {
@@ -126,7 +126,7 @@ export default function CompaniesLeftSidebar({
             return (
               <button
                 key={item.id}
-                onClick={() => onMenuClick && onMenuClick(item.id)}
+                onClick={() => handleNav(item)}
                 style={{
                   display: 'flex',
                   alignItems: 'center',

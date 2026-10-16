@@ -110,6 +110,8 @@ export default function UserDashboard() {
     setActiveMenu(menuId);
     if (menuId === 'companies') {
       navigate('/candidate/companies');
+    } else if (menuId === 'saved-jobs') {
+      navigate('/candidate/saved-jobs');
     }
   };
 
