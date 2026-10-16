@@ -8,42 +8,23 @@ export default function JobLayout({
   onFilterChange,
 }) {
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F8FAFC', display: 'flex', flexDirection: 'column' }}>
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
       {/* Top Header */}
       <Header activeNav={activeNav} />
 
       {/* Main 3-Column Layout: Filter Sidebar (Left), Center Feed/List, Right Sidebar */}
-      <div
-        style={{
-          width: '100%',
-          maxWidth: '1440px',
-          margin: '0 auto',
-          padding: '24px 28px',
-          display: 'flex',
-          gap: '24px',
-          alignItems: 'flex-start',
-          flex: 1,
-        }}
-      >
+      <div className="w-full max-w-[1440px] mx-auto px-7 py-6 flex gap-6 items-start flex-1">
         {/* Left Filter Sidebar */}
         <JobFilterSidebar onFilterChange={onFilterChange} />
 
         {/* Center Main Content Area */}
-        <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <main className="flex-1 min-w-0 flex flex-col gap-5">
           {children}
         </main>
 
         {/* Right Sidebar */}
         {rightSidebar && (
-          <aside
-            style={{
-              width: '320px',
-              flexShrink: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '16px',
-            }}
-          >
+          <aside className="w-80 shrink-0 flex flex-col gap-4">
             {rightSidebar}
           </aside>
         )}

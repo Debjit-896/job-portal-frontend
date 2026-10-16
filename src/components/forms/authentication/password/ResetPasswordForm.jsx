@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Lock, Eye, EyeOff, CheckCircle2, ArrowLeft, Loader2 } from 'lucide-react';
+import { Lock, Eye, EyeOff, ArrowLeft, Loader2 } from 'lucide-react';
 import { useNavigate, useLocation, useSearchParams, Link } from 'react-router-dom';
 import { useToast } from '../../../common/toast';
 import { authApi } from '../../../../services/api/authApi';
@@ -11,7 +11,6 @@ export default function ResetPasswordForm() {
   const [searchParams] = useSearchParams();
   const toast = useToast();
 
-  // Retrieve resetToken from route state or URL query
   const resetToken = location.state?.resetToken || searchParams.get('token');
 
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +19,6 @@ export default function ResetPasswordForm() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // If user navigated directly without token
   const isUnauthorized = !resetToken;
 
   const handleSubmit = async (e) => {
@@ -50,7 +48,6 @@ export default function ResetPasswordForm() {
 
       toast.success('Password reset successfully! Please login with your new password.', 'Password Updated');
 
-      // Redirect to login with success toast
       navigate('/login', {
         state: {
           successMessage: 'Password reset successfully! Please login with your new password.'
@@ -64,122 +61,99 @@ export default function ResetPasswordForm() {
     }
   };
 
-  if (isUnauthorized) {
-    return (
-      <div className="auth-form" style={{ textAlign: 'center', padding: '1rem 0' }}>
-        <h3 style={{ marginBottom: '1rem', color: 'var(--dark-navy)', fontSize: '1.35rem', fontWeight: '700' }}>
-          Verification Required
-        </h3>
-        <p style={{ color: 'var(--supporting-text)', marginBottom: '1.5rem', lineHeight: '1.5', fontSize: '0.875rem' }}>
-          To set a new password, please request and verify a 6-digit recovery code first.
-        </p>
-        <Link
-          to="/forgot-password"
-          className="btn-primary"
-          style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', width: '100%' }}
-        >
-          Go to Forgot Password
-        </Link>
-      </div>
-    );
-  }
-
   return (
     <>
-      <div className="auth-card-header" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '1.6rem', fontWeight: '700', color: 'var(--dark-navy)', marginBottom: '0.25rem' }}>
-          Set New Password
+      <div className="mb-5 text-center">
+        <h2 className="text-[1.6rem] font-bold text-[#102E6D] mb-1">
+          Reset Your Password
         </h2>
-        <p className="auth-subtitle" style={{ fontSize: '0.875rem', color: 'var(--supporting-text)' }}>
-          Please choose a strong password with at least 6 characters.
+        <p className="text-sm text-[#627BAF]">
+          Please enter and confirm your new password below
         </p>
       </div>
 
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <div className="input-group">
-          <Lock className="input-icon" size={20} />
-          <input
-            type={showPassword ? 'text' : 'password'}
-            className="form-input"
-            placeholder="New Password (min 6 chars)"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-            disabled={isLoading}
-            autoFocus
-          />
-          <button
-            type="button"
-            className="password-toggle"
-            onClick={() => setShowPassword(!showPassword)}
-            disabled={isLoading}
-            tabIndex={-1}
+      {isUnauthorized ? (
+        <div className="text-center p-4 bg-[#FFFBEB] border border-[#FDE68A] rounded-xl my-2">
+          <p className="text-sm text-[#B45309] mb-4">
+            No valid password reset token found. Please request a new verification code.
+          </p>
+          <Link
+            to="/forgot-password"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#1463F3] text-white rounded-lg text-sm font-semibold hover:bg-[#104ec4] transition-colors"
           >
-            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-          </button>
+            <span>Request Reset Code</span>
+          </Link>
         </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3.5 w-full">
+          <div className="relative flex items-center">
+            <Lock className="absolute left-3.5 text-[#8DA0C2] pointer-events-none" size={19} />
+            <input
+              type={showPassword ? 'text' : 'password'}
+              placeholder="New Password (min 6 chars)"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={6}
+              disabled={isLoading}
+              className="w-full pl-11 pr-11 py-2.5 bg-white border border-[#D8E6FF] rounded-lg text-sm text-[#102E6D] placeholder-[#8DA0C2] outline-none transition-all focus:border-[#1463F3] focus:ring-2 focus:ring-[#1463F3]/15"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3.5 text-[#8DA0C2] hover:text-[#102E6D] cursor-pointer"
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
 
-        <div className="input-group">
-          <Lock className="input-icon" size={20} />
-          <input
-            type={showConfirmPassword ? 'text' : 'password'}
-            className="form-input"
-            placeholder="Confirm New Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-            minLength={6}
-            disabled={isLoading}
-          />
+          <div className="relative flex items-center">
+            <Lock className="absolute left-3.5 text-[#8DA0C2] pointer-events-none" size={19} />
+            <input
+              type={showConfirmPassword ? 'text' : 'password'}
+              placeholder="Confirm New Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              minLength={6}
+              disabled={isLoading}
+              className="w-full pl-11 pr-11 py-2.5 bg-white border border-[#D8E6FF] rounded-lg text-sm text-[#102E6D] placeholder-[#8DA0C2] outline-none transition-all focus:border-[#1463F3] focus:ring-2 focus:ring-[#1463F3]/15"
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute right-3.5 text-[#8DA0C2] hover:text-[#102E6D] cursor-pointer"
+            >
+              {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+
           <button
-            type="button"
-            className="password-toggle"
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            type="submit"
             disabled={isLoading}
-            tabIndex={-1}
+            className="mt-2 w-full py-2.5 bg-[#1463F3] text-white rounded-lg text-sm font-semibold hover:bg-[#104ec4] transition-colors shadow-[0_2px_8px_rgba(20,99,243,0.25)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
           >
-            {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            {isLoading ? (
+              <>
+                <Loader2 size={18} className="animate-spin" />
+                <span>Updating Password...</span>
+              </>
+            ) : (
+              <span>Reset Password</span>
+            )}
           </button>
-        </div>
 
-        <button
-          type="submit"
-          className="btn-primary"
-          disabled={isLoading}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            marginTop: '0.5rem'
-          }}
-        >
-          {isLoading ? (
-            <>
-              <Loader2 size={18} className="animate-spin" />
-              <span>Resetting Password...</span>
-            </>
-          ) : (
-            'Reset Password'
-          )}
-        </button>
-      </form>
-
-      <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-        <Link
-          to="/login"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontSize: '0.875rem',
-            color: 'var(--supporting-text)'
-          }}
-        >
-          <ArrowLeft size={16} /> Back to Log In
-        </Link>
-      </div>
+          <div className="text-center mt-2">
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-[#627BAF] hover:text-[#1463F3] transition-colors"
+            >
+              <ArrowLeft size={14} />
+              <span>Back to Login</span>
+            </Link>
+          </div>
+        </form>
+      )}
     </>
   );
 }

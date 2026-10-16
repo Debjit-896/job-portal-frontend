@@ -50,155 +50,62 @@ export default function FeaturedCompanies({
   };
 
   return (
-    <SectionCard padding="20px 18px">
+    <SectionCard className="p-[20px_18px]">
       {/* Header */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '16px',
-        }}
-      >
-        <h4 style={{ fontSize: '14.5px', fontWeight: 700, color: '#102E6D' }}>
+      <div className="flex items-center justify-between mb-4">
+        <h4 className="text-[14.5px] font-bold text-[#102E6D]">
           Featured Companies
         </h4>
         <button
           type="button"
           onClick={onViewAll}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#1463F3',
-            fontSize: '12px',
-            fontWeight: 600,
-            cursor: 'pointer',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '2px',
-          }}
+          className="bg-transparent border-0 text-[#1463F3] text-xs font-semibold cursor-pointer inline-flex items-center gap-0.5 hover:underline"
         >
           View All <ArrowRight size={13} />
         </button>
       </div>
 
       {/* Companies List */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      <div className="flex flex-col gap-3.5">
         {companies.map((company) => {
           const isFollowed = !!followedState[company.id];
           return (
             <div
               key={company.id}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '12px',
-              }}
+              className="flex items-center justify-between gap-3"
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
+              <div className="flex items-center gap-2.5 min-w-0">
                 {/* Logo Badge */}
                 {company.isGoogle ? (
-                  <div
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '8px',
-                      border: '1px solid #E2E8F0',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: '#FFFFFF',
-                      fontSize: '18px',
-                      fontWeight: 800,
-                      color: '#4285F4',
-                      flexShrink: 0,
-                    }}
-                  >
+                  <div className="w-9 h-9 rounded-lg border border-[#E2E8F0] flex items-center justify-center bg-white text-lg font-extrabold text-[#4285F4] shrink-0">
                     G
                   </div>
                 ) : company.isMicrosoft ? (
-                  <div
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '8px',
-                      border: '1px solid #E2E8F0',
-                      display: 'grid',
-                      gridTemplateColumns: '1fr 1fr',
-                      gap: '2px',
-                      padding: '8px',
-                      backgroundColor: '#FFFFFF',
-                      flexShrink: 0,
-                    }}
-                  >
-                    <div style={{ backgroundColor: '#F25022', borderRadius: '1px' }} />
-                    <div style={{ backgroundColor: '#7FBA00', borderRadius: '1px' }} />
-                    <div style={{ backgroundColor: '#00A4EF', borderRadius: '1px' }} />
-                    <div style={{ backgroundColor: '#FFB900', borderRadius: '1px' }} />
+                  <div className="w-9 h-9 rounded-lg border border-[#E2E8F0] grid grid-cols-2 gap-0.5 p-2 bg-white shrink-0">
+                    <div className="bg-[#F25022] rounded-[1px]" />
+                    <div className="bg-[#7FBA00] rounded-[1px]" />
+                    <div className="bg-[#00A4EF] rounded-[1px]" />
+                    <div className="bg-[#FFB900] rounded-[1px]" />
                   </div>
                 ) : company.isAmazon ? (
-                  <div
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '8px',
-                      backgroundColor: '#1E293B',
-                      color: '#F59E0B',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: 800,
-                      fontSize: '18px',
-                      flexShrink: 0,
-                    }}
-                  >
+                  <div className="w-9 h-9 rounded-lg bg-[#1E293B] text-[#F59E0B] flex items-center justify-center font-extrabold text-lg shrink-0">
                     a
                   </div>
                 ) : (
                   <div
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '8px',
-                      backgroundColor: company.iconBg || '#1E293B',
-                      color: '#FFFFFF',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: 700,
-                      fontSize: '11px',
-                      flexShrink: 0,
-                    }}
+                    style={{ backgroundColor: company.iconBg || '#1E293B' }}
+                    className="w-9 h-9 rounded-lg text-white flex items-center justify-center font-bold text-[11px] shrink-0"
                   >
                     {company.iconText}
                   </div>
                 )}
 
                 {/* Company Name & Open Roles */}
-                <div style={{ minWidth: 0 }}>
-                  <h5
-                    style={{
-                      fontSize: '13px',
-                      fontWeight: 600,
-                      color: '#102E6D',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      lineHeight: '1.2',
-                    }}
-                  >
+                <div className="min-w-0">
+                  <h5 className="text-[13px] font-semibold text-[#102E6D] truncate leading-tight">
                     {company.name}
                   </h5>
-                  <p
-                    style={{
-                      fontSize: '11px',
-                      color: '#64748B',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}
-                  >
+                  <p className="text-[11px] text-[#64748B] truncate">
                     {company.openRoles}
                   </p>
                 </div>
@@ -208,21 +115,11 @@ export default function FeaturedCompanies({
               <button
                 type="button"
                 onClick={() => handleFollowToggle(company.id)}
-                style={{
-                  padding: '5px 12px',
-                  borderRadius: '16px',
-                  border: isFollowed ? '1px solid #10B981' : '1px solid #D5E3F8',
-                  backgroundColor: isFollowed ? '#ECFDF5' : '#FFFFFF',
-                  color: isFollowed ? '#059669' : '#1463F3',
-                  fontSize: '11.5px',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  flexShrink: 0,
-                  transition: 'all 0.15s ease',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '3px',
-                }}
+                className={`px-3 py-1 rounded-2xl border text-[11.5px] font-semibold cursor-pointer shrink-0 transition-all inline-flex items-center gap-1 ${
+                  isFollowed
+                    ? 'border-[#10B981] bg-[#ECFDF5] text-[#059669]'
+                    : 'border-[#D5E3F8] bg-white text-[#1463F3] hover:bg-[#F0F6FF]'
+                }`}
               >
                 {isFollowed && <Check size={11} />}
                 <span>{isFollowed ? 'Following' : 'Follow'}</span>
@@ -234,3 +131,4 @@ export default function FeaturedCompanies({
     </SectionCard>
   );
 }
+

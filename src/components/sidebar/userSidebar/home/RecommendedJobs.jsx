@@ -67,119 +67,67 @@ export default function RecommendedJobs({
   };
 
   return (
-    <SectionCard padding="18px 20px">
+    <SectionCard className="p-[18px_20px]">
       {/* Header */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '16px',
-        }}
-      >
-        <h3 style={{ fontSize: '14.5px', fontWeight: 700, color: '#102E6D' }}>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-[14.5px] font-bold text-[#102E6D]">
           Recommended Jobs
         </h3>
         <button
           type="button"
           onClick={onViewAll}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#1463F3',
-            fontSize: '12px',
-            fontWeight: 600,
-            cursor: 'pointer',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '2px',
-          }}
+          className="bg-transparent border-0 text-[#1463F3] text-xs font-semibold cursor-pointer inline-flex items-center gap-0.5 hover:underline"
         >
           View All <ArrowRight size={13} />
         </button>
       </div>
 
       {/* Jobs List */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div className="flex flex-col gap-4">
         {jobs.map((job) => {
           const isSaved = !!savedJobs[job.id];
           return (
             <div
               key={job.id}
               onClick={() => onJobClick && onJobClick(job)}
-              style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: '12px',
-                cursor: 'pointer',
-              }}
+              className="flex items-start gap-3 cursor-pointer group"
             >
               {/* Company Logo Badge */}
               <div
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '10px',
-                  backgroundColor: job.iconBg || '#1E293B',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#FFFFFF',
-                  fontWeight: 800,
-                  fontSize: '18px',
-                  flexShrink: 0,
-                  boxShadow: '0 2px 5px rgba(0,0,0,0.06)',
-                }}
+                style={{ backgroundColor: job.iconBg || '#1E293B' }}
+                className="w-10 h-10 rounded-[10px] flex items-center justify-center text-white font-extrabold text-lg shrink-0 shadow-[0_2px_5px_rgba(0,0,0,0.06)]"
               >
                 {job.isLeafLogo ? '🍃' : job.isCloudLogo ? '☁️' : job.iconText}
               </div>
 
               {/* Job Details */}
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px' }}>
-                  <h4
-                    style={{
-                      fontSize: '13.5px',
-                      fontWeight: 700,
-                      color: '#102E6D',
-                      lineHeight: '1.25',
-                      marginBottom: '2px',
-                    }}
-                  >
+              <div className="flex-1 min-w-0">
+                <div className="flex items-start justify-between gap-2">
+                  <h4 className="text-[13.5px] font-bold text-[#102E6D] leading-tight mb-0.5 group-hover:text-[#1463F3] transition-colors">
                     {job.title}
                   </h4>
                   <button
                     type="button"
                     onClick={(e) => toggleSave(job.id, e)}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: isSaved ? '#1463F3' : '#94A3B8',
-                      cursor: 'pointer',
-                      padding: '2px',
-                    }}
+                    className={`bg-transparent border-0 cursor-pointer p-0.5 ${
+                      isSaved ? 'text-[#1463F3]' : 'text-[#94A3B8] hover:text-[#1463F3]'
+                    }`}
                     title={isSaved ? 'Unsave' : 'Save'}
                   >
                     <Bookmark size={15} fill={isSaved ? '#1463F3' : 'none'} />
                   </button>
                 </div>
 
-                <p style={{ fontSize: '12px', color: '#64748B', marginBottom: '6px' }}>
+                <p className="text-xs text-[#64748B] mb-1.5">
                   {job.company}
                 </p>
 
                 {/* Skill Badges */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                <div className="flex items-center gap-1.5 flex-wrap mb-1.5">
                   {job.tags.map((tag) => (
                     <Badge
                       key={tag}
-                      style={{
-                        fontSize: '11px',
-                        padding: '2px 8px',
-                        backgroundColor: '#F1F5F9',
-                        color: '#475569',
-                        border: '1px solid #E2E8F0',
-                      }}
+                      className="text-[11px] px-2 py-0.5 bg-[#F1F5F9] text-[#475569] border-[#E2E8F0]"
                     >
                       {tag}
                     </Badge>
@@ -187,15 +135,7 @@ export default function RecommendedJobs({
                 </div>
 
                 {/* Location & Metadata */}
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '11px',
-                    color: '#94A3B8',
-                  }}
-                >
+                <div className="flex items-center gap-1.5 text-[11px] text-[#94A3B8]">
                   <MapPin size={11} />
                   <span>{job.location}</span>
                   <span>•</span>
@@ -211,3 +151,4 @@ export default function RecommendedJobs({
     </SectionCard>
   );
 }
+

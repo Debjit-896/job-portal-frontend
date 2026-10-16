@@ -20,28 +20,18 @@ export default function CreatePost({
   };
 
   const actionButtons = [
-    { label: 'Photo', icon: Image, color: '#3B82F6' },
-    { label: 'Video', icon: Video, color: '#10B981' },
-    { label: 'Article', icon: FileText, color: '#F59E0B' },
-    { label: 'Poll', icon: BarChart2, color: '#8B5CF6' },
+    { label: 'Photo', icon: Image, color: 'text-[#3B82F6]' },
+    { label: 'Video', icon: Video, color: 'text-[#10B981]' },
+    { label: 'Article', icon: FileText, color: 'text-[#F59E0B]' },
+    { label: 'Poll', icon: BarChart2, color: 'text-[#8B5CF6]' },
   ];
 
   return (
-    <SectionCard padding="18px 20px">
+    <SectionCard padding="p-4.5 md:p-5">
       {/* Top row: Avatar + input */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '14px' }}>
+      <div className="flex items-center gap-3.5 mb-3.5">
         <Avatar src={userAvatar} name={userName} size={42} />
-        <div
-          style={{
-            flex: 1,
-            backgroundColor: '#F8FAFC',
-            borderRadius: '24px',
-            border: '1px solid #E2E8F0',
-            padding: '10px 18px',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
+        <div className="flex-1 bg-[#F8FAFC] rounded-full border border-[#E2E8F0] px-4.5 py-2.5 flex items-center focus-within:border-[#1463F3] focus-within:bg-white transition-all">
           <input
             type="text"
             placeholder="Share something..."
@@ -50,52 +40,26 @@ export default function CreatePost({
             onKeyDown={(e) => {
               if (e.key === 'Enter') handlePost();
             }}
-            style={{
-              width: '100%',
-              border: 'none',
-              outline: 'none',
-              background: 'transparent',
-              fontSize: '13.5px',
-              color: '#1E293B',
-              fontFamily: 'inherit',
-            }}
+            className="w-full border-none outline-none bg-transparent text-[13.5px] text-[#1E293B] placeholder-[#94A3B8]"
           />
         </div>
       </div>
 
-      {/* Bottom row: Media upload buttons & Post action button */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingTop: '6px',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+      {/* Bottom row: Attachment Action Buttons + Post Button */}
+      <div className="flex items-center justify-between pt-2.5 border-t border-[#F1F5F9] flex-wrap gap-2">
+        <div className="flex items-center gap-2 md:gap-3 flex-wrap">
           {actionButtons.map((btn) => {
             const Icon = btn.icon;
             return (
               <button
                 key={btn.label}
                 type="button"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '7px',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  color: '#64748B',
-                  fontSize: '13px',
-                  fontWeight: 500,
-                  padding: '4px 6px',
-                  borderRadius: '6px',
-                  transition: 'background-color 0.15s, color 0.15s',
-                }}
+                className="flex items-center gap-1.5 py-1.5 px-2.5 rounded-lg border-none bg-transparent cursor-pointer text-[#64748B] hover:bg-[#F1F5F9] transition-colors"
               >
-                <Icon size={18} color={btn.color} />
-                <span>{btn.label}</span>
+                <Icon size={17} className={btn.color} />
+                <span className="text-[12.5px] font-medium text-[#475569]">
+                  {btn.label}
+                </span>
               </button>
             );
           })}
@@ -106,12 +70,7 @@ export default function CreatePost({
           size="sm"
           onClick={handlePost}
           disabled={!content.trim()}
-          style={{
-            padding: '7px 22px',
-            borderRadius: '8px',
-            fontSize: '13px',
-            fontWeight: 600,
-          }}
+          className="text-xs px-4"
         >
           Post
         </Button>

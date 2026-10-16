@@ -21,32 +21,11 @@ export default function CompaniesHeroBanner({ onSearch, onTagClick }) {
   };
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        borderRadius: '16px',
-        overflow: 'hidden',
-        background: 'linear-gradient(108deg, #183883 0%, #1D4ED8 45%, #2563EB 75%, #1E40AF 100%)',
-        padding: '30px 32px 28px 32px',
-        color: '#FFFFFF',
-        boxShadow: '0 8px 24px rgba(20, 99, 243, 0.15)',
-      }}
-    >
+    <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#183883] via-[#1D4ED8] to-[#1E40AF] p-[30px_32px_28px_32px] text-white shadow-[0_8px_24px_rgba(20,99,243,0.15)]">
       {/* Decorative City Skyline Background on Right */}
       <div
         aria-hidden="true"
-        style={{
-          position: 'absolute',
-          right: '18px',
-          bottom: 0,
-          top: 0,
-          width: '320px',
-          pointerEvents: 'none',
-          display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'flex-end',
-          opacity: 0.9,
-        }}
+        className="absolute right-4.5 bottom-0 top-0 w-80 pointer-events-none flex items-end justify-end opacity-90"
       >
         <svg width="280" height="150" viewBox="0 0 280 150" fill="none">
           {/* Subtle night sky stars/lights */}
@@ -97,91 +76,27 @@ export default function CompaniesHeroBanner({ onSearch, onTagClick }) {
       </div>
 
       {/* Decorative text badge on right */}
-      <div
-        style={{
-          position: 'absolute',
-          right: '32px',
-          top: '26px',
-          textAlign: 'right',
-          pointerEvents: 'none',
-          lineHeight: '1.25',
-        }}
-      >
-        <span
-          style={{
-            display: 'block',
-            fontSize: '15px',
-            fontFamily: 'cursive, Georgia, serif',
-            fontStyle: 'italic',
-            fontWeight: 500,
-            color: '#E0E7FF',
-            textShadow: '0 2px 4px rgba(0,0,0,0.2)',
-          }}
-        >
+      <div className="absolute right-8 top-6.5 text-right pointer-events-none leading-tight">
+        <span className="block text-[15px] italic font-medium text-[#E0E7FF] drop-shadow">
           Better
         </span>
-        <span
-          style={{
-            display: 'block',
-            fontSize: '15px',
-            fontFamily: 'cursive, Georgia, serif',
-            fontStyle: 'italic',
-            fontWeight: 500,
-            color: '#E0E7FF',
-            textShadow: '0 2px 4px rgba(0,0,0,0.2)',
-          }}
-        >
+        <span className="block text-[15px] italic font-medium text-[#E0E7FF] drop-shadow">
           Companies
         </span>
-        <span
-          style={{
-            display: 'block',
-            fontSize: '15px',
-            fontFamily: 'cursive, Georgia, serif',
-            fontStyle: 'italic',
-            fontWeight: 500,
-            color: '#FCD34D',
-            textShadow: '0 2px 4px rgba(0,0,0,0.2)',
-          }}
-        >
+        <span className="block text-[15px] italic font-medium text-[#FCD34D] drop-shadow">
           Brighter
         </span>
-        <span
-          style={{
-            display: 'block',
-            fontSize: '15px',
-            fontFamily: 'cursive, Georgia, serif',
-            fontStyle: 'italic',
-            fontWeight: 500,
-            color: '#FCD34D',
-            textShadow: '0 2px 4px rgba(0,0,0,0.2)',
-          }}
-        >
+        <span className="block text-[15px] italic font-medium text-[#FCD34D] drop-shadow">
           Future
         </span>
       </div>
 
       {/* Header Titles */}
-      <div style={{ position: 'relative', zIndex: 2, maxWidth: '600px', marginBottom: '22px' }}>
-        <h1
-          style={{
-            fontSize: '26px',
-            fontWeight: 800,
-            letterSpacing: '-0.4px',
-            marginBottom: '8px',
-            color: '#FFFFFF',
-          }}
-        >
+      <div className="relative z-2 max-w-[600px] mb-5.5">
+        <h1 className="text-[26px] font-extrabold tracking-[-0.4px] mb-2 text-white">
           Discover Great Companies
         </h1>
-        <p
-          style={{
-            fontSize: '13.5px',
-            color: '#DBEAFE',
-            lineHeight: '1.5',
-            fontWeight: 400,
-          }}
-        >
+        <p className="text-[13.5px] text-[#DBEAFE] leading-relaxed font-normal">
           Explore top companies, follow your favorites, and get the latest updates on jobs, culture and opportunities.
         </p>
       </div>
@@ -189,56 +104,26 @@ export default function CompaniesHeroBanner({ onSearch, onTagClick }) {
       {/* Search Input Bar with Industry Dropdown and Search Button */}
       <form
         onSubmit={handleSubmit}
-        style={{
-          position: 'relative',
-          zIndex: 2,
-          display: 'flex',
-          alignItems: 'center',
-          backgroundColor: '#FFFFFF',
-          borderRadius: '12px',
-          padding: '6px 7px 6px 16px',
-          boxShadow: '0 8px 20px rgba(0, 0, 0, 0.12)',
-          maxWidth: '680px',
-          marginBottom: '18px',
-        }}
+        className="relative z-2 flex items-center bg-white rounded-xl p-[6px_7px_6px_16px] shadow-[0_8px_20px_rgba(0,0,0,0.12)] max-w-[680px] mb-4.5"
       >
-        <Search size={18} color="#94A3B8" style={{ flexShrink: 0, marginRight: '10px' }} />
+        <Search size={18} className="text-[#94A3B8] shrink-0 mr-2.5" />
         <input
           type="text"
           placeholder="Search companies by name, industry, or location..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          style={{
-            border: 'none',
-            outline: 'none',
-            fontSize: '13px',
-            color: '#1E293B',
-            flex: 1,
-            minWidth: 0,
-            background: 'transparent',
-            fontFamily: 'inherit',
-          }}
+          className="border-0 outline-none text-[13px] text-[#1E293B] flex-1 min-w-0 bg-transparent placeholder:text-[#94A3B8]"
         />
 
         {/* Vertical divider */}
-        <div style={{ width: '1px', height: '24px', backgroundColor: '#E2E8F0', margin: '0 12px' }} />
+        <div className="w-px h-6 bg-[#E2E8F0] mx-3" />
 
         {/* Industry dropdown */}
-        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', marginRight: '10px' }}>
+        <div className="relative flex items-center mr-2.5">
           <select
             value={industry}
             onChange={(e) => setIndustry(e.target.value)}
-            style={{
-              appearance: 'none',
-              border: 'none',
-              background: 'transparent',
-              fontSize: '12.5px',
-              fontWeight: 500,
-              color: '#475569',
-              paddingRight: '20px',
-              cursor: 'pointer',
-              outline: 'none',
-            }}
+            className="appearance-none border-0 bg-transparent text-[12.5px] font-medium text-[#475569] pr-5 cursor-pointer outline-none"
           >
             <option value="All Industries">All Industries</option>
             <option value="Technology">Technology</option>
@@ -249,43 +134,22 @@ export default function CompaniesHeroBanner({ onSearch, onTagClick }) {
           </select>
           <ChevronDown
             size={14}
-            color="#64748B"
-            style={{ position: 'absolute', right: 0, pointerEvents: 'none' }}
+            className="text-[#64748B] absolute right-0 pointer-events-none"
           />
         </div>
 
         {/* Blue Search Button */}
         <button
           type="submit"
-          style={{
-            backgroundColor: '#1463F3',
-            color: '#FFFFFF',
-            border: 'none',
-            borderRadius: '9px',
-            padding: '9px 24px',
-            fontSize: '13px',
-            fontWeight: 600,
-            cursor: 'pointer',
-            transition: 'background-color 0.15s ease',
-            flexShrink: 0,
-          }}
+          className="bg-[#1463F3] text-white border-0 rounded-[9px] py-2 px-6 text-[13px] font-semibold cursor-pointer transition-colors hover:bg-[#0F52CC] shrink-0"
         >
           Search
         </button>
       </form>
 
       {/* Popular Chips Row */}
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 2,
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          flexWrap: 'wrap',
-        }}
-      >
-        <span style={{ fontSize: '12px', fontWeight: 600, color: '#BFDBFE', marginRight: '4px' }}>
+      <div className="relative z-2 flex items-center gap-2 flex-wrap">
+        <span className="text-xs font-semibold text-[#BFDBFE] mr-1">
           Popular:
         </span>
         {popularTags.map((tag) => (
@@ -293,24 +157,7 @@ export default function CompaniesHeroBanner({ onSearch, onTagClick }) {
             key={tag}
             type="button"
             onClick={() => onTagClick && onTagClick(tag)}
-            style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.12)',
-              border: '1px solid rgba(255, 255, 255, 0.25)',
-              borderRadius: '20px',
-              padding: '4px 13px',
-              fontSize: '11.5px',
-              color: '#FFFFFF',
-              fontWeight: 500,
-              cursor: 'pointer',
-              backdropFilter: 'blur(4px)',
-              transition: 'all 0.15s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.22)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
-            }}
+            className="bg-white/12 border border-white/25 rounded-[20px] py-1 px-3 text-[11.5px] text-white font-medium cursor-pointer backdrop-blur-xs transition-colors hover:bg-white/22"
           >
             {tag}
           </button>
@@ -319,3 +166,4 @@ export default function CompaniesHeroBanner({ onSearch, onTagClick }) {
     </div>
   );
 }
+

@@ -24,71 +24,39 @@ export default function TipsForYouCard({ onTipClick }) {
   ];
 
   return (
-    <SectionCard padding="16px">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '14px' }}>
-        <Lightbulb size={16} color="#1463F3" />
-        <h4 style={{ fontSize: '13.5px', fontWeight: 700, color: '#102E6D' }}>
+    <SectionCard className="p-4">
+      <div className="flex items-center gap-2 mb-3.5">
+        <Lightbulb size={16} className="text-[#1463F3]" />
+        <h4 className="text-[13.5px] font-bold text-[#102E6D]">
           Tips for You
         </h4>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      <div className="flex flex-col gap-3.5">
         {tips.map((tip) => {
           const Icon = tip.icon;
           return (
             <div
               key={tip.id}
               onClick={() => onTipClick && onTipClick(tip.id)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                cursor: 'pointer',
-              }}
+              className="flex items-center justify-between cursor-pointer group"
             >
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', minWidth: 0 }}>
-                <div
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '8px',
-                    backgroundColor: '#F1F5F9',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#64748B',
-                    flexShrink: 0,
-                    marginTop: '2px',
-                  }}
-                >
+              <div className="flex items-start gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-lg bg-[#F1F5F9] flex items-center justify-center text-[#64748B] shrink-0 mt-0.5 group-hover:bg-[#EFF6FF] group-hover:text-[#1463F3] transition-colors">
                   <Icon size={16} />
                 </div>
 
-                <div style={{ minWidth: 0 }}>
-                  <h5
-                    style={{
-                      fontSize: '12.5px',
-                      fontWeight: 600,
-                      color: '#102E6D',
-                      lineHeight: '1.2',
-                    }}
-                  >
+                <div className="min-w-0">
+                  <h5 className="text-[12.5px] font-semibold text-[#102E6D] leading-tight group-hover:text-[#1463F3] transition-colors">
                     {tip.title}
                   </h5>
-                  <p
-                    style={{
-                      fontSize: '10.5px',
-                      color: '#64748B',
-                      marginTop: '2px',
-                      lineHeight: '1.35',
-                    }}
-                  >
+                  <p className="text-[10.5px] text-[#64748B] mt-0.5 leading-snug">
                     {tip.subtitle}
                   </p>
                 </div>
               </div>
 
-              <ChevronRight size={14} color="#94A3B8" style={{ flexShrink: 0, marginLeft: '6px' }} />
+              <ChevronRight size={14} className="text-[#94A3B8] shrink-0 ml-1.5" />
             </div>
           );
         })}
@@ -96,3 +64,4 @@ export default function TipsForYouCard({ onTipClick }) {
     </SectionCard>
   );
 }
+

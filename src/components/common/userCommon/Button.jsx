@@ -6,72 +6,34 @@ export default function Button({
   iconPosition = 'left',
   fullWidth = false,
   className = '',
-  style = {},
   disabled = false,
   onClick,
   type = 'button',
   ...props
 }) {
-  const baseStyle = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '8px',
-    borderRadius: '10px',
-    fontWeight: 600,
-    cursor: disabled ? 'not-allowed' : 'pointer',
-    transition: 'all 0.2s ease',
-    outline: 'none',
-    width: fullWidth ? '100%' : 'auto',
-    opacity: disabled ? 0.6 : 1,
-    whiteSpace: 'nowrap',
-    fontFamily: 'inherit',
+  const sizeClasses = {
+    sm: 'px-3 py-1.5 text-xs',
+    md: 'px-4.5 py-2.5 text-sm',
+    lg: 'px-6 py-3 text-base',
   };
 
-  const sizeStyles = {
-    sm: { padding: '6px 12px', fontSize: '13px' },
-    md: { padding: '9px 18px', fontSize: '14px' },
-    lg: { padding: '12px 24px', fontSize: '15px' },
-  };
-
-  const variantStyles = {
-    primary: {
-      backgroundColor: '#1463F3',
-      color: '#FFFFFF',
-      border: 'none',
-      boxShadow: '0 2px 8px rgba(20, 99, 243, 0.24)',
-    },
-    secondary: {
-      backgroundColor: '#EAF3FF',
-      color: '#1463F3',
-      border: '1px solid #D8E6FF',
-    },
-    outline: {
-      backgroundColor: '#FFFFFF',
-      color: '#102E6D',
-      border: '1px solid #D8E6FF',
-    },
-    ghost: {
-      backgroundColor: 'transparent',
-      color: '#627BAF',
-      border: 'none',
-    },
-  };
-
-  const finalStyle = {
-    ...baseStyle,
-    ...(sizeStyles[size] || sizeStyles.md),
-    ...(variantStyles[variant] || variantStyles.primary),
-    ...style,
+  const variantClasses = {
+    primary: 'bg-[#1463F3] text-white border-transparent shadow-[0_2px_8px_rgba(20,99,243,0.24)] hover:bg-[#104ec4]',
+    secondary: 'bg-[#EAF3FF] text-[#1463F3] border border-[#D8E6FF] hover:bg-[#dbeafe]',
+    outline: 'bg-white text-[#102E6D] border border-[#D8E6FF] hover:bg-[#F8FAFC]',
+    ghost: 'bg-transparent text-[#627BAF] hover:bg-[#F1F5F9]',
   };
 
   return (
     <button
       type={type}
-      style={finalStyle}
       disabled={disabled}
       onClick={onClick}
-      className={`user-btn ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-[10px] font-semibold transition-all duration-200 outline-none whitespace-nowrap ${
+        fullWidth ? 'w-full' : 'w-auto'
+      } ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'} ${sizeClasses[size] || sizeClasses.md} ${
+        variantClasses[variant] || variantClasses.primary
+      } ${className}`}
       {...props}
     >
       {Icon && iconPosition === 'left' && <Icon size={size === 'sm' ? 14 : size === 'lg' ? 18 : 16} />}

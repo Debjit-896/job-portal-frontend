@@ -14,159 +14,67 @@ export default function JobHeroBanner({ onSearch }) {
   };
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        background: 'linear-gradient(135deg, #EBF3FF 0%, #DCE9FC 100%)',
-        borderRadius: '16px',
-        padding: '24px 28px',
-        border: '1px solid #D1E2FB',
-        overflow: 'hidden',
-        boxShadow: '0 4px 18px rgba(20, 99, 243, 0.05)',
-      }}
-    >
+    <div className="relative bg-gradient-to-br from-[#EBF3FF] to-[#DCE9FC] rounded-2xl p-[24px_28px] border border-[#D1E2FB] overflow-hidden shadow-[0_4px_18px_rgba(20,99,243,0.05)]">
       {/* Decorative background glow */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '-40px',
-          right: '160px',
-          width: '180px',
-          height: '180px',
-          borderRadius: '50%',
-          background: 'rgba(255, 255, 255, 0.45)',
-          filter: 'blur(30px)',
-          pointerEvents: 'none',
-        }}
-      />
+      <div className="absolute -top-10 right-40 w-[180px] h-[180px] rounded-full bg-white/45 blur-[30px] pointer-events-none" />
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px' }}>
+      <div className="flex items-center justify-between gap-6">
         {/* Left: Titles & Triple Filter Search Bar */}
-        <div style={{ flex: 1, minWidth: 0, zIndex: 1 }}>
-          <h1
-            style={{
-              fontSize: '22px',
-              fontWeight: '800',
-              color: '#102E6D',
-              lineHeight: '1.2',
-              letterSpacing: '-0.3px',
-              marginBottom: '6px',
-            }}
-          >
+        <div className="flex-1 min-w-0 z-1">
+          <h1 className="text-[22px] font-extrabold text-[#102E6D] leading-tight tracking-[-0.3px] mb-1.5">
             Find Your Next Job
           </h1>
 
-          <p
-            style={{
-              fontSize: '12.5px',
-              color: '#536E9B',
-              lineHeight: '1.4',
-              marginBottom: '16px',
-            }}
-          >
+          <p className="text-[12.5px] text-[#536E9B] leading-[1.4] mb-4">
             Explore thousands of job opportunities from top companies
             <br />
             and take the next step in your career.
           </p>
 
           {/* 3-Part Unified Search Bar */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              backgroundColor: '#FFFFFF',
-              borderRadius: '10px',
-              padding: '5px 6px',
-              boxShadow: '0 3px 12px rgba(16, 46, 109, 0.07)',
-              border: '1px solid #D5E3F8',
-              gap: '6px',
-              maxWidth: '680px',
-            }}
-          >
+          <div className="flex items-center bg-white rounded-xl p-[5px_6px] shadow-[0_3px_12px_rgba(16,46,109,0.07)] border border-[#D5E3F8] gap-1.5 max-w-[680px]">
             {/* Input 1: Job title, keyword */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flex: 1.4, padding: '4px 10px' }}>
-              <Search size={16} color="#8DA0BD" style={{ flexShrink: 0 }} />
+            <div className="flex items-center gap-2 flex-[1.4] px-2.5 py-1">
+              <Search size={16} className="text-[#8DA0BD] shrink-0" />
               <input
                 type="text"
                 placeholder="Job title, keyword or company"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  background: 'transparent',
-                  width: '100%',
-                  fontSize: '12.5px',
-                  color: '#102E6D',
-                  fontFamily: 'inherit',
-                }}
+                className="border-0 outline-none bg-transparent w-full text-[12.5px] text-[#102E6D] placeholder:text-[#8DA0BD]"
               />
             </div>
 
             {/* Vertical Separator */}
-            <div style={{ width: '1px', height: '22px', backgroundColor: '#E2E8F0' }} />
+            <div className="w-px h-[22px] bg-[#E2E8F0]" />
 
             {/* Input 2: Location Dropdown */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                flex: 1,
-                padding: '4px 10px',
-                cursor: 'pointer',
-              }}
-            >
-              <MapPin size={15} color="#8DA0BD" style={{ flexShrink: 0 }} />
+            <div className="flex items-center gap-2 flex-1 px-2.5 py-1 cursor-pointer">
+              <MapPin size={15} className="text-[#8DA0BD] shrink-0" />
               <input
                 type="text"
                 placeholder="Location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  background: 'transparent',
-                  width: '100%',
-                  fontSize: '12.5px',
-                  color: '#102E6D',
-                  fontFamily: 'inherit',
-                }}
+                className="border-0 outline-none bg-transparent w-full text-[12.5px] text-[#102E6D] placeholder:text-[#8DA0BD]"
               />
-              <ChevronDown size={14} color="#94A3B8" />
+              <ChevronDown size={14} className="text-[#94A3B8]" />
             </div>
 
             {/* Vertical Separator */}
-            <div style={{ width: '1px', height: '22px', backgroundColor: '#E2E8F0' }} />
+            <div className="w-px h-[22px] bg-[#E2E8F0]" />
 
             {/* Input 3: Job type Dropdown */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                flex: 0.9,
-                padding: '4px 10px',
-                cursor: 'pointer',
-              }}
-            >
-              <Briefcase size={15} color="#8DA0BD" style={{ flexShrink: 0 }} />
+            <div className="flex items-center gap-2 flex-[0.9] px-2.5 py-1 cursor-pointer">
+              <Briefcase size={15} className="text-[#8DA0BD] shrink-0" />
               <input
                 type="text"
                 placeholder="Job type"
                 value={jobType}
                 onChange={(e) => setJobType(e.target.value)}
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  background: 'transparent',
-                  width: '100%',
-                  fontSize: '12.5px',
-                  color: '#102E6D',
-                  fontFamily: 'inherit',
-                }}
+                className="border-0 outline-none bg-transparent w-full text-[12.5px] text-[#102E6D] placeholder:text-[#8DA0BD]"
               />
-              <ChevronDown size={14} color="#94A3B8" />
+              <ChevronDown size={14} className="text-[#94A3B8]" />
             </div>
 
             {/* Search Jobs Button */}
@@ -174,13 +82,7 @@ export default function JobHeroBanner({ onSearch }) {
               variant="primary"
               size="sm"
               onClick={handleSearch}
-              style={{
-                padding: '8px 18px',
-                borderRadius: '8px',
-                fontSize: '12.5px',
-                fontWeight: 600,
-                flexShrink: 0,
-              }}
+              className="px-4.5 py-2 rounded-lg text-[12.5px] font-semibold shrink-0"
             >
               Search Jobs
             </Button>
@@ -188,41 +90,11 @@ export default function JobHeroBanner({ onSearch }) {
         </div>
 
         {/* Right: Slogan & Illustration */}
-        <div
-          style={{
-            position: 'relative',
-            width: '210px',
-            height: '135px',
-            flexShrink: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-          }}
-        >
+        <div className="relative w-[210px] h-[135px] shrink-0 flex flex-col items-center justify-end">
           {/* Floating Slogan badge */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              backgroundColor: 'rgba(255, 255, 255, 0.92)',
-              backdropFilter: 'blur(4px)',
-              padding: '4px 10px',
-              borderRadius: '8px',
-              border: '1px solid rgba(255, 255, 255, 0.95)',
-              boxShadow: '0 3px 10px rgba(16, 46, 109, 0.05)',
-              fontSize: '10.5px',
-              fontWeight: 700,
-              color: '#365280',
-              lineHeight: '1.25',
-              fontStyle: 'italic',
-              textAlign: 'left',
-              zIndex: 2,
-            }}
-          >
+          <div className="absolute top-0 left-0 bg-white/92 backdrop-blur-[4px] px-2.5 py-1 rounded-lg border border-white/95 shadow-[0_3px_10px_rgba(16,46,109,0.05)] text-[10.5px] font-bold text-[#365280] leading-tight italic text-left z-2">
             <div>Better Jobs</div>
-            <div style={{ color: '#1463F3' }}>Better Future</div>
+            <div className="text-[#1463F3]">Better Future</div>
           </div>
 
           {/* SVG Illustration */}
@@ -230,7 +102,7 @@ export default function JobHeroBanner({ onSearch }) {
             viewBox="0 0 240 140"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ width: '100%', height: '100%', overflow: 'visible' }}
+            className="w-full h-full overflow-visible"
           >
             {/* Background elements / Plants */}
             <path
@@ -303,3 +175,4 @@ export default function JobHeroBanner({ onSearch }) {
     </div>
   );
 }
+

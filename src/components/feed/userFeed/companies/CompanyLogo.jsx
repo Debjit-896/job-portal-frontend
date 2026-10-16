@@ -1,19 +1,11 @@
 export default function CompanyLogo({ company, size = 38 }) {
+  const sizeStyle = { width: `${size}px`, height: `${size}px` };
+
   if (company.isCloudWind) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          backgroundColor: '#1463F3',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#FFFFFF',
-          flexShrink: 0,
-          boxShadow: '0 2px 6px rgba(20, 99, 243, 0.25)',
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] bg-[#1463F3] flex items-center justify-center text-white shrink-0 shadow-[0_2px_6px_rgba(20,99,243,0.25)]"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
@@ -25,18 +17,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isGoogle) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          border: '1px solid #E2E8F0',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#FFFFFF',
-          flexShrink: 0,
-          boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] border border-[#E2E8F0] flex items-center justify-center bg-white shrink-0 shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
       >
         <svg width="20" height="20" viewBox="0 0 24 24">
           <path
@@ -63,24 +45,13 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isMicrosoft) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          border: '1px solid #E2E8F0',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '2.5px',
-          padding: '8px',
-          backgroundColor: '#FFFFFF',
-          flexShrink: 0,
-          boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] border border-[#E2E8F0] grid grid-cols-2 gap-[2.5px] p-2 bg-white shrink-0 shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
       >
-        <div style={{ backgroundColor: '#F25022', borderRadius: '1px' }} />
-        <div style={{ backgroundColor: '#7FBA00', borderRadius: '1px' }} />
-        <div style={{ backgroundColor: '#00A4EF', borderRadius: '1px' }} />
-        <div style={{ backgroundColor: '#FFB900', borderRadius: '1px' }} />
+        <div className="bg-[#F25022] rounded-[1px]" />
+        <div className="bg-[#7FBA00] rounded-[1px]" />
+        <div className="bg-[#00A4EF] rounded-[1px]" />
+        <div className="bg-[#FFB900] rounded-[1px]" />
       </div>
     );
   }
@@ -88,21 +59,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isAmazon) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          backgroundColor: '#1E293B',
-          color: '#FF9900',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: 800,
-          fontSize: '20px',
-          fontFamily: 'system-ui, sans-serif',
-          flexShrink: 0,
-          boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] bg-[#1E293B] text-[#FF9900] flex items-center justify-center font-extrabold text-xl shrink-0 shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
       >
         a
       </div>
@@ -112,31 +70,10 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isTcs) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          border: '1px solid #E2E8F0',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#FFFFFF',
-          flexShrink: 0,
-          boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-          padding: '2px',
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] border border-[#E2E8F0] flex items-center justify-center bg-white shrink-0 shadow-[0_1px_3px_rgba(0,0,0,0.05)] p-0.5"
       >
-        <span
-          style={{
-            fontFamily: 'sans-serif',
-            fontWeight: 800,
-            fontSize: '11px',
-            background: 'linear-gradient(90deg, #E11D48, #9333EA)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            letterSpacing: '-0.3px',
-          }}
-        >
+        <span className="font-sans font-extrabold text-[11px] bg-gradient-to-r from-[#E11D48] to-[#9333EA] bg-clip-text text-transparent tracking-[-0.3px]">
           tcs
         </span>
       </div>
@@ -146,20 +83,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isAccenture) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          backgroundColor: '#FAF5FF',
-          border: '1px solid #E9D5FF',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#9333EA',
-          fontWeight: 800,
-          fontSize: '20px',
-          flexShrink: 0,
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] bg-[#FAF5FF] border border-[#E9D5FF] flex items-center justify-center text-[#9333EA] font-extrabold text-xl shrink-0"
       >
         &gt;
       </div>
@@ -169,17 +94,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isMeta) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          border: '1px solid #E2E8F0',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#FFFFFF',
-          flexShrink: 0,
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] border border-[#E2E8F0] flex items-center justify-center bg-white shrink-0"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="#0081FB">
           <path d="M12 3.5c-3.15 0-5.87 1.76-7.36 4.34-1.6 2.76-1.57 6.13.06 8.85C6.18 19.39 8.95 21 12 21c3.05 0 5.82-1.61 7.3-4.31 1.63-2.72 1.66-6.09.06-8.85C17.87 5.26 15.15 3.5 12 3.5zm0 14.5c-2.3 0-4.38-1.22-5.5-3.13-1.2-2.05-1.22-4.57-.05-6.64C7.57 6.32 9.68 5.1 12 5.1s4.43 1.22 5.55 3.13c1.17 2.07 1.15 4.59-.05 6.64-1.12 1.91-3.2 3.13-5.5 3.13z"/>
@@ -191,17 +107,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isApple) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          backgroundColor: '#1E293B',
-          color: '#FFFFFF',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] bg-[#1E293B] text-white flex items-center justify-center shrink-0"
       >
         <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
           <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 7.15c.61-.75 1.04-1.8 1.01-2.85-.92.04-2.07.62-2.73 1.39-.56.66-.99 1.72-.94 2.76 1.05.08 2.05-.55 2.66-1.3z" />
@@ -213,20 +120,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isAdobe) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          backgroundColor: '#FA5252',
-          color: '#FFFFFF',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: 900,
-          fontSize: '20px',
-          fontFamily: 'serif',
-          flexShrink: 0,
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] bg-[#FA5252] text-white flex items-center justify-center font-black text-xl font-serif shrink-0"
       >
         A
       </div>
@@ -236,19 +131,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isOpenAI) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          backgroundColor: '#10A37F',
-          color: '#FFFFFF',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: 800,
-          fontSize: '18px',
-          flexShrink: 0,
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] bg-[#10A37F] text-white flex items-center justify-center font-extrabold text-lg shrink-0"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
           <circle cx="12" cy="12" r="9" stroke="white" strokeWidth="2.5" fill="none" />
@@ -261,20 +145,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isNetflix) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          backgroundColor: '#000000',
-          color: '#E50914',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: 900,
-          fontSize: '22px',
-          fontFamily: 'Impact, sans-serif',
-          flexShrink: 0,
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] bg-black text-[#E50914] flex items-center justify-center font-black text-[22px] font-sans shrink-0"
       >
         N
       </div>
@@ -284,17 +156,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isSpotify) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          backgroundColor: '#1ED760',
-          color: '#FFFFFF',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] bg-[#1ED760] text-white flex items-center justify-center shrink-0"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
           <circle cx="12" cy="12" r="10" />
@@ -309,20 +172,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isInfosys) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          backgroundColor: '#0070AD',
-          color: '#FFFFFF',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: 700,
-          fontSize: '9.5px',
-          fontFamily: 'sans-serif',
-          flexShrink: 0,
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] bg-[#0070AD] text-white flex items-center justify-center font-bold text-[9.5px] font-sans shrink-0"
       >
         Infosys
       </div>
@@ -332,26 +183,16 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isWipro) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          border: '1px solid #E2E8F0',
-          backgroundColor: '#FFFFFF',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-          padding: '2px',
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] border border-[#E2E8F0] bg-white flex items-center justify-center shrink-0 p-0.5"
       >
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div style={{ display: 'flex', gap: '2px' }}>
-            <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#EA4335' }} />
-            <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#34A853' }} />
-            <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#4285F4' }} />
+        <div className="flex flex-col items-center">
+          <div className="flex gap-0.5">
+            <span className="w-1 h-1 rounded-full bg-[#EA4335]" />
+            <span className="w-1 h-1 rounded-full bg-[#34A853]" />
+            <span className="w-1 h-1 rounded-full bg-[#4285F4]" />
           </div>
-          <span style={{ fontSize: '9px', fontWeight: 800, color: '#1E293B' }}>wipro</span>
+          <span className="text-[9px] font-extrabold text-[#1E293B]">wipro</span>
         </div>
       </div>
     );
@@ -360,20 +201,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isFlipkart) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          backgroundColor: '#FFEB3B',
-          color: '#2874F0',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: 900,
-          fontSize: '18px',
-          fontStyle: 'italic',
-          flexShrink: 0,
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] bg-[#FFEB3B] text-[#2874F0] flex items-center justify-center font-black text-lg italic shrink-0"
       >
         f
       </div>
@@ -383,20 +212,8 @@ export default function CompanyLogo({ company, size = 38 }) {
   if (company.isLinkedIn) {
     return (
       <div
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: '9px',
-          backgroundColor: '#0A66C2',
-          color: '#FFFFFF',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: 800,
-          fontSize: '16px',
-          fontFamily: 'sans-serif',
-          flexShrink: 0,
-        }}
+        style={sizeStyle}
+        className="rounded-[9px] bg-[#0A66C2] text-white flex items-center justify-center font-extrabold text-base font-sans shrink-0"
       >
         in
       </div>
@@ -406,21 +223,11 @@ export default function CompanyLogo({ company, size = 38 }) {
   // Fallback
   return (
     <div
-      style={{
-        width: `${size}px`,
-        height: `${size}px`,
-        borderRadius: '9px',
-        backgroundColor: company.iconBg || '#1E293B',
-        color: '#FFFFFF',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 700,
-        fontSize: '13px',
-        flexShrink: 0,
-      }}
+      style={{ ...sizeStyle, backgroundColor: company.iconBg || '#1E293B' }}
+      className="rounded-[9px] text-white flex items-center justify-center font-bold text-[13px] shrink-0"
     >
       {company.iconText || company.name?.charAt(0) || 'C'}
     </div>
   );
 }
+

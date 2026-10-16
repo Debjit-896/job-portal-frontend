@@ -4,78 +4,37 @@ import CompanyLogo from '../../../feed/userFeed/companies/CompanyLogo';
 
 export default function TrendingCompaniesCard({ companies = [], onFollowToggle, onViewAll }) {
   return (
-    <SectionCard padding="16px">
+    <SectionCard className="p-4">
       {/* Header */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '14px',
-        }}
-      >
-        <h4 style={{ fontSize: '13.5px', fontWeight: 700, color: '#102E6D' }}>
+      <div className="flex items-center justify-between mb-3.5">
+        <h4 className="text-[13.5px] font-bold text-[#102E6D]">
           Trending Companies
         </h4>
         <button
           type="button"
           onClick={onViewAll}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#1463F3',
-            fontSize: '11.5px',
-            fontWeight: 600,
-            cursor: 'pointer',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '2px',
-          }}
+          className="bg-transparent border-0 text-[#1463F3] text-[11.5px] font-semibold cursor-pointer inline-flex items-center gap-0.5 hover:underline"
         >
           View All <ArrowRight size={12} />
         </button>
       </div>
 
       {/* List */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <div className="flex flex-col gap-3">
         {companies.map((company) => {
           const isFollowed = !!company.isFollowed;
           return (
             <div
               key={company.id}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '10px',
-              }}
+              className="flex items-center justify-between gap-2.5"
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0, flex: 1 }}>
+              <div className="flex items-center gap-2.5 min-w-0 flex-1">
                 <CompanyLogo company={company} size={34} />
-                <div style={{ minWidth: 0 }}>
-                  <h5
-                    style={{
-                      fontSize: '12.5px',
-                      fontWeight: 600,
-                      color: '#102E6D',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      lineHeight: '1.2',
-                    }}
-                  >
+                <div className="min-w-0">
+                  <h5 className="text-[12.5px] font-semibold text-[#102E6D] truncate leading-tight">
                     {company.name}
                   </h5>
-                  <p
-                    style={{
-                      fontSize: '10.5px',
-                      color: '#64748B',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      marginTop: '2px',
-                    }}
-                  >
+                  <p className="text-[10.5px] text-[#64748B] truncate mt-0.5">
                     {company.followers}
                   </p>
                 </div>
@@ -84,21 +43,11 @@ export default function TrendingCompaniesCard({ companies = [], onFollowToggle, 
               <button
                 type="button"
                 onClick={() => onFollowToggle && onFollowToggle(company.id)}
-                style={{
-                  padding: '4px 12px',
-                  borderRadius: '14px',
-                  border: isFollowed ? '1px solid #10B981' : '1px solid #CBD5E1',
-                  backgroundColor: isFollowed ? '#ECFDF5' : '#FFFFFF',
-                  color: isFollowed ? '#059669' : '#475569',
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                  flexShrink: 0,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '3px',
-                }}
+                className={`py-1 px-3 rounded-2xl border text-[11px] font-semibold cursor-pointer transition-all shrink-0 inline-flex items-center gap-1 ${
+                  isFollowed
+                    ? 'border-[#10B981] bg-[#ECFDF5] text-[#059669]'
+                    : 'border-[#CBD5E1] bg-white text-[#475569] hover:bg-[#F8FAFC]'
+                }`}
               >
                 {isFollowed && <Check size={11} />}
                 <span>{isFollowed ? 'Following' : 'Follow'}</span>
@@ -110,3 +59,4 @@ export default function TrendingCompaniesCard({ companies = [], onFollowToggle, 
     </SectionCard>
   );
 }
+

@@ -3,36 +3,17 @@ import Button from '../../../common/userCommon/Button';
 
 export default function JobAlertsCard({ onCreateAlert }) {
   return (
-    <div
-      style={{
-        background: 'linear-gradient(135deg, #EFF6FF 0%, #E3EFFF 100%)',
-        borderRadius: '14px',
-        padding: '18px 20px',
-        border: '1px solid #D2E4FC',
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-        <div
-          style={{
-            width: '38px',
-            height: '38px',
-            borderRadius: '50%',
-            backgroundColor: '#DBEAFE',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#2563EB',
-            flexShrink: 0,
-          }}
-        >
+    <div className="bg-gradient-to-br from-[#EFF6FF] to-[#E3EFFF] rounded-[14px] p-5 border border-[#D2E4FC]">
+      <div className="flex items-center gap-3 mb-2">
+        <div className="w-[38px] h-[38px] rounded-full bg-[#DBEAFE] flex items-center justify-center text-[#2563EB] shrink-0">
           <Target size={20} />
         </div>
-        <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#102E6D' }}>
+        <h4 className="text-sm font-bold text-[#102E6D]">
           Get Job Alerts
         </h4>
       </div>
 
-      <p style={{ fontSize: '11.5px', color: '#64748B', lineHeight: '1.45', marginBottom: '14px' }}>
+      <p className="text-[11.5px] text-[#64748B] leading-[1.45] mb-3.5">
         Be the first to know about new job postings matching your skills and preferences.
       </p>
 
@@ -42,15 +23,11 @@ export default function JobAlertsCard({ onCreateAlert }) {
         fullWidth
         onClick={onCreateAlert}
         icon={Bell}
-        style={{
-          fontSize: '12.5px',
-          fontWeight: 600,
-          borderRadius: '8px',
-          padding: '8px 14px',
-        }}
+        className="text-[12.5px] font-semibold rounded-lg py-2 px-3.5"
       >
         Create Job Alert
       </Button>
     </div>
   );
 }
+

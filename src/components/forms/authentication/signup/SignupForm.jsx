@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { User, Mail, Phone, Lock, Eye, EyeOff, Briefcase, UserCheck, Loader2 } from 'lucide-react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SocialAuthButtons from '../oauth/SocialAuthButtons';
 import { useToast } from '../../../common/toast';
 import { authApi } from '../../../../services/api/authApi';
@@ -20,7 +20,7 @@ export default function SignupForm() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [role, setRole] = useState('JOB_SEEKER'); // default JOB_SEEKER, optional EMPLOYER
+  const [role, setRole] = useState('JOB_SEEKER');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +60,6 @@ export default function SignupForm() {
         role,
       });
 
-      // Temporarily store returned tokens if backend returned them
       if (response?.jwt) {
         tokenStorage.setAccessToken(response.jwt);
       }
@@ -70,7 +69,6 @@ export default function SignupForm() {
 
       toast.success('Account created successfully! Please verify your email.', 'Welcome to JobNest');
 
-      // Immediately redirect user to /verify-email?email=...
       navigate(`/verify-email?email=${encodeURIComponent(trimmedEmail)}`, {
         state: {
           email: trimmedEmail,
@@ -88,45 +86,26 @@ export default function SignupForm() {
 
   return (
     <>
-      <div className="auth-card-header" style={{ marginBottom: '1.25rem', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '1.6rem', fontWeight: '700', color: 'var(--dark-navy)', marginBottom: '0.25rem' }}>
+      <div className="mb-5 text-center">
+        <h2 className="text-[1.6rem] font-bold text-[#102E6D] mb-1">
           Create Your Account
         </h2>
-        <p className="auth-subtitle" style={{ fontSize: '0.875rem', color: 'var(--supporting-text)' }}>
+        <p className="text-sm text-[#627BAF]">
           Join our AI-powered job matching platform today
         </p>
       </div>
 
       {/* Role Selection Toggle */}
-      <div style={{
-        display: 'flex',
-        gap: '8px',
-        padding: '4px',
-        backgroundColor: 'var(--light-blue-bg)',
-        borderRadius: '10px',
-        marginBottom: '1.25rem'
-      }}>
+      <div className="flex gap-2 p-1 bg-[#EAF3FF] rounded-[10px] mb-5">
         <button
           type="button"
           onClick={() => setRole('JOB_SEEKER')}
           disabled={isLoading}
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            padding: '10px 14px',
-            borderRadius: '8px',
-            fontSize: '0.875rem',
-            fontWeight: '600',
-            border: 'none',
-            cursor: isLoading ? 'default' : 'pointer',
-            backgroundColor: role === 'JOB_SEEKER' ? 'var(--white)' : 'transparent',
-            color: role === 'JOB_SEEKER' ? 'var(--primary-blue)' : 'var(--supporting-text)',
-            boxShadow: role === 'JOB_SEEKER' ? '0 2px 8px rgba(20, 99, 243, 0.15)' : 'none',
-            transition: 'all 0.2s ease'
-          }}
+          className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3.5 rounded-lg text-sm font-semibold transition-all duration-200 cursor-pointer ${
+            role === 'JOB_SEEKER'
+              ? 'bg-white text-[#1463F3] shadow-[0_2px_8px_rgba(20,99,243,0.15)]'
+              : 'bg-transparent text-[#627BAF] hover:text-[#102E6D]'
+          }`}
         >
           <UserCheck size={18} />
           <span>Job Seeker</span>
@@ -136,80 +115,67 @@ export default function SignupForm() {
           type="button"
           onClick={() => setRole('EMPLOYER')}
           disabled={isLoading}
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            padding: '10px 14px',
-            borderRadius: '8px',
-            fontSize: '0.875rem',
-            fontWeight: '600',
-            border: 'none',
-            cursor: isLoading ? 'default' : 'pointer',
-            backgroundColor: role === 'EMPLOYER' ? 'var(--white)' : 'transparent',
-            color: role === 'EMPLOYER' ? 'var(--primary-blue)' : 'var(--supporting-text)',
-            boxShadow: role === 'EMPLOYER' ? '0 2px 8px rgba(20, 99, 243, 0.15)' : 'none',
-            transition: 'all 0.2s ease'
-          }}
+          className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3.5 rounded-lg text-sm font-semibold transition-all duration-200 cursor-pointer ${
+            role === 'EMPLOYER'
+              ? 'bg-white text-[#1463F3] shadow-[0_2px_8px_rgba(20,99,243,0.15)]'
+              : 'bg-transparent text-[#627BAF] hover:text-[#102E6D]'
+          }`}
         >
           <Briefcase size={18} />
           <span>Employer</span>
         </button>
       </div>
 
-      <form className="auth-form" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-3.5 w-full" onSubmit={handleSubmit}>
         {/* Full Name */}
-        <div className="input-group">
-          <User className="input-icon" size={20} />
+        <div className="relative flex items-center">
+          <User className="absolute left-3.5 text-[#8DA0C2] pointer-events-none" size={19} />
           <input
             type="text"
-            className="form-input"
             placeholder="Full Name *"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
             disabled={isLoading}
             autoComplete="name"
+            className="w-full pl-11 pr-4 py-2.5 bg-white border border-[#D8E6FF] rounded-lg text-sm text-[#102E6D] placeholder-[#8DA0C2] outline-none transition-all focus:border-[#1463F3] focus:ring-2 focus:ring-[#1463F3]/15"
           />
         </div>
 
         {/* Email Address */}
-        <div className="input-group">
-          <Mail className="input-icon" size={20} />
+        <div className="relative flex items-center">
+          <Mail className="absolute left-3.5 text-[#8DA0C2] pointer-events-none" size={19} />
           <input
             type="email"
-            className="form-input"
             placeholder="Email Address *"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             disabled={isLoading}
             autoComplete="email"
+            className="w-full pl-11 pr-4 py-2.5 bg-white border border-[#D8E6FF] rounded-lg text-sm text-[#102E6D] placeholder-[#8DA0C2] outline-none transition-all focus:border-[#1463F3] focus:ring-2 focus:ring-[#1463F3]/15"
           />
         </div>
 
         {/* Phone Number */}
-        <div className="input-group">
-          <Phone className="input-icon" size={20} />
+        <div className="relative flex items-center">
+          <Phone className="absolute left-3.5 text-[#8DA0C2] pointer-events-none" size={19} />
           <input
             type="tel"
-            className="form-input"
             placeholder="Phone Number (Optional)"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             disabled={isLoading}
             autoComplete="tel"
+            className="w-full pl-11 pr-4 py-2.5 bg-white border border-[#D8E6FF] rounded-lg text-sm text-[#102E6D] placeholder-[#8DA0C2] outline-none transition-all focus:border-[#1463F3] focus:ring-2 focus:ring-[#1463F3]/15"
           />
         </div>
 
         {/* Password */}
-        <div className="input-group">
-          <Lock className="input-icon" size={20} />
+        <div className="relative flex items-center">
+          <Lock className="absolute left-3.5 text-[#8DA0C2] pointer-events-none" size={19} />
           <input
             type={showPassword ? 'text' : 'password'}
-            className="form-input"
             placeholder="Password (min 6 chars) *"
             required
             minLength={6}
@@ -217,25 +183,22 @@ export default function SignupForm() {
             onChange={(e) => setPassword(e.target.value)}
             disabled={isLoading}
             autoComplete="new-password"
+            className="w-full pl-11 pr-11 py-2.5 bg-white border border-[#D8E6FF] rounded-lg text-sm text-[#102E6D] placeholder-[#8DA0C2] outline-none transition-all focus:border-[#1463F3] focus:ring-2 focus:ring-[#1463F3]/15"
           />
           <button
             type="button"
-            className="password-toggle"
             onClick={() => setShowPassword(!showPassword)}
-            aria-label={showPassword ? "Hide password" : "Show password"}
-            disabled={isLoading}
-            tabIndex={-1}
+            className="absolute right-3.5 text-[#8DA0C2] hover:text-[#102E6D] cursor-pointer"
           >
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
         </div>
 
         {/* Confirm Password */}
-        <div className="input-group">
-          <Lock className="input-icon" size={20} />
+        <div className="relative flex items-center">
+          <Lock className="absolute left-3.5 text-[#8DA0C2] pointer-events-none" size={19} />
           <input
             type={showConfirmPassword ? 'text' : 'password'}
-            className="form-input"
             placeholder="Confirm Password *"
             required
             minLength={6}
@@ -243,55 +206,43 @@ export default function SignupForm() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             disabled={isLoading}
             autoComplete="new-password"
+            className="w-full pl-11 pr-11 py-2.5 bg-white border border-[#D8E6FF] rounded-lg text-sm text-[#102E6D] placeholder-[#8DA0C2] outline-none transition-all focus:border-[#1463F3] focus:ring-2 focus:ring-[#1463F3]/15"
           />
           <button
             type="button"
-            className="password-toggle"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            aria-label={showConfirmPassword ? "Hide password" : "Show password"}
-            disabled={isLoading}
-            tabIndex={-1}
+            className="absolute right-3.5 text-[#8DA0C2] hover:text-[#102E6D] cursor-pointer"
           >
             {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
         </div>
 
-        <p className="password-guidance" style={{ fontSize: '0.785rem', color: 'var(--supporting-text)' }}>
-          Password must be at least 6 characters with letters and numbers.
-        </p>
-
+        {/* Submit Button */}
         <button
           type="submit"
-          className="btn-primary"
           disabled={isLoading}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px'
-          }}
+          className="mt-2 w-full py-2.5 bg-[#1463F3] text-white rounded-lg text-sm font-semibold hover:bg-[#104ec4] transition-colors shadow-[0_2px_8px_rgba(20,99,243,0.25)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
         >
           {isLoading ? (
             <>
               <Loader2 size={18} className="animate-spin" />
-              <span>Creating Account...</span>
+              <span>Creating account...</span>
             </>
           ) : (
-            'Create Account'
+            <span>Create Account</span>
           )}
         </button>
       </form>
 
-      <div className="divider">OR</div>
-
-      <SocialAuthButtons />
-
-      <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.875rem' }}>
-        <span style={{ color: 'var(--supporting-text)' }}>Already have an account? </span>
-        <Link to="/login" style={{ fontWeight: '600', color: 'var(--primary-blue)' }}>
-          Log In
-        </Link>
+      {/* Divider */}
+      <div className="flex items-center my-4 w-full">
+        <div className="flex-1 h-px bg-[#E2E8F0]" />
+        <span className="px-3 text-xs text-[#8DA0C2]">or sign up with</span>
+        <div className="flex-1 h-px bg-[#E2E8F0]" />
       </div>
+
+      {/* Social Auth */}
+      <SocialAuthButtons />
     </>
   );
 }

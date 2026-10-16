@@ -17,25 +17,18 @@ export default function TopSkillsInDemand({
   onSkillClick,
 }) {
   return (
-    <SectionCard padding="20px 18px">
-      <h4 style={{ fontSize: '14.5px', fontWeight: 700, color: '#102E6D', marginBottom: '14px' }}>
+    <SectionCard className="p-[20px_18px]">
+      <h4 className="text-[14.5px] font-bold text-[#102E6D] mb-3.5">
         Top Skills in Demand
       </h4>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+      <div className="flex flex-wrap gap-2">
         {skills.map((skill) => (
           <Badge
             key={skill}
             variant="clickable"
             onClick={() => onSkillClick && onSkillClick(skill)}
-            style={{
-              fontSize: '12px',
-              padding: '5px 12px',
-              backgroundColor: '#F1F6FD',
-              color: '#2563EB',
-              border: '1px solid #D8E7FA',
-              fontWeight: 500,
-            }}
+            className="text-xs px-3 py-1 bg-[#F1F6FD] text-[#2563EB] border-[#D8E7FA] font-medium hover:bg-[#E2EEFE]"
           >
             {skill}
           </Badge>
@@ -44,3 +37,4 @@ export default function TopSkillsInDemand({
     </SectionCard>
   );
 }
+

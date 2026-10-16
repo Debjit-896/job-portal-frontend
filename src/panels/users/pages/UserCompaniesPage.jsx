@@ -27,6 +27,8 @@ export default function UserCompaniesPage() {
       navigate('/candidate/dashboard');
     } else if (menuId === 'jobs') {
       navigate('/candidate/jobs');
+    } else if (menuId === 'network') {
+      navigate('/candidate/network');
     }
   };
 
@@ -256,7 +258,7 @@ export default function UserCompaniesPage() {
         onViewAll={() => console.log('View all trending companies')}
       />
       <BuildNetworkCard
-        onExploreNetwork={() => console.log('Explore professional network')}
+        onExploreNetwork={() => navigate('/candidate/network')}
       />
     </>
   );

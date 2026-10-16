@@ -1,24 +1,18 @@
 export default function SectionCard({
   children,
   className = '',
-  style = {},
-  padding = '18px 20px',
+  padding = 'p-4 md:p-5',
   bordered = true,
-  shadow = '0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03)',
-  borderRadius = '14px',
+  shadow = 'shadow-[0_1px_3px_rgba(0,0,0,0.05)]',
+  rounded = 'rounded-[14px]',
+  style,
+  ...props
 }) {
   return (
     <div
-      className={`user-section-card ${className}`}
-      style={{
-        backgroundColor: '#FFFFFF',
-        borderRadius,
-        padding,
-        border: bordered ? '1px solid #E9EFF8' : 'none',
-        boxShadow: shadow,
-        position: 'relative',
-        ...style,
-      }}
+      className={`relative bg-white ${rounded} ${bordered ? 'border border-[#E9EFF8]' : ''} ${shadow} ${padding} ${className}`}
+      style={style}
+      {...props}
     >
       {children}
     </div>

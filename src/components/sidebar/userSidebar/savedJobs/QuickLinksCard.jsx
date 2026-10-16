@@ -32,99 +32,42 @@ export default function QuickLinksCard({
   ];
 
   return (
-    <SectionCard padding="16px">
-      <h4
-        style={{
-          fontSize: '13.5px',
-          fontWeight: 700,
-          color: '#102E6D',
-          marginBottom: '14px',
-        }}
-      >
+    <SectionCard className="p-4">
+      <h4 className="text-[13.5px] font-bold text-[#102E6D] mb-3.5">
         Quick Links
       </h4>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <div className="flex flex-col gap-3">
         {links.map((link) => {
           const Icon = link.icon;
           return (
             <div
               key={link.id}
               onClick={() => onItemClick && onItemClick(link.id)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '4px 0',
-                cursor: 'pointer',
-                borderRadius: '8px',
-                transition: 'background-color 0.15s ease',
-              }}
+              className="flex items-center justify-between py-1 cursor-pointer rounded-lg hover:bg-[#F8FAFC] transition-colors"
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
-                <div
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '8px',
-                    backgroundColor: '#F1F5F9',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#64748B',
-                    flexShrink: 0,
-                  }}
-                >
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-lg bg-[#F1F5F9] flex items-center justify-center text-[#64748B] shrink-0">
                   <Icon size={16} />
                 </div>
 
-                <div style={{ minWidth: 0 }}>
-                  <h5
-                    style={{
-                      fontSize: '12.5px',
-                      fontWeight: 600,
-                      color: '#102E6D',
-                      lineHeight: '1.2',
-                    }}
-                  >
+                <div className="min-w-0">
+                  <h5 className="text-[12.5px] font-semibold text-[#102E6D] leading-tight">
                     {link.title}
                   </h5>
-                  <p
-                    style={{
-                      fontSize: '10.5px',
-                      color: '#64748B',
-                      marginTop: '2px',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}
-                  >
+                  <p className="text-[10.5px] text-[#64748B] mt-0.5 truncate">
                     {link.subtitle}
                   </p>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+              <div className="flex items-center gap-1.5 shrink-0">
                 {link.badge !== undefined && (
-                  <span
-                    style={{
-                      backgroundColor: '#EFF6FF',
-                      color: '#1463F3',
-                      fontSize: '11px',
-                      fontWeight: 700,
-                      minWidth: '18px',
-                      height: '18px',
-                      borderRadius: '9px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      padding: '0 4px',
-                    }}
-                  >
+                  <span className="bg-[#EFF6FF] text-[#1463F3] text-[11px] font-bold min-w-[18px] h-[18px] rounded-[9px] flex items-center justify-center px-1">
                     {link.badge}
                   </span>
                 )}
-                <ChevronRight size={14} color="#94A3B8" />
+                <ChevronRight size={14} className="text-[#94A3B8]" />
               </div>
             </div>
           );
@@ -133,3 +76,4 @@ export default function QuickLinksCard({
     </SectionCard>
   );
 }
+

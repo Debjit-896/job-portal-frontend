@@ -16,19 +16,11 @@ export default function JobList({
   ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+    <div className="flex flex-col gap-3.5">
       {/* Top Filter Tabs & Sort Dropdown bar */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          borderBottom: '1px solid #E2E8F0',
-          paddingBottom: '8px',
-        }}
-      >
+      <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2">
         {/* Tabs: All Jobs, Recommended, Saved */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+        <div className="flex items-center gap-6">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -36,46 +28,21 @@ export default function JobList({
                 key={tab.id}
                 type="button"
                 onClick={() => onTabChange && onTabChange(tab.id)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '8px 0',
-                  position: 'relative',
-                  fontSize: '13.5px',
-                  fontWeight: isActive ? 700 : 500,
-                  color: isActive ? '#1463F3' : '#64748B',
-                }}
+                className={`bg-transparent border-0 cursor-pointer inline-flex items-center gap-1.5 py-2 relative text-[13.5px] transition-colors ${
+                  isActive ? 'font-bold text-[#1463F3]' : 'font-medium text-[#64748B] hover:text-[#102E6D]'
+                }`}
               >
                 <span>{tab.label}</span>
                 <span
-                  style={{
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    backgroundColor: isActive ? '#EAF3FF' : '#F1F5F9',
-                    color: isActive ? '#1463F3' : '#64748B',
-                    padding: '2px 7px',
-                    borderRadius: '10px',
-                  }}
+                  className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-[10px] ${
+                    isActive ? 'bg-[#EAF3FF] text-[#1463F3]' : 'bg-[#F1F5F9] text-[#64748B]'
+                  }`}
                 >
                   {tab.count}
                 </span>
 
                 {isActive && (
-                  <span
-                    style={{
-                      position: 'absolute',
-                      bottom: '-9px',
-                      left: 0,
-                      right: 0,
-                      height: '2.5px',
-                      backgroundColor: '#1463F3',
-                      borderRadius: '2px',
-                    }}
-                  />
+                  <span className="absolute -bottom-[9px] left-0 right-0 h-[2.5px] bg-[#1463F3] rounded-[2px]" />
                 )}
               </button>
             );
@@ -83,30 +50,17 @@ export default function JobList({
         </div>
 
         {/* Sort by Dropdown */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', color: '#64748B' }}>
+        <div className="flex items-center gap-2 text-[12.5px] text-[#64748B]">
           <span>Sort by</span>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #CBD5E1',
-              borderRadius: '8px',
-              padding: '5px 10px',
-              cursor: 'pointer',
-              fontWeight: 600,
-              color: '#102E6D',
-            }}
-          >
+          <div className="flex items-center gap-1.5 bg-white border border-[#CBD5E1] rounded-lg px-2.5 py-1 cursor-pointer font-semibold text-[#102E6D]">
             <span>{sortBy}</span>
-            <ChevronDown size={14} color="#64748B" />
+            <ChevronDown size={14} className="text-[#64748B]" />
           </div>
         </div>
       </div>
 
       {/* Cards list */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <div className="flex flex-col gap-3">
         {jobs.map((job) => (
           <JobFeedCard key={job.id} job={job} />
         ))}
@@ -114,3 +68,4 @@ export default function JobList({
     </div>
   );
 }
+

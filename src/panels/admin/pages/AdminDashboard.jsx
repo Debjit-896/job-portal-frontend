@@ -1,103 +1,75 @@
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
-import { ShieldAlert, LogOut, CheckCircle, Mail, User } from 'lucide-react';
-import EmailVerificationBanner from '../../../components/common/EmailVerificationBanner';
+import { LogOut, User, Mail, Shield, CheckCircle } from 'lucide-react';
 
 export default function AdminDashboard() {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--pale-blue)', padding: '2rem' }}>
-      <EmailVerificationBanner />
-      <header style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        background: 'var(--white)',
-        padding: '1rem 2rem',
-        borderRadius: '12px',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
-        marginBottom: '2rem'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '8px',
-            backgroundColor: 'var(--dark-navy)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'var(--white)'
-          }}>
-            <ShieldAlert size={22} />
+    <div className="min-h-screen bg-[#F4F8FF] p-8">
+      {/* Header */}
+      <header className="flex justify-between items-center bg-white p-6 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#E9EFF8] mb-8">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-[#EAF3FF] text-[#1463F3] rounded-[10px] flex items-center justify-center font-bold text-lg">
+            {user?.name ? user.name.charAt(0).toUpperCase() : 'A'}
           </div>
           <div>
-            <h1 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--dark-navy)' }}>
-              System Administrator Portal
+            <h1 className="text-xl font-bold text-[#102E6D]">
+              System Administration
             </h1>
-            <p style={{ fontSize: '0.875rem', color: 'var(--supporting-text)' }}>
-              Welcome back, {user?.name || 'Administrator'}!
+            <p className="text-sm text-[#627BAF]">
+              Platform monitoring, user governance, and security controls
             </p>
           </div>
         </div>
-
         <button
-          onClick={logout}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '0.625rem 1.25rem',
-            borderRadius: '8px',
-            border: '1px solid var(--input-border)',
-            background: 'var(--white)',
-            color: 'var(--dark-navy)',
-            fontWeight: '600',
-            cursor: 'pointer'
-          }}
+          onClick={handleLogout}
+          className="flex items-center gap-2 py-2 px-4 border border-[#E11D48]/30 rounded-lg bg-transparent text-[#E11D48] font-semibold text-sm hover:bg-[#FFF1F2] transition-colors cursor-pointer"
         >
-          <LogOut size={16} /> Log Out
+          <LogOut size={16} />
+          Logout
         </button>
       </header>
 
-      <main style={{
-        background: 'var(--white)',
-        borderRadius: '12px',
-        padding: '2rem',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
-        maxWidth: '800px'
-      }}>
-        <h2 style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--dark-navy)', marginBottom: '1.5rem' }}>
-          Admin Profile & System Status
+      {/* Profile Overview Card */}
+      <main className="bg-white p-6 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#E9EFF8] max-w-4xl">
+        <h2 className="text-lg font-bold text-[#102E6D] mb-6">
+          Admin Details
         </h2>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-          <div style={{ padding: '1rem', borderRadius: '8px', background: 'var(--pale-blue)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--supporting-text)', fontSize: '0.875rem', marginBottom: '4px' }}>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="p-4 rounded-lg bg-[#F4F8FF]">
+            <div className="flex items-center gap-2 text-[#627BAF] text-sm mb-1">
               <User size={16} /> Name
             </div>
-            <div style={{ fontWeight: '600', color: 'var(--dark-navy)' }}>{user?.name || 'N/A'}</div>
+            <div className="font-semibold text-[#102E6D] truncate">{user?.name || 'N/A'}</div>
           </div>
 
-          <div style={{ padding: '1rem', borderRadius: '8px', background: 'var(--pale-blue)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--supporting-text)', fontSize: '0.875rem', marginBottom: '4px' }}>
-              <Mail size={16} /> Email Address
+          <div className="p-4 rounded-lg bg-[#F4F8FF]">
+            <div className="flex items-center gap-2 text-[#627BAF] text-sm mb-1">
+              <Mail size={16} /> Email
             </div>
-            <div style={{ fontWeight: '600', color: 'var(--dark-navy)' }}>{user?.email || 'N/A'}</div>
+            <div className="font-semibold text-[#102E6D] truncate">{user?.email || 'N/A'}</div>
           </div>
 
-          <div style={{ padding: '1rem', borderRadius: '8px', background: 'var(--pale-blue)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--supporting-text)', fontSize: '0.875rem', marginBottom: '4px' }}>
-              <ShieldAlert size={16} /> Role
+          <div className="p-4 rounded-lg bg-[#F4F8FF]">
+            <div className="flex items-center gap-2 text-[#627BAF] text-sm mb-1">
+              <Shield size={16} /> Role
             </div>
-            <div style={{ fontWeight: '600', color: 'var(--primary-blue)' }}>{user?.role || 'ADMIN'}</div>
+            <div className="font-semibold text-[#1463F3]">{user?.role || 'ADMIN'}</div>
           </div>
 
-          <div style={{ padding: '1rem', borderRadius: '8px', background: 'var(--pale-blue)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--supporting-text)', fontSize: '0.875rem', marginBottom: '4px' }}>
+          <div className="p-4 rounded-lg bg-[#F4F8FF]">
+            <div className="flex items-center gap-2 text-[#627BAF] text-sm mb-1">
               <CheckCircle size={16} /> Status
             </div>
-            <div style={{ fontWeight: '600', color: '#10B981' }}>{user?.status || 'ACTIVE'}</div>
+            <div className="font-semibold text-[#10B981]">{user?.status || 'ACTIVE'}</div>
           </div>
         </div>
       </main>

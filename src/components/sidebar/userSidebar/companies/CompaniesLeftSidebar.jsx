@@ -25,7 +25,7 @@ export default function CompaniesLeftSidebar({
     { id: 'home', label: 'Home', icon: Home, path: '/candidate/dashboard' },
     { id: 'jobs', label: 'Jobs', icon: BriefcaseBusiness, path: '/candidate/jobs' },
     { id: 'companies', label: 'Companies', icon: Building2, path: '/candidate/companies' },
-    { id: 'network', label: 'Network', icon: Network, path: '#' },
+    { id: 'network', label: 'Network', icon: Network, path: '/candidate/network' },
     { id: 'messages', label: 'Messages', icon: MessageSquare, path: '#', badge: unreadMessages },
     { id: 'notifications', label: 'Notifications', icon: Bell, path: '#', badge: unreadNotifications },
   ];
@@ -45,9 +45,9 @@ export default function CompaniesLeftSidebar({
   };
 
   return (
-    <aside style={{ width: '210px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '22px' }}>
+    <aside className="w-[210px] shrink-0 flex flex-col gap-5.5">
       {/* 1. Primary Navigation Menu */}
-      <nav style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+      <nav className="flex flex-col gap-1">
         {mainNavItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeMenu === item.id;
@@ -55,48 +55,23 @@ export default function CompaniesLeftSidebar({
             <button
               key={item.id}
               onClick={() => handleNav(item)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '9px 14px',
-                borderRadius: '10px',
-                border: 'none',
-                backgroundColor: isActive ? '#EAF3FF' : 'transparent',
-                color: isActive ? '#1463F3' : '#475569',
-                fontWeight: isActive ? 600 : 500,
-                fontSize: '13.5px',
-                cursor: 'pointer',
-                textAlign: 'left',
-                width: '100%',
-                transition: 'all 0.15s ease',
-              }}
+              className={`flex items-center justify-between px-3.5 py-2.5 rounded-[10px] border-0 cursor-pointer text-left w-full transition-all text-[13.5px] ${
+                isActive
+                  ? 'bg-[#EAF3FF] text-[#1463F3] font-semibold'
+                  : 'bg-transparent text-[#475569] font-medium hover:bg-[#F8FAFC]'
+              }`}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div className="flex items-center gap-3">
                 <Icon
                   size={17}
                   strokeWidth={isActive ? 2.3 : 1.9}
-                  color={isActive ? '#1463F3' : '#64748B'}
+                  className={isActive ? 'text-[#1463F3]' : 'text-[#64748B]'}
                 />
                 <span>{item.label}</span>
               </div>
 
               {item.badge !== undefined && item.badge > 0 && (
-                <span
-                  style={{
-                    backgroundColor: '#EF4444',
-                    color: '#FFFFFF',
-                    fontSize: '10.5px',
-                    fontWeight: 700,
-                    minWidth: '18px',
-                    height: '18px',
-                    borderRadius: '9px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: '0 4px',
-                  }}
-                >
+                <span className="bg-[#EF4444] text-white text-[10.5px] font-bold min-w-[18px] h-[18px] rounded-[9px] flex items-center justify-center px-1">
                   {item.badge}
                 </span>
               )}
@@ -107,19 +82,10 @@ export default function CompaniesLeftSidebar({
 
       {/* 2. Explore Section */}
       <div>
-        <h4
-          style={{
-            fontSize: '12px',
-            fontWeight: 700,
-            color: '#1E293B',
-            paddingLeft: '14px',
-            marginBottom: '8px',
-            letterSpacing: '0.2px',
-          }}
-        >
+        <h4 className="text-xs font-bold text-[#1E293B] pl-3.5 mb-2 tracking-[0.2px]">
           Explore
         </h4>
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+        <nav className="flex flex-col gap-1">
           {exploreNavItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeMenu === item.id;
@@ -127,27 +93,17 @@ export default function CompaniesLeftSidebar({
               <button
                 key={item.id}
                 onClick={() => handleNav(item)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '8px 14px',
-                  borderRadius: '10px',
-                  border: 'none',
-                  backgroundColor: isActive ? '#EAF3FF' : 'transparent',
-                  color: isActive ? '#1463F3' : '#475569',
-                  fontWeight: isActive ? 600 : 500,
-                  fontSize: '13.5px',
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  width: '100%',
-                  transition: 'all 0.15s ease',
-                }}
+                className={`flex items-center px-3.5 py-2 rounded-[10px] border-0 cursor-pointer text-left w-full transition-all text-[13.5px] ${
+                  isActive
+                    ? 'bg-[#EAF3FF] text-[#1463F3] font-semibold'
+                    : 'bg-transparent text-[#475569] font-medium hover:bg-[#F8FAFC]'
+                }`}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div className="flex items-center gap-3">
                   <Icon
                     size={17}
                     strokeWidth={isActive ? 2.3 : 1.9}
-                    color={isActive ? '#1463F3' : '#64748B'}
+                    className={isActive ? 'text-[#1463F3]' : 'text-[#64748B]'}
                   />
                   <span>{item.label}</span>
                 </div>
@@ -158,54 +114,17 @@ export default function CompaniesLeftSidebar({
       </div>
 
       {/* 3. Follow Companies Promo Card */}
-      <div
-        style={{
-          backgroundColor: '#FFFFFF',
-          borderRadius: '14px',
-          padding: '18px 14px',
-          border: '1px solid #E2E8F0',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.03)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '8px' }}>
-          <div
-            style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '9px',
-              backgroundColor: '#EFF6FF',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#1463F3',
-              flexShrink: 0,
-            }}
-          >
+      <div className="bg-white rounded-[14px] p-4.5 border border-[#E2E8F0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex flex-col items-start">
+        <div className="flex items-start gap-2.5 mb-2">
+          <div className="w-8 h-8 rounded-[9px] bg-[#EFF6FF] flex items-center justify-center text-[#1463F3] shrink-0">
             <Sparkles size={18} />
           </div>
-          <h4
-            style={{
-              fontSize: '12.5px',
-              fontWeight: 700,
-              color: '#102E6D',
-              lineHeight: '1.35',
-            }}
-          >
+          <h4 className="text-[12.5px] font-bold text-[#102E6D] leading-snug">
             Follow companies you&apos;re interested in
           </h4>
         </div>
 
-        <p
-          style={{
-            fontSize: '11px',
-            color: '#64748B',
-            lineHeight: '1.45',
-            marginBottom: '14px',
-          }}
-        >
+        <p className="text-[11px] text-[#64748B] leading-relaxed mb-3.5">
           Get updates on new jobs, company news and more.
         </p>
 
@@ -215,28 +134,13 @@ export default function CompaniesLeftSidebar({
             const el = document.getElementById('all-companies-section');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
-          style={{
-            width: '100%',
-            backgroundColor: '#1463F3',
-            color: '#FFFFFF',
-            border: 'none',
-            borderRadius: '9px',
-            padding: '8px 12px',
-            fontSize: '12px',
-            fontWeight: 600,
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '6px',
-            boxShadow: '0 3px 8px rgba(20, 99, 243, 0.25)',
-            transition: 'background-color 0.15s ease',
-          }}
+          className="w-full bg-[#1463F3] text-white border-0 rounded-[9px] py-2 px-3 text-xs font-semibold cursor-pointer flex items-center justify-center gap-1.5 shadow-[0_3px_8px_rgba(20,99,243,0.25)] transition-colors hover:bg-[#0F52CC]"
         >
           <span>Explore Companies</span>
-          <span style={{ fontSize: '13px' }}>&rarr;</span>
+          <span className="text-[13px]">&rarr;</span>
         </button>
       </div>
     </aside>
   );
 }
+

@@ -8,98 +8,34 @@ export default function WelcomeBanner({
   popularTags = ['React', 'Next.js', 'Java Spring Boot', 'Full Stack', 'Remote', 'Kolkata'],
 }) {
   return (
-    <div
-      style={{
-        position: 'relative',
-        background: 'linear-gradient(135deg, #EBF3FF 0%, #DCE9FC 100%)',
-        borderRadius: '16px',
-        padding: '18px 24px',
-        border: '1px solid #D1E2FB',
-        overflow: 'hidden',
-        boxShadow: '0 4px 18px rgba(20, 99, 243, 0.05)',
-      }}
-    >
+    <div className="relative bg-gradient-to-br from-[#EBF3FF] to-[#DCE9FC] rounded-2xl p-[18px_24px] border border-[#D1E2FB] overflow-hidden shadow-[0_4px_18px_rgba(20,99,243,0.05)]">
       {/* Decorative subtle background blur circle */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '-40px',
-          right: '160px',
-          width: '160px',
-          height: '160px',
-          borderRadius: '50%',
-          background: 'rgba(255, 255, 255, 0.4)',
-          filter: 'blur(28px)',
-          pointerEvents: 'none',
-        }}
-      />
+      <div className="absolute -top-10 right-40 w-40 h-40 rounded-full bg-white/40 blur-[28px] pointer-events-none" />
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
+      <div className="flex items-center justify-between gap-5">
         {/* Left text and search area */}
-        <div style={{ flex: 1, minWidth: 0, zIndex: 1 }}>
-          <h1
-            style={{
-              fontSize: '20px',
-              fontWeight: '800',
-              color: '#102E6D',
-              lineHeight: '1.25',
-              letterSpacing: '-0.3px',
-              marginBottom: '5px',
-            }}
-          >
+        <div className="flex-1 min-w-0 z-1">
+          <h1 className="text-xl font-extrabold text-[#102E6D] leading-tight tracking-[-0.3px] mb-1.5">
             Your Next Opportunity{' '}
-            <span style={{ color: '#1463F3' }}>Could Be Closer</span> Than You Think
+            <span className="text-[#1463F3]">Could Be Closer</span> Than You Think
           </h1>
 
-          <p
-            style={{
-              fontSize: '12px',
-              color: '#536E9B',
-              lineHeight: '1.4',
-              marginBottom: '12px',
-            }}
-          >
+          <p className="text-xs text-[#536E9B] leading-[1.4] mb-3">
             Discover jobs, connect with professionals, and build your career one step at a time.
           </p>
 
           {/* Search Box with Search Jobs button */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              backgroundColor: '#FFFFFF',
-              borderRadius: '8px',
-              padding: '4px 4px 4px 12px',
-              boxShadow: '0 2px 8px rgba(16, 46, 109, 0.06)',
-              border: '1px solid #D5E3F8',
-              marginBottom: '10px',
-              maxWidth: '520px',
-            }}
-          >
-            <Search size={16} color="#8EA0BD" style={{ marginRight: '8px', flexShrink: 0 }} />
+          <div className="flex items-center bg-white rounded-lg p-1 pl-3 shadow-[0_2px_8px_rgba(16,46,109,0.06)] border border-[#D5E3F8] mb-2.5 max-w-[520px]">
+            <Search size={16} className="text-[#8EA0BD] mr-2 shrink-0" />
             <input
               type="text"
               placeholder="Search for jobs, skills, or companies..."
-              style={{
-                border: 'none',
-                outline: 'none',
-                background: 'transparent',
-                width: '100%',
-                fontSize: '12.5px',
-                color: '#102E6D',
-                fontFamily: 'inherit',
-              }}
+              className="border-0 outline-none bg-transparent w-full text-[12.5px] text-[#102E6D] placeholder:text-[#8EA0BD]"
             />
             <Button
               variant="primary"
               size="sm"
-              style={{
-                padding: '6px 14px',
-                borderRadius: '6px',
-                fontSize: '12px',
-                fontWeight: 600,
-                flexShrink: 0,
-              }}
+              className="px-3.5 py-1.5 rounded-md text-xs font-semibold shrink-0"
               onClick={() => onSearch && onSearch()}
             >
               Search Jobs
@@ -107,21 +43,14 @@ export default function WelcomeBanner({
           </div>
 
           {/* Popular Tag Pills */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '11px', fontWeight: 600, color: '#627BAF' }}>Popular:</span>
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="text-[11px] font-semibold text-[#627BAF]">Popular:</span>
             {popularTags.map((tag) => (
               <Badge
                 key={tag}
                 variant="clickable"
                 onClick={() => onTagClick && onTagClick(tag)}
-                style={{
-                  fontSize: '11px',
-                  padding: '2px 8px',
-                  borderRadius: '5px',
-                  backgroundColor: '#FFFFFF',
-                  color: '#4B628A',
-                  borderColor: '#D4E2F6',
-                }}
+                className="text-[11px] px-2 py-0.5 rounded-[5px] bg-white text-[#4B628A] border-[#D4E2F6]"
               >
                 {tag}
               </Badge>
@@ -130,42 +59,12 @@ export default function WelcomeBanner({
         </div>
 
         {/* Right Illustration & Slogan Area */}
-        <div
-          style={{
-            position: 'relative',
-            width: '210px',
-            height: '135px',
-            flexShrink: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-          }}
-        >
+        <div className="relative w-[210px] h-[135px] shrink-0 flex flex-col items-center justify-end">
           {/* Floating Slogan badge */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              backgroundColor: 'rgba(255, 255, 255, 0.9)',
-              backdropFilter: 'blur(4px)',
-              padding: '4px 10px',
-              borderRadius: '8px',
-              border: '1px solid rgba(255, 255, 255, 0.95)',
-              boxShadow: '0 3px 10px rgba(16, 46, 109, 0.05)',
-              fontSize: '10px',
-              fontWeight: 700,
-              color: '#365280',
-              lineHeight: '1.25',
-              fontStyle: 'italic',
-              textAlign: 'left',
-              zIndex: 2,
-            }}
-          >
+          <div className="absolute top-0 left-0 bg-white/90 backdrop-blur-[4px] px-2.5 py-1 rounded-lg border border-white/95 shadow-[0_3px_10px_rgba(16,46,109,0.05)] text-[10px] font-bold text-[#365280] leading-tight italic text-left z-2">
             <div>Better Jobs</div>
             <div>Better People</div>
-            <div style={{ color: '#1463F3' }}>Bigger Dreams</div>
+            <div className="text-[#1463F3]">Bigger Dreams</div>
           </div>
 
           {/* SVG Illustration */}
@@ -173,7 +72,7 @@ export default function WelcomeBanner({
             viewBox="0 0 240 140"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ width: '100%', height: '100%', overflow: 'visible' }}
+            className="w-full h-full overflow-visible"
           >
             {/* Background elements / Plants */}
             <path
@@ -248,3 +147,4 @@ export default function WelcomeBanner({
     </div>
   );
 }
+

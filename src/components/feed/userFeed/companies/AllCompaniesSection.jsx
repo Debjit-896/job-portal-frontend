@@ -12,63 +12,29 @@ export default function AllCompaniesSection({
   onFollowToggle,
 }) {
   return (
-    <section id="all-companies-section" style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginTop: '6px' }}>
+    <section id="all-companies-section" className="flex flex-col gap-3.5 mt-1.5">
       {/* Header with Title and Filters */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '12px',
-        }}
-      >
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Building2 size={18} color="#1463F3" />
-            <h2
-              style={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#102E6D',
-                letterSpacing: '-0.2px',
-              }}
-            >
+          <div className="flex items-center gap-2">
+            <Building2 size={18} className="text-[#1463F3]" />
+            <h2 className="text-base font-bold text-[#102E6D] tracking-[-0.2px]">
               All Companies
             </h2>
           </div>
-          <p style={{ fontSize: '12px', color: '#64748B', marginTop: '2px' }}>
+          <p className="text-xs text-[#64748B] mt-0.5">
             Browse and follow companies across different industries
           </p>
         </div>
 
         {/* Filter Dropdowns on the right */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div className="flex items-center gap-2">
           {/* Industry dropdown */}
-          <div
-            style={{
-              position: 'relative',
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #E2E8F0',
-              borderRadius: '8px',
-              padding: '6px 26px 6px 12px',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
+          <div className="relative bg-white border border-[#E2E8F0] rounded-lg py-1.5 pr-6.5 pl-3 flex items-center">
             <select
               value={selectedIndustry}
               onChange={(e) => onIndustryChange && onIndustryChange(e.target.value)}
-              style={{
-                appearance: 'none',
-                border: 'none',
-                background: 'transparent',
-                fontSize: '12px',
-                fontWeight: 500,
-                color: '#475569',
-                cursor: 'pointer',
-                outline: 'none',
-              }}
+              className="appearance-none border-0 bg-transparent text-xs font-medium text-[#475569] cursor-pointer outline-none"
             >
               <option value="All Industries">All Industries</option>
               <option value="Entertainment & Streaming">Entertainment &amp; Streaming</option>
@@ -79,36 +45,16 @@ export default function AllCompaniesSection({
             </select>
             <ChevronDown
               size={13}
-              color="#64748B"
-              style={{ position: 'absolute', right: '8px', pointerEvents: 'none' }}
+              className="text-[#64748B] absolute right-2 pointer-events-none"
             />
           </div>
 
           {/* Location dropdown */}
-          <div
-            style={{
-              position: 'relative',
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #E2E8F0',
-              borderRadius: '8px',
-              padding: '6px 26px 6px 12px',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
+          <div className="relative bg-white border border-[#E2E8F0] rounded-lg py-1.5 pr-6.5 pl-3 flex items-center">
             <select
               value={selectedLocation}
               onChange={(e) => onLocationChange && onLocationChange(e.target.value)}
-              style={{
-                appearance: 'none',
-                border: 'none',
-                background: 'transparent',
-                fontSize: '12px',
-                fontWeight: 500,
-                color: '#475569',
-                cursor: 'pointer',
-                outline: 'none',
-              }}
+              className="appearance-none border-0 bg-transparent text-xs font-medium text-[#475569] cursor-pointer outline-none"
             >
               <option value="All Locations">All Locations</option>
               <option value="India">India</option>
@@ -117,36 +63,16 @@ export default function AllCompaniesSection({
             </select>
             <ChevronDown
               size={13}
-              color="#64748B"
-              style={{ position: 'absolute', right: '8px', pointerEvents: 'none' }}
+              className="text-[#64748B] absolute right-2 pointer-events-none"
             />
           </div>
 
           {/* Sort dropdown */}
-          <div
-            style={{
-              position: 'relative',
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #E2E8F0',
-              borderRadius: '8px',
-              padding: '6px 26px 6px 12px',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
+          <div className="relative bg-white border border-[#E2E8F0] rounded-lg py-1.5 pr-6.5 pl-3 flex items-center">
             <select
               value={selectedSort}
               onChange={(e) => onSortChange && onSortChange(e.target.value)}
-              style={{
-                appearance: 'none',
-                border: 'none',
-                background: 'transparent',
-                fontSize: '12px',
-                fontWeight: 500,
-                color: '#475569',
-                cursor: 'pointer',
-                outline: 'none',
-              }}
+              className="appearance-none border-0 bg-transparent text-xs font-medium text-[#475569] cursor-pointer outline-none"
             >
               <option value="Most Followed">Most Followed</option>
               <option value="Newest">Newest</option>
@@ -154,75 +80,31 @@ export default function AllCompaniesSection({
             </select>
             <ChevronDown
               size={13}
-              color="#64748B"
-              style={{ position: 'absolute', right: '8px', pointerEvents: 'none' }}
+              className="text-[#64748B] absolute right-2 pointer-events-none"
             />
           </div>
         </div>
       </div>
 
       {/* Grid of Company Cards (3 columns on desktop matching screenshot) */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-          gap: '14px',
-        }}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
         {companies.map((company) => {
           const isFollowed = !!company.isFollowed;
           return (
             <div
               key={company.id}
-              style={{
-                backgroundColor: '#FFFFFF',
-                borderRadius: '14px',
-                border: '1px solid #E2E8F0',
-                padding: '16px 16px 14px 16px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'transform 0.15s ease, box-shadow 0.15s ease',
-                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.07)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.04)';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
+              className="bg-white rounded-[14px] border border-[#E2E8F0] p-[16px_16px_14px_16px] flex flex-col justify-between transition-all duration-150 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(0,0,0,0.07)]"
             >
               <div>
                 {/* Top: Logo + Name + Follow button */}
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '10px' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '11px', minWidth: 0, flex: 1 }}>
+                <div className="flex items-start justify-between gap-2.5">
+                  <div className="flex items-start gap-2.5 min-w-0 flex-1">
                     <CompanyLogo company={company} size={38} />
-                    <div style={{ minWidth: 0 }}>
-                      <h3
-                        style={{
-                          fontSize: '13.5px',
-                          fontWeight: 700,
-                          color: '#102E6D',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          lineHeight: '1.25',
-                        }}
-                      >
+                    <div className="min-w-0">
+                      <h3 className="text-[13.5px] font-bold text-[#102E6D] truncate leading-tight">
                         {company.name}
                       </h3>
-                      <p
-                        style={{
-                          fontSize: '11px',
-                          color: '#64748B',
-                          marginTop: '2px',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                        }}
-                      >
+                      <p className="text-[11px] text-[#64748B] mt-0.5 truncate">
                         {company.industry}
                       </p>
                     </div>
@@ -231,21 +113,11 @@ export default function AllCompaniesSection({
                   <button
                     type="button"
                     onClick={() => onFollowToggle && onFollowToggle(company.id)}
-                    style={{
-                      padding: '5px 14px',
-                      borderRadius: '8px',
-                      fontSize: '11.5px',
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease',
-                      border: isFollowed ? 'none' : '1px solid #1463F3',
-                      backgroundColor: isFollowed ? '#1463F3' : '#FFFFFF',
-                      color: isFollowed ? '#FFFFFF' : '#1463F3',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '3px',
-                      flexShrink: 0,
-                    }}
+                    className={`py-1.5 px-3.5 rounded-lg text-[11.5px] font-semibold cursor-pointer transition-all inline-flex items-center gap-1 shrink-0 ${
+                      isFollowed
+                        ? 'border-0 bg-[#1463F3] text-white'
+                        : 'border border-[#1463F3] bg-white text-[#1463F3] hover:bg-[#F0F6FF]'
+                    }`}
                   >
                     {isFollowed && <Check size={11} strokeWidth={2.5} />}
                     <span>{isFollowed ? 'Following' : 'Follow'}</span>
@@ -253,31 +125,14 @@ export default function AllCompaniesSection({
                 </div>
 
                 {/* Subtitle details: location and employees */}
-                <p
-                  style={{
-                    fontSize: '10.5px',
-                    color: '#94A3B8',
-                    marginTop: '8px',
-                    paddingLeft: '49px',
-                  }}
-                >
+                <p className="text-[10.5px] text-[#94A3B8] mt-2 pl-[49px]">
                   {company.location} &bull; {company.employees}
                 </p>
               </div>
 
               {/* Followers */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '5px',
-                  color: '#64748B',
-                  fontSize: '11px',
-                  marginTop: '12px',
-                  paddingLeft: '49px',
-                }}
-              >
-                <Users size={12} color="#94A3B8" />
+              <div className="flex items-center gap-1.5 text-[#64748B] text-[11px] mt-3 pl-[49px]">
+                <Users size={12} className="text-[#94A3B8]" />
                 <span>{company.followers}</span>
               </div>
             </div>
@@ -287,3 +142,4 @@ export default function AllCompaniesSection({
     </section>
   );
 }
+

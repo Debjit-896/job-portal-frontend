@@ -12,7 +12,6 @@ export default function VerifyEmailForm() {
   const [searchParams] = useSearchParams();
   const toast = useToast();
 
-  // Read email from search query param or route state
   const initialEmail = (
     searchParams.get('email') ||
     location.state?.email ||
@@ -27,7 +26,6 @@ export default function VerifyEmailForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
 
-  // 60-second countdown timer
   useEffect(() => {
     let timer;
     if (countdown > 0) {
@@ -40,7 +38,6 @@ export default function VerifyEmailForm() {
 
   const autoSentRef = useRef(false);
 
-  // If redirected from signup, auto-trigger "Send OTP" on mount at most once
   useEffect(() => {
     if (initialEmail && location.state?.registered && !autoSentRef.current) {
       autoSentRef.current = true;
@@ -60,16 +57,15 @@ export default function VerifyEmailForm() {
 
     setIsLoading(true);
     try {
-      await authApi.sendEmailVerification(targetEmail);
+      await authApi.sendVerificationOtp(targetEmail);
       setIsOtpSent(true);
-      setIsEditingEmail(false);
       setCountdown(60);
-      const msg = `A 6-digit verification code has been sent to ${targetEmail}`;
-      toast.success(msg, 'Verification Code Sent');
+      setIsEditingEmail(false);
+      toast.success(`Verification code sent to ${targetEmail}`, 'Code Dispatched');
       setOtp(['', '', '', '', '', '']);
     } catch (err) {
-      const message = getErrorMessage(err, 'Failed to send verification code. Please check your email.');
-      toast.error(message, 'Failed to Send Code');
+      const message = getErrorMessage(err, 'Failed to send verification code. Please try again.');
+      toast.error(message, 'Dispatch Failed');
     } finally {
       setIsLoading(false);
     }
@@ -78,29 +74,28 @@ export default function VerifyEmailForm() {
   const handleVerifyOTP = async (e) => {
     e.preventDefault();
 
-    const otpString = otp.join('');
-    if (otpString.length !== 6) {
-      toast.warning('Please enter all 6 digits of the verification code.', 'Incomplete Code');
+    const otpCode = otp.join('');
+    if (otpCode.length !== 6) {
+      toast.warning('Please enter the complete 6-digit code.', 'Incomplete Code');
       return;
     }
 
     const targetEmail = email.trim().toLowerCase();
     setIsVerifying(true);
     try {
-      await authApi.confirmEmail({
-        email: targetEmail,
-        otp: otpString,
-      });
+      await authApi.verifyEmail(targetEmail, otpCode);
+      toast.success('Your email has been verified! Redirecting to login...', 'Email Verified');
 
-      toast.success('Email verified successfully! Please log in.', 'Email Verified');
-      navigate('/login', {
-        state: {
-          successMessage: 'Email verified successfully! Please log in.',
-          email: targetEmail
-        }
-      });
+      setTimeout(() => {
+        navigate('/login', {
+          state: {
+            email: targetEmail,
+            successMessage: 'Email verified successfully. You can now log in.'
+          }
+        });
+      }, 1500);
     } catch (err) {
-      const message = getErrorMessage(err, 'Invalid or expired verification code. Please try again.');
+      const message = getErrorMessage(err, 'Invalid or expired verification code.');
       toast.error(message, 'Verification Failed');
     } finally {
       setIsVerifying(false);
@@ -109,190 +104,128 @@ export default function VerifyEmailForm() {
 
   return (
     <>
-      <div className="auth-card-header" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-        <div style={{
-          width: '48px',
-          height: '48px',
-          borderRadius: '12px',
-          backgroundColor: 'var(--light-blue-bg)',
-          color: 'var(--primary-blue)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          margin: '0 auto 12px'
-        }}>
-          <Mail size={24} />
-        </div>
-        <h2 style={{ fontSize: '1.6rem', fontWeight: '700', color: 'var(--dark-navy)', marginBottom: '0.25rem' }}>
+      <div className="mb-5 text-center">
+        <h2 className="text-[1.6rem] font-bold text-[#102E6D] mb-1">
           Verify Your Email
         </h2>
-        <p className="auth-subtitle" style={{ fontSize: '0.875rem', color: 'var(--supporting-text)' }}>
+        <p className="text-sm text-[#627BAF]">
           {isOtpSent
-            ? 'Enter the 6-digit verification code sent to your email.'
-            : 'Click "Send OTP" to receive your verification code.'}
+            ? 'We have sent a 6-digit verification code to your email'
+            : 'Enter your email to receive a verification code'}
         </p>
       </div>
 
-      {/* Email input with view / edit capability */}
-      <div style={{ marginBottom: '1rem' }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '6px'
-        }}>
-          <label style={{ fontSize: '0.8125rem', fontWeight: '600', color: 'var(--dark-navy)' }}>
+      <div className="flex flex-col gap-4 w-full">
+        {/* Email Address Display or Input */}
+        <div>
+          <label className="block text-xs font-semibold text-[#102E6D] mb-1.5">
             Email Address
           </label>
-          {isOtpSent && (
-            <button
-              type="button"
-              onClick={() => setIsEditingEmail(!isEditingEmail)}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: 'var(--primary-blue)',
-                fontSize: '0.75rem',
-                fontWeight: '600',
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px'
-              }}
-            >
-              {isEditingEmail ? <Check size={13} /> : <Edit2 size={13} />}
-              {isEditingEmail ? 'Done Editing' : 'Change Email'}
-            </button>
-          )}
-        </div>
-
-        <div className="input-group" style={{ marginBottom: 0 }}>
-          <Mail className="input-icon" size={20} />
-          <input
-            type="email"
-            className="form-input"
-            placeholder="Enter your email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={(!isEditingEmail && isOtpSent) || isLoading || isVerifying}
-            required
-            style={{
-              backgroundColor: (!isEditingEmail && isOtpSent) ? 'var(--pale-blue)' : 'var(--white)',
-              color: (!isEditingEmail && isOtpSent) ? 'var(--supporting-text)' : 'var(--dark-navy)'
-            }}
-          />
-        </div>
-      </div>
-
-      {!isOtpSent ? (
-        /* Send OTP Button */
-        <button
-          type="button"
-          onClick={handleSendOTP}
-          className="btn-primary"
-          disabled={isLoading || !email.trim()}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            marginTop: '1rem'
-          }}
-        >
-          {isLoading ? (
-            <>
-              <Loader2 size={18} className="animate-spin" />
-              <span>Sending OTP...</span>
-            </>
-          ) : (
-            'Send OTP'
-          )}
-        </button>
-      ) : (
-        /* OTP Verification Form */
-        <form onSubmit={handleVerifyOTP} className="auth-form">
-          <div style={{ textAlign: 'center', margin: '0.5rem 0' }}>
-            <span style={{ fontSize: '0.8125rem', fontWeight: '600', color: 'var(--supporting-text)' }}>
-              6-Digit Verification Code
-            </span>
-            <OtpInput
-              value={otp}
-              onChange={setOtp}
-              disabled={isVerifying}
-              hasError={Boolean(error)}
-              length={6}
-              autoFocus
+          <div className="relative flex items-center">
+            <Mail className="absolute left-3.5 text-[#8DA0C2] pointer-events-none" size={19} />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isOtpSent && !isEditingEmail}
+              required
+              placeholder="name@example.com"
+              className={`w-full pl-11 pr-11 py-2.5 rounded-lg text-sm text-[#102E6D] outline-none transition-all ${
+                isOtpSent && !isEditingEmail
+                  ? 'bg-[#F4F8FF] border border-[#D8E6FF] text-[#627BAF]'
+                  : 'bg-white border border-[#D8E6FF] focus:border-[#1463F3] focus:ring-2 focus:ring-[#1463F3]/15'
+              }`}
             />
+            {isOtpSent && (
+              <button
+                type="button"
+                onClick={() => setIsEditingEmail(!isEditingEmail)}
+                className="absolute right-3.5 text-[#1463F3] hover:text-[#104ec4] cursor-pointer"
+                title={isEditingEmail ? 'Lock email' : 'Change email'}
+              >
+                {isEditingEmail ? <Check size={18} /> : <Edit2 size={16} />}
+              </button>
+            )}
           </div>
+        </div>
 
-          {/* Resend OTP countdown */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: '0.25rem',
-            marginBottom: '1rem'
-          }}>
-            <span style={{ fontSize: '0.8125rem', color: 'var(--supporting-text)' }}>
-              Didn't receive the OTP?
-            </span>
-            <button
-              type="button"
-              onClick={handleSendOTP}
-              disabled={countdown > 0 || isLoading || isVerifying}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: countdown > 0 ? 'var(--supporting-text)' : 'var(--primary-blue)',
-                fontSize: '0.8125rem',
-                fontWeight: '600',
-                cursor: countdown > 0 ? 'default' : 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px'
-              }}
-            >
-              <RefreshCw size={12} className={isLoading ? 'animate-spin' : ''} />
-              {countdown > 0 ? `Resend in ${countdown}s` : 'Resend OTP'}
-            </button>
-          </div>
-
+        {!isOtpSent || isEditingEmail ? (
           <button
-            type="submit"
-            className="btn-primary"
-            disabled={isVerifying || otp.join('').length !== 6}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px'
-            }}
+            type="button"
+            onClick={handleSendOTP}
+            disabled={isLoading}
+            className="w-full py-2.5 bg-[#1463F3] text-white rounded-lg text-sm font-semibold hover:bg-[#104ec4] transition-colors shadow-[0_2px_8px_rgba(20,99,243,0.25)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
           >
-            {isVerifying ? (
+            {isLoading ? (
               <>
                 <Loader2 size={18} className="animate-spin" />
-                <span>Verifying...</span>
+                <span>Sending Code...</span>
               </>
             ) : (
-              'Verify'
+              <span>Send Verification Code</span>
             )}
           </button>
-        </form>
-      )}
+        ) : (
+          <form onSubmit={handleVerifyOTP} className="flex flex-col gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-[#102E6D] mb-1">
+                Enter 6-Digit Code
+              </label>
+              <OtpInput
+                value={otp}
+                onChange={setOtp}
+                disabled={isVerifying}
+                autoFocus
+              />
+            </div>
 
-      <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-        <Link
-          to="/login"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontSize: '0.875rem',
-            color: 'var(--supporting-text)'
-          }}
-        >
-          <ArrowLeft size={16} /> Back to Log In
-        </Link>
+            <button
+              type="submit"
+              disabled={isVerifying || otp.join('').length !== 6}
+              className="w-full py-2.5 bg-[#1463F3] text-white rounded-lg text-sm font-semibold hover:bg-[#104ec4] transition-colors shadow-[0_2px_8px_rgba(20,99,243,0.25)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+            >
+              {isVerifying ? (
+                <>
+                  <Loader2 size={18} className="animate-spin" />
+                  <span>Verifying Code...</span>
+                </>
+              ) : (
+                <span>Verify &amp; Continue</span>
+              )}
+            </button>
+
+            {/* Resend Link */}
+            <div className="flex items-center justify-center gap-1.5 text-xs text-[#627BAF] mt-1">
+              <span>Didn&apos;t receive the code?</span>
+              {countdown > 0 ? (
+                <span className="font-semibold text-[#1463F3]">
+                  Resend in {countdown}s
+                </span>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleSendOTP}
+                  disabled={isLoading}
+                  className="font-semibold text-[#1463F3] hover:underline cursor-pointer flex items-center gap-1"
+                >
+                  <RefreshCw size={12} className={isLoading ? 'animate-spin' : ''} />
+                  <span>Resend Code</span>
+                </button>
+              )}
+            </div>
+          </form>
+        )}
+
+        {/* Back to Login link */}
+        <div className="text-center mt-3">
+          <Link
+            to="/login"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-[#627BAF] hover:text-[#1463F3] transition-colors"
+          >
+            <ArrowLeft size={14} />
+            <span>Back to Login</span>
+          </Link>
+        </div>
       </div>
     </>
   );

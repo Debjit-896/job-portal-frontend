@@ -18,28 +18,21 @@ export default function TrendingTopics({
   onTopicClick,
 }) {
   return (
-    <SectionCard padding="18px 20px">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
-        <Flame size={18} color="#EA580C" />
-        <h3 style={{ fontSize: '14.5px', fontWeight: 700, color: '#102E6D' }}>
+    <SectionCard className="p-[18px_20px]">
+      <div className="flex items-center gap-2 mb-3.5">
+        <Flame size={18} className="text-[#EA580C]" />
+        <h3 className="text-[14.5px] font-bold text-[#102E6D]">
           Trending Topics
         </h3>
       </div>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+      <div className="flex flex-wrap gap-2">
         {topics.map((topic) => (
           <Badge
             key={topic}
             variant="clickable"
             onClick={() => onTopicClick && onTopicClick(topic)}
-            style={{
-              fontSize: '12px',
-              padding: '5px 12px',
-              backgroundColor: '#F1F6FD',
-              color: '#2563EB',
-              border: '1px solid #D8E7FA',
-              fontWeight: 500,
-            }}
+            className="text-xs px-3 py-1 bg-[#F1F6FD] text-[#2563EB] border-[#D8E7FA] font-medium hover:bg-[#E2EEFE]"
           >
             {topic}
           </Badge>
@@ -48,3 +41,4 @@ export default function TrendingTopics({
     </SectionCard>
   );
 }
+

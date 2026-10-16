@@ -110,260 +110,162 @@ export default function JobFilterSidebar({ onFilterChange }) {
   const allSkills = ['React', 'Next.js', 'Java', 'Spring Boot', 'Node.js', 'TypeScript'];
 
   return (
-    <aside style={{ width: '255px', flexShrink: 0 }}>
-      <SectionCard padding="20px 18px">
+    <aside className="w-[255px] shrink-0">
+      <SectionCard className="p-[18px_20px]">
         {/* Header with Clear All */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginBottom: '18px',
-          }}
-        >
-          <h3 style={{ fontSize: '15px', fontWeight: 700, color: '#102E6D' }}>Filters</h3>
+        <div className="flex items-center justify-between mb-[18px]">
+          <h3 className="text-[15px] font-bold text-[#102E6D]">Filters</h3>
           <button
             type="button"
             onClick={handleClearAll}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#1463F3',
-              fontSize: '12px',
-              fontWeight: 600,
-              cursor: 'pointer',
-            }}
+            className="bg-transparent border-0 text-[#1463F3] text-xs font-semibold cursor-pointer hover:underline"
           >
             Clear All
           </button>
         </div>
 
         {/* 1. Job Type */}
-        <div style={{ marginBottom: '20px' }}>
-          <h4 style={{ fontSize: '12.5px', fontWeight: 700, color: '#102E6D', marginBottom: '10px' }}>
+        <div className="mb-5">
+          <h4 className="text-[12.5px] font-bold text-[#102E6D] mb-2.5">
             Job Type
           </h4>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div className="flex flex-col gap-2">
             {Object.keys(jobTypes).map((type) => (
               <label
                 key={type}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  cursor: 'pointer',
-                  fontSize: '12.5px',
-                  color: '#475569',
-                  userSelect: 'none',
-                }}
+                className="flex items-center justify-between cursor-pointer text-[12.5px] text-[#475569] select-none"
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div className="flex items-center gap-2">
                   <input
                     type="checkbox"
                     checked={jobTypes[type]}
                     onChange={() => toggleCheckbox(setJobTypes)(type)}
-                    style={{
-                      accentColor: '#1463F3',
-                      width: '14px',
-                      height: '14px',
-                      borderRadius: '3px',
-                      cursor: 'pointer',
-                    }}
+                    className="accent-[#1463F3] w-3.5 h-3.5 rounded cursor-pointer"
                   />
                   <span>{type}</span>
                 </div>
-                <span style={{ fontSize: '11px', color: '#94A3B8' }}>{jobTypeCounts[type]}</span>
+                <span className="text-[11px] text-[#94A3B8]">{jobTypeCounts[type]}</span>
               </label>
             ))}
           </div>
         </div>
 
         {/* Divider */}
-        <div style={{ height: '1px', backgroundColor: '#F1F5F9', marginBottom: '16px' }} />
+        <div className="h-px bg-[#F1F5F9] mb-4" />
 
         {/* 2. Experience Level */}
-        <div style={{ marginBottom: '20px' }}>
-          <h4 style={{ fontSize: '12.5px', fontWeight: 700, color: '#102E6D', marginBottom: '10px' }}>
+        <div className="mb-5">
+          <h4 className="text-[12.5px] font-bold text-[#102E6D] mb-2.5">
             Experience Level
           </h4>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div className="flex flex-col gap-2">
             {Object.keys(experienceLevels).map((level) => (
               <label
                 key={level}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  cursor: 'pointer',
-                  fontSize: '12.5px',
-                  color: '#475569',
-                  userSelect: 'none',
-                }}
+                className="flex items-center justify-between cursor-pointer text-[12.5px] text-[#475569] select-none"
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div className="flex items-center gap-2">
                   <input
                     type="checkbox"
                     checked={experienceLevels[level]}
                     onChange={() => toggleCheckbox(setExperienceLevels)(level)}
-                    style={{
-                      accentColor: '#1463F3',
-                      width: '14px',
-                      height: '14px',
-                      borderRadius: '3px',
-                      cursor: 'pointer',
-                    }}
+                    className="accent-[#1463F3] w-3.5 h-3.5 rounded cursor-pointer"
                   />
                   <span>{level}</span>
                 </div>
-                <span style={{ fontSize: '11px', color: '#94A3B8' }}>{experienceCounts[level]}</span>
+                <span className="text-[11px] text-[#94A3B8]">{experienceCounts[level]}</span>
               </label>
             ))}
           </div>
         </div>
 
         {/* Divider */}
-        <div style={{ height: '1px', backgroundColor: '#F1F5F9', marginBottom: '16px' }} />
+        <div className="h-px bg-[#F1F5F9] mb-4" />
 
         {/* 3. Location */}
-        <div style={{ marginBottom: '20px' }}>
-          <h4 style={{ fontSize: '12.5px', fontWeight: 700, color: '#102E6D', marginBottom: '10px' }}>
+        <div className="mb-5">
+          <h4 className="text-[12.5px] font-bold text-[#102E6D] mb-2.5">
             Location
           </h4>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div className="flex flex-col gap-2">
             {Object.keys(locations).map((loc) => (
               <label
                 key={loc}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  cursor: 'pointer',
-                  fontSize: '12.5px',
-                  color: '#475569',
-                  userSelect: 'none',
-                }}
+                className="flex items-center justify-between cursor-pointer text-[12.5px] text-[#475569] select-none"
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div className="flex items-center gap-2">
                   <input
                     type="checkbox"
                     checked={locations[loc]}
                     onChange={() => toggleCheckbox(setLocations)(loc)}
-                    style={{
-                      accentColor: '#1463F3',
-                      width: '14px',
-                      height: '14px',
-                      borderRadius: '3px',
-                      cursor: 'pointer',
-                    }}
+                    className="accent-[#1463F3] w-3.5 h-3.5 rounded cursor-pointer"
                   />
                   <span>{loc}</span>
                 </div>
-                <span style={{ fontSize: '11px', color: '#94A3B8' }}>{locationCounts[loc]}</span>
+                <span className="text-[11px] text-[#94A3B8]">{locationCounts[loc]}</span>
               </label>
             ))}
           </div>
           <button
             type="button"
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#1463F3',
-              fontSize: '11.5px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              marginTop: '8px',
-              padding: 0,
-            }}
+            className="bg-transparent border-0 text-[#1463F3] text-[11.5px] font-semibold cursor-pointer mt-2 p-0 hover:underline"
           >
             + More locations
           </button>
         </div>
 
         {/* Divider */}
-        <div style={{ height: '1px', backgroundColor: '#F1F5F9', marginBottom: '16px' }} />
+        <div className="h-px bg-[#F1F5F9] mb-4" />
 
         {/* 4. Salary Range (per annum) */}
-        <div style={{ marginBottom: '20px' }}>
-          <h4 style={{ fontSize: '12.5px', fontWeight: 700, color: '#102E6D', marginBottom: '10px' }}>
+        <div className="mb-5">
+          <h4 className="text-[12.5px] font-bold text-[#102E6D] mb-2.5">
             Salary Range (per annum)
           </h4>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div className="flex flex-col gap-2">
             {Object.keys(salaryRanges).map((sal) => (
               <label
                 key={sal}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  cursor: 'pointer',
-                  fontSize: '12.5px',
-                  color: '#475569',
-                  userSelect: 'none',
-                }}
+                className="flex items-center justify-between cursor-pointer text-[12.5px] text-[#475569] select-none"
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div className="flex items-center gap-2">
                   <input
                     type="checkbox"
                     checked={salaryRanges[sal]}
                     onChange={() => toggleCheckbox(setSalaryRanges)(sal)}
-                    style={{
-                      accentColor: '#1463F3',
-                      width: '14px',
-                      height: '14px',
-                      borderRadius: '3px',
-                      cursor: 'pointer',
-                    }}
+                    className="accent-[#1463F3] w-3.5 h-3.5 rounded cursor-pointer"
                   />
                   <span>{sal}</span>
                 </div>
-                <span style={{ fontSize: '11px', color: '#94A3B8' }}>{salaryCounts[sal]}</span>
+                <span className="text-[11px] text-[#94A3B8]">{salaryCounts[sal]}</span>
               </label>
             ))}
           </div>
         </div>
 
         {/* Divider */}
-        <div style={{ height: '1px', backgroundColor: '#F1F5F9', marginBottom: '16px' }} />
+        <div className="h-px bg-[#F1F5F9] mb-4" />
 
         {/* 5. Skills */}
         <div>
-          <h4 style={{ fontSize: '12.5px', fontWeight: 700, color: '#102E6D', marginBottom: '10px' }}>
+          <h4 className="text-[12.5px] font-bold text-[#102E6D] mb-2.5">
             Skills
           </h4>
 
           {/* Search skills input */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              backgroundColor: '#F8FAFC',
-              borderRadius: '6px',
-              border: '1px solid #E2E8F0',
-              padding: '6px 10px',
-              marginBottom: '10px',
-            }}
-          >
-            <Search size={13} color="#94A3B8" />
+          <div className="flex items-center gap-1.5 bg-[#F8FAFC] rounded-md border border-[#E2E8F0] px-2.5 py-1.5 mb-2.5">
+            <Search size={13} className="text-[#94A3B8]" />
             <input
               type="text"
               placeholder="Search skills..."
               value={skillSearch}
               onChange={(e) => setSkillSearch(e.target.value)}
-              style={{
-                border: 'none',
-                background: 'transparent',
-                outline: 'none',
-                fontSize: '12px',
-                width: '100%',
-                fontFamily: 'inherit',
-                color: '#102E6D',
-              }}
+              className="border-0 bg-transparent outline-none text-xs w-full text-[#102E6D] placeholder:text-[#94A3B8]"
             />
           </div>
 
           {/* Skill pills */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '8px' }}>
+          <div className="flex flex-wrap gap-1.5 mb-2">
             {allSkills
               .filter((s) => s.toLowerCase().includes(skillSearch.toLowerCase()))
               .map((skill) => {
@@ -373,17 +275,11 @@ export default function JobFilterSidebar({ onFilterChange }) {
                     key={skill}
                     type="button"
                     onClick={() => toggleSkill(skill)}
-                    style={{
-                      padding: '3px 9px',
-                      borderRadius: '14px',
-                      fontSize: '11.5px',
-                      border: isSelected ? '1px solid #1463F3' : '1px solid #D5E3F8',
-                      backgroundColor: isSelected ? '#EAF3FF' : '#FFFFFF',
-                      color: isSelected ? '#1463F3' : '#475569',
-                      fontWeight: isSelected ? 600 : 500,
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease',
-                    }}
+                    className={`px-2.5 py-[3px] rounded-[14px] text-[11.5px] border cursor-pointer transition-all duration-150 ${
+                      isSelected
+                        ? 'border-[#1463F3] bg-[#EAF3FF] text-[#1463F3] font-semibold'
+                        : 'border-[#D5E3F8] bg-white text-[#475569] font-medium hover:border-[#1463F3]/50'
+                    }`}
                   >
                     {skill}
                   </button>
@@ -393,15 +289,7 @@ export default function JobFilterSidebar({ onFilterChange }) {
 
           <button
             type="button"
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#1463F3',
-              fontSize: '11.5px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              padding: 0,
-            }}
+            className="bg-transparent border-0 text-[#1463F3] text-[11.5px] font-semibold cursor-pointer p-0 hover:underline"
           >
             + More
           </button>
@@ -410,3 +298,4 @@ export default function JobFilterSidebar({ onFilterChange }) {
     </aside>
   );
 }
+

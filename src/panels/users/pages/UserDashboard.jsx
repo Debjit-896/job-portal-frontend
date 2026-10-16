@@ -103,6 +103,8 @@ export default function UserDashboard() {
       navigate('/candidate/jobs');
     } else if (navId === 'companies') {
       navigate('/candidate/companies');
+    } else if (navId === 'network') {
+      navigate('/candidate/network');
     }
   };
 
@@ -112,6 +114,8 @@ export default function UserDashboard() {
       navigate('/candidate/companies');
     } else if (menuId === 'saved-jobs') {
       navigate('/candidate/saved-jobs');
+    } else if (menuId === 'network') {
+      navigate('/candidate/network');
     }
   };
 

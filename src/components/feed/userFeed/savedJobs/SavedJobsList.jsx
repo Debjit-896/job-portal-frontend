@@ -8,17 +8,8 @@ export default function SavedJobsList({
 }) {
   if (jobs.length === 0) {
     return (
-      <div
-        style={{
-          backgroundColor: '#FFFFFF',
-          borderRadius: '14px',
-          border: '1px solid #E2E8F0',
-          padding: '48px 24px',
-          textAlign: 'center',
-          color: '#64748B',
-        }}
-      >
-        <p style={{ fontSize: '14px', fontWeight: 500, margin: 0 }}>
+      <div className="bg-white rounded-[14px] border border-[#E2E8F0] p-12 text-center text-[#64748B]">
+        <p className="text-sm font-medium m-0">
           No saved jobs found in this category.
         </p>
       </div>
@@ -26,7 +17,7 @@ export default function SavedJobsList({
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+    <div className="flex flex-col gap-3.5">
       {jobs.map((job) => (
         <SavedJobCard
           key={job.id}
@@ -39,3 +30,4 @@ export default function SavedJobsList({
     </div>
   );
 }
+

@@ -4,55 +4,26 @@ import Button from '../../../common/userCommon/Button';
 
 export default function GetNoticedCard({ onCompleteProfile }) {
   return (
-    <SectionCard padding="20px 18px">
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
+    <SectionCard className="p-[20px_18px]">
+      <div className="flex items-start justify-between gap-3">
         <div>
-          <h4 style={{ fontSize: '14.5px', fontWeight: 700, color: '#102E6D', marginBottom: '6px' }}>
+          <h4 className="text-[14.5px] font-bold text-[#102E6D] mb-1.5">
             Get noticed by top companies
           </h4>
-          <p style={{ fontSize: '12px', color: '#64748B', lineHeight: '1.45', marginBottom: '14px' }}>
+          <p className="text-xs text-[#64748B] leading-[1.45] mb-3.5">
             Build a complete profile, add your skills and experience, and increase your chances of getting hired.
           </p>
         </div>
 
         {/* Small resume/badge icon illustration */}
-        <div style={{ position: 'relative', width: '42px', height: '48px', flexShrink: 0 }}>
-          <div
-            style={{
-              width: '36px',
-              height: '44px',
-              backgroundColor: '#EFF6FF',
-              border: '1.5px solid #BFDBFE',
-              borderRadius: '6px',
-              display: 'flex',
-              flexDirection: 'column',
-              padding: '6px 5px',
-              gap: '3px',
-            }}
-          >
-            <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#93C5FD' }} />
-            <div style={{ width: '22px', height: '2px', backgroundColor: '#BFDBFE', borderRadius: '1px' }} />
-            <div style={{ width: '18px', height: '2px', backgroundColor: '#BFDBFE', borderRadius: '1px' }} />
+        <div className="relative w-[42px] h-[48px] shrink-0">
+          <div className="w-9 h-11 bg-[#EFF6FF] border-[1.5px] border-[#BFDBFE] rounded-md flex flex-col p-[6px_5px] gap-0.5">
+            <div className="w-3 h-3 rounded-full bg-[#93C5FD]" />
+            <div className="w-[22px] h-0.5 bg-[#BFDBFE] rounded-[1px]" />
+            <div className="w-[18px] h-0.5 bg-[#BFDBFE] rounded-[1px]" />
           </div>
           {/* Checkmark badge */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '2px',
-              right: '2px',
-              width: '16px',
-              height: '16px',
-              borderRadius: '50%',
-              backgroundColor: '#10B981',
-              color: '#FFFFFF',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '10px',
-              fontWeight: 800,
-              border: '1.5px solid #FFFFFF',
-            }}
-          >
+          <div className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full bg-[#10B981] text-white flex items-center justify-center text-[10px] font-extrabold border-[1.5px] border-white">
             ✓
           </div>
         </div>
@@ -63,15 +34,11 @@ export default function GetNoticedCard({ onCompleteProfile }) {
         size="sm"
         fullWidth
         onClick={onCompleteProfile}
-        style={{
-          fontSize: '12.5px',
-          fontWeight: 600,
-          borderRadius: '8px',
-          padding: '8px 14px',
-        }}
+        className="text-[12.5px] font-semibold rounded-lg py-2 px-3.5"
       >
         Complete Your Profile <ArrowRight size={13} />
       </Button>
     </SectionCard>
   );
 }
+

@@ -3,33 +3,19 @@ import TopCompanyCard from './TopCompanyCard';
 
 export default function TopCompaniesSection({ companies = [], onFollowToggle, onViewAll }) {
   return (
-    <section style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+    <section className="flex flex-col gap-3.5">
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="flex items-center justify-between">
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#EF4444',
-              }}
-            >
+          <div className="flex items-center gap-1.5">
+            <span className="inline-flex items-center justify-center text-[#EF4444]">
               <Flame size={18} fill="#EF4444" />
             </span>
-            <h2
-              style={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#102E6D',
-                letterSpacing: '-0.2px',
-              }}
-            >
+            <h2 className="text-base font-bold text-[#102E6D] tracking-[-0.2px]">
               Top Companies
             </h2>
           </div>
-          <p style={{ fontSize: '12px', color: '#64748B', marginTop: '2px' }}>
+          <p className="text-xs text-[#64748B] mt-0.5">
             Most followed and active companies on JobNest
           </p>
         </div>
@@ -37,30 +23,14 @@ export default function TopCompaniesSection({ companies = [], onFollowToggle, on
         <button
           type="button"
           onClick={onViewAll}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#1463F3',
-            fontSize: '12.5px',
-            fontWeight: 600,
-            cursor: 'pointer',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '3px',
-          }}
+          className="bg-transparent border-0 text-[#1463F3] text-[12.5px] font-semibold cursor-pointer inline-flex items-center gap-1 hover:underline"
         >
           View All <ArrowRight size={13} />
         </button>
       </div>
 
       {/* Grid of Top Company Cards (4 columns on desktop matching screenshot) */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-          gap: '14px',
-        }}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
         {companies.map((company) => (
           <TopCompanyCard
             key={company.id}
@@ -72,3 +42,4 @@ export default function TopCompaniesSection({ companies = [], onFollowToggle, on
     </section>
   );
 }
+

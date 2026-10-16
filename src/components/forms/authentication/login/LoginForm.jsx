@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Mail, Lock, Eye, EyeOff, CheckCircle2, AlertTriangle, Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import SocialAuthButtons from '../oauth/SocialAuthButtons';
 import { useAuth } from '../../../../hooks/useAuth';
@@ -13,7 +13,6 @@ export default function LoginForm() {
   const { login } = useAuth();
   const toast = useToast();
 
-  // Read prefilled email if passed from verification or signup
   const initialEmail = location.state?.email || '';
 
   const [email, setEmail] = useState(initialEmail);
@@ -21,16 +20,6 @@ export default function LoginForm() {
   const [rememberMe, setRememberMe] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  // Success message passed from verification (/verify-email) or reset (/reset-password)
-  const successMessage = location.state?.successMessage;
-
-  // Display sliding notification if arrived with a success message
-  useEffect(() => {
-    if (successMessage) {
-      toast.success(successMessage, 'Verification Notice');
-    }
-  }, [successMessage]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,15 +32,10 @@ export default function LoginForm() {
 
     setIsLoading(true);
     try {
-      // Calls POST /api/v1/auth/login and immediately calls GET /api/v1/auth/me
       const { user, role } = await login(targetEmail, password, rememberMe);
-
       toast.success(`Welcome back, ${user?.name || 'User'}!`, 'Login Successful');
 
-      // Check role-based destination
       const destination = getDashboardPathForRole(role);
-
-      // If user had a deep link before login (except auth pages), respect that
       const fromPath = location.state?.from?.pathname;
       const targetPath = (fromPath && !fromPath.startsWith('/login') && !fromPath.startsWith('/signup') && !fromPath.startsWith('/verify'))
         ? fromPath
@@ -73,124 +57,99 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="auth-card-header" style={{ marginBottom: '1.25rem', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '1.6rem', fontWeight: '700', color: 'var(--dark-navy)', marginBottom: '0.25rem' }}>
+      <div className="mb-5 text-center">
+        <h2 className="text-[1.6rem] font-bold text-[#102E6D] mb-1">
           Welcome Back
         </h2>
-        <p className="auth-subtitle" style={{ fontSize: '0.875rem', color: 'var(--supporting-text)' }}>
+        <p className="text-sm text-[#627BAF]">
           Log in to access your jobs, applications, and dashboard
         </p>
       </div>
 
-      <form className="auth-form" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-3.5 w-full" onSubmit={handleSubmit}>
         {/* Email Address */}
-        <div className="input-group">
-          <Mail className="input-icon" size={20} />
+        <div className="relative flex items-center">
+          <Mail className="absolute left-3.5 text-[#8DA0C2] pointer-events-none" size={19} />
           <input
             type="email"
-            className="form-input"
             placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             disabled={isLoading}
             autoComplete="email"
+            className="w-full pl-11 pr-4 py-2.5 bg-white border border-[#D8E6FF] rounded-lg text-sm text-[#102E6D] placeholder-[#8DA0C2] outline-none transition-all focus:border-[#1463F3] focus:ring-2 focus:ring-[#1463F3]/15"
           />
         </div>
 
         {/* Password */}
-        <div className="input-group">
-          <Lock className="input-icon" size={20} />
+        <div className="relative flex items-center">
+          <Lock className="absolute left-3.5 text-[#8DA0C2] pointer-events-none" size={19} />
           <input
             type={showPassword ? 'text' : 'password'}
-            className="form-input"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             disabled={isLoading}
             autoComplete="current-password"
+            className="w-full pl-11 pr-11 py-2.5 bg-white border border-[#D8E6FF] rounded-lg text-sm text-[#102E6D] placeholder-[#8DA0C2] outline-none transition-all focus:border-[#1463F3] focus:ring-2 focus:ring-[#1463F3]/15"
           />
           <button
             type="button"
-            className="password-toggle"
             onClick={() => setShowPassword(!showPassword)}
-            aria-label={showPassword ? "Hide password" : "Show password"}
-            disabled={isLoading}
-            tabIndex={-1}
+            className="absolute right-3.5 text-[#8DA0C2] hover:text-[#102E6D] cursor-pointer"
           >
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
         </div>
 
-        {/* Remember Me and Forgot Password */}
-        <div className="form-footer" style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          margin: '0.5rem 0 1rem',
-          fontSize: '0.875rem'
-        }}>
-          <label className="remember-me" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            cursor: 'pointer',
-            userSelect: 'none',
-            color: 'var(--dark-navy)'
-          }}>
+        {/* Remember me & Forgot Password */}
+        <div className="flex items-center justify-between text-xs text-[#627BAF]">
+          <label className="flex items-center gap-2 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
-              disabled={isLoading}
+              className="accent-[#1463F3] rounded"
             />
-            <span>Remember Me</span>
+            <span>Remember me</span>
           </label>
+
           <Link
             to="/forgot-password"
-            style={{
-              color: 'var(--primary-blue)',
-              fontWeight: '500',
-              textDecoration: 'none'
-            }}
+            className="text-[#1463F3] hover:underline font-medium"
           >
             Forgot Password?
           </Link>
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
-          className="btn-primary"
           disabled={isLoading}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px'
-          }}
+          className="mt-2 w-full py-2.5 bg-[#1463F3] text-white rounded-lg text-sm font-semibold hover:bg-[#104ec4] transition-colors shadow-[0_2px_8px_rgba(20,99,243,0.25)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
         >
           {isLoading ? (
             <>
               <Loader2 size={18} className="animate-spin" />
-              <span>Logging In...</span>
+              <span>Logging in...</span>
             </>
           ) : (
-            'Log In'
+            <span>Log In</span>
           )}
         </button>
       </form>
 
-      <div className="divider">OR</div>
-
-      <SocialAuthButtons />
-
-      <div style={{ textAlign: 'center', marginTop: '1.25rem', fontSize: '0.875rem' }}>
-        <span style={{ color: 'var(--supporting-text)' }}>Don't have an account? </span>
-        <Link to="/signup" style={{ fontWeight: '600', color: 'var(--primary-blue)' }}>
-          Sign Up
-        </Link>
+      {/* Divider */}
+      <div className="flex items-center my-4 w-full">
+        <div className="flex-1 h-px bg-[#E2E8F0]" />
+        <span className="px-3 text-xs text-[#8DA0C2]">or continue with</span>
+        <div className="flex-1 h-px bg-[#E2E8F0]" />
       </div>
+
+      {/* Social Auth */}
+      <SocialAuthButtons />
     </>
   );
 }

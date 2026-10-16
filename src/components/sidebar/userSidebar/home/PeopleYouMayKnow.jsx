@@ -35,76 +35,37 @@ export default function PeopleYouMayKnow({
   };
 
   return (
-    <SectionCard padding="18px 20px">
+    <SectionCard className="p-[18px_20px]">
       {/* Header */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '14px',
-        }}
-      >
-        <h3 style={{ fontSize: '14.5px', fontWeight: 700, color: '#102E6D' }}>
+      <div className="flex items-center justify-between mb-3.5">
+        <h3 className="text-[14.5px] font-bold text-[#102E6D]">
           People You May Know
         </h3>
         <button
           type="button"
           onClick={onViewAll}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#1463F3',
-            fontSize: '12px',
-            fontWeight: 600,
-            cursor: 'pointer',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '2px',
-          }}
+          className="bg-transparent border-0 text-[#1463F3] text-xs font-semibold cursor-pointer inline-flex items-center gap-0.5 hover:underline"
         >
           View All <ArrowRight size={13} />
         </button>
       </div>
 
       {/* People List */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      <div className="flex flex-col gap-3.5">
         {people.map((person) => {
           const isConnected = !!connectedState[person.id];
           return (
             <div
               key={person.id}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '10px',
-              }}
+              className="flex items-center justify-between gap-2.5"
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
+              <div className="flex items-center gap-2.5 min-w-0">
                 <Avatar src={person.avatar} name={person.name} size={36} />
-                <div style={{ minWidth: 0 }}>
-                  <h4
-                    style={{
-                      fontSize: '13px',
-                      fontWeight: 600,
-                      color: '#102E6D',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}
-                  >
+                <div className="min-w-0">
+                  <h4 className="text-[13px] font-semibold text-[#102E6D] truncate">
                     {person.name}
                   </h4>
-                  <p
-                    style={{
-                      fontSize: '11px',
-                      color: '#64748B',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}
-                  >
+                  <p className="text-[11px] text-[#64748B] truncate">
                     {person.role}
                   </p>
                 </div>
@@ -113,21 +74,11 @@ export default function PeopleYouMayKnow({
               <button
                 type="button"
                 onClick={() => handleConnect(person.id)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  padding: '5px 10px',
-                  borderRadius: '16px',
-                  border: isConnected ? '1px solid #10B981' : '1px solid #D5E3F8',
-                  backgroundColor: isConnected ? '#ECFDF5' : '#FFFFFF',
-                  color: isConnected ? '#059669' : '#1463F3',
-                  fontSize: '11.5px',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  flexShrink: 0,
-                  transition: 'all 0.15s',
-                }}
+                className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-2xl text-[11.5px] font-semibold cursor-pointer shrink-0 transition-all ${
+                  isConnected
+                    ? 'border border-[#10B981] bg-[#ECFDF5] text-[#059669]'
+                    : 'border border-[#D5E3F8] bg-white text-[#1463F3] hover:bg-[#F0F6FF]'
+                }`}
               >
                 {isConnected ? <Check size={12} /> : <UserPlus size={12} />}
                 <span>{isConnected ? 'Pending' : 'Connect'}</span>
@@ -139,3 +90,4 @@ export default function PeopleYouMayKnow({
     </SectionCard>
   );
 }
+

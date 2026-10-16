@@ -2,63 +2,73 @@ import { Briefcase, Search, Building2, Users, TrendingUp } from 'lucide-react';
 
 export default function BrandingPanel() {
   return (
-    <div className="auth-left">
-      <div className="brand-header">
-        <div className="brand-icon">
-          <Briefcase size={28} />
+    <div className="hidden md:flex flex-col min-w-0 min-h-0 bg-gradient-to-br from-[#f0f6ff] to-[#e0edff] p-[min(4rem,6vh)] md:p-[min(4rem,4vw)] overflow-hidden">
+      <div className="flex items-center gap-2.5 mb-[min(2.5rem,3vh)]">
+        <div className="w-[min(48px,5vh)] h-[min(48px,5vh)] bg-[#1463F3] rounded-[10px] flex items-center justify-center text-white">
+          <Briefcase size={26} />
         </div>
-        <div className="brand-name">JobNest</div>
+        <div className="text-[min(2rem,3.5vh)] font-bold text-[#102E6D]">JobNest</div>
       </div>
 
-      <h1 className="hero-title">Find Your Dream Job & Grow Your Career</h1>
-      <p className="hero-description">
-        Discover great opportunities, connect with top companies, and build your professional network — all in one place.
+      <h1 className="text-[min(2.5rem,4vh)] leading-tight font-bold text-[#102E6D] mb-[min(1.5rem,2vh)] max-w-[450px]">
+        Find Your Dream Job &amp; Grow Your Career
+      </h1>
+      <p className="text-[min(1.125rem,2vh)] text-[#627BAF] leading-normal mb-[min(3rem,4vh)] max-w-[450px]">
+        Discover great opportunities, connect with top companies, and build your professional network &mdash; all in one place.
       </p>
 
-      <div className="features-list">
-        <div className="feature-item">
-          <div className="feature-icon">
-            <Search size={20} />
+      <div className="flex flex-col gap-[min(1.5rem,2vh)] z-10">
+        <div className="flex items-start gap-3">
+          <div className="w-[min(40px,4vh)] h-[min(40px,4vh)] bg-[#F4F8FF] rounded-full flex items-center justify-center text-[#1463F3] shrink-0">
+            <Search size={18} />
           </div>
-          <div className="feature-content">
-            <h3>Find Jobs</h3>
-            <p>Explore thousands of job opportunities across industries.</p>
-          </div>
-        </div>
-
-        <div className="feature-item">
-          <div className="feature-icon">
-            <Building2 size={20} />
-          </div>
-          <div className="feature-content">
-            <h3>Follow Companies</h3>
-            <p>Stay updated with your favorite companies and their latest openings.</p>
+          <div>
+            <h3 className="text-[min(1rem,1.8vh)] font-semibold text-[#102E6D] mb-1">Find Jobs</h3>
+            <p className="text-[min(0.875rem,1.5vh)] text-[#627BAF] leading-snug max-w-[300px]">
+              Explore thousands of job opportunities across industries.
+            </p>
           </div>
         </div>
 
-        <div className="feature-item">
-          <div className="feature-icon">
-            <Users size={20} />
+        <div className="flex items-start gap-3">
+          <div className="w-[min(40px,4vh)] h-[min(40px,4vh)] bg-[#F4F8FF] rounded-full flex items-center justify-center text-[#1463F3] shrink-0">
+            <Building2 size={18} />
           </div>
-          <div className="feature-content">
-            <h3>Build Your Network</h3>
-            <p>Connect with professionals and grow your career together.</p>
+          <div>
+            <h3 className="text-[min(1rem,1.8vh)] font-semibold text-[#102E6D] mb-1">Follow Companies</h3>
+            <p className="text-[min(0.875rem,1.5vh)] text-[#627BAF] leading-snug max-w-[300px]">
+              Stay updated with your favorite companies and their latest openings.
+            </p>
           </div>
         </div>
 
-        <div className="feature-item">
-          <div className="feature-icon">
-            <TrendingUp size={20} />
+        <div className="flex items-start gap-3">
+          <div className="w-[min(40px,4vh)] h-[min(40px,4vh)] bg-[#F4F8FF] rounded-full flex items-center justify-center text-[#1463F3] shrink-0">
+            <Users size={18} />
           </div>
-          <div className="feature-content">
-            <h3>Get Noticed</h3>
-            <p>Showcase your skills, portfolio and achievements to recruiters.</p>
+          <div>
+            <h3 className="text-[min(1rem,1.8vh)] font-semibold text-[#102E6D] mb-1">Build Your Network</h3>
+            <p className="text-[min(0.875rem,1.5vh)] text-[#627BAF] leading-snug max-w-[300px]">
+              Connect with professionals and grow your career together.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-3">
+          <div className="w-[min(40px,4vh)] h-[min(40px,4vh)] bg-[#F4F8FF] rounded-full flex items-center justify-center text-[#1463F3] shrink-0">
+            <TrendingUp size={18} />
+          </div>
+          <div>
+            <h3 className="text-[min(1rem,1.8vh)] font-semibold text-[#102E6D] mb-1">Get Noticed</h3>
+            <p className="text-[min(0.875rem,1.5vh)] text-[#627BAF] leading-snug max-w-[300px]">
+              Showcase your skills, portfolio and achievements to recruiters.
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="illustration-container">
-        <svg viewBox="0 0 400 250" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <div className="relative w-full flex-1 min-h-0 flex items-end justify-center pointer-events-none z-0">
+        <svg viewBox="0 0 400 250" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 250 C100 200, 300 280, 400 220 L400 250 Z" fill="#D8E6FF" opacity="0.5"/>
           <path d="M0 250 C150 180, 250 250, 400 200 L400 250 Z" fill="#EAF3FF" />
           <g fill="#A0B3D6" opacity="0.3">
@@ -94,7 +104,9 @@ export default function BrandingPanel() {
           <path d="M80 160 L110 180 L130 190" fill="none" stroke="#1463F3" strokeWidth="12" strokeLinecap="round" />
           <path d="M130 190 L140 195" fill="none" stroke="#FCD34D" strokeWidth="8" strokeLinecap="round" />
         </svg>
-        <div className="slogan">Better Jobs<br/>Brighter Future</div>
+        <div className="absolute top-[15%] right-[15%] font-serif italic text-[#1463F3] text-[min(1.5rem,2.5vh)] font-semibold -rotate-12 z-10">
+          Better Jobs<br/>Brighter Future
+        </div>
       </div>
     </div>
   );

@@ -11,23 +11,12 @@ export default function MainLayout({
   userProfile,
 }) {
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F8FAFC', display: 'flex', flexDirection: 'column' }}>
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
       {/* Top Header */}
       <Header activeNav={activeNav} onNavClick={onNavClick} />
 
       {/* Main 3-Column Content Body */}
-      <div
-        style={{
-          width: '100%',
-          maxWidth: '1440px',
-          margin: '0 auto',
-          padding: '24px 28px',
-          display: 'flex',
-          gap: '24px',
-          alignItems: 'flex-start',
-          flex: 1,
-        }}
-      >
+      <div className="w-full max-w-[1440px] mx-auto px-7 py-6 flex gap-6 items-start flex-1">
         {/* Left Sidebar */}
         <LeftSidebar
           activeMenu={activeMenu}
@@ -36,21 +25,13 @@ export default function MainLayout({
         />
 
         {/* Center Feed Column */}
-        <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <main className="flex-1 min-w-0 flex flex-col gap-5">
           {children}
         </main>
 
         {/* Right Sidebar Column */}
         {rightSidebar && (
-          <aside
-            style={{
-              width: '320px',
-              flexShrink: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '16px',
-            }}
-          >
+          <aside className="w-80 shrink-0 flex flex-col gap-4">
             {rightSidebar}
           </aside>
         )}

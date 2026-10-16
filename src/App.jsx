@@ -13,6 +13,7 @@ import UserDashboard from './panels/users/pages/UserDashboard';
 import UserJobPage from './panels/users/pages/UserJobPage';
 import UserCompaniesPage from './panels/users/pages/UserCompaniesPage';
 import UserSavedJobsPage from './panels/users/pages/UserSavedJobsPage';
+import UserNetworkPage from './panels/users/pages/UserNetworkPage';
 import RecruiterDashboard from './panels/recruiter/pages/RecruiterDashboard';
 import AdminDashboard from './panels/admin/pages/AdminDashboard';
 import ProtectedRoute from './components/routing/ProtectedRoute';
@@ -23,7 +24,7 @@ function RootRedirect() {
   const { isAuthenticated, role, isLoading } = useAuth();
   if (isLoading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', color: 'var(--primary-blue)' }}>
+      <div className="flex justify-center items-center min-h-screen text-[#1463F3]">
         Loading...
       </div>
     );
@@ -147,6 +148,15 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/user/saved-jobs" element={<Navigate to="/candidate/saved-jobs" replace />} />
+
+            <Route path="/candidate/network" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <UserNetworkPage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
+            <Route path="/user/network" element={<Navigate to="/candidate/network" replace />} />
 
             {/* Employer / Recruiter */}
             <Route path="/employer/dashboard" element={

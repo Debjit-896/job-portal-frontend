@@ -4,8 +4,8 @@ import { ThumbsUp, MessageSquare, Share2, Bookmark } from 'lucide-react';
 export default function PostActions({
   likesCount = 0,
   commentsCount = 0,
-  isLiked: initialLiked = false,
-  isSaved: initialSaved = false,
+  initialLiked = false,
+  initialSaved = false,
   onLike,
   onComment,
   onShare,
@@ -31,52 +31,14 @@ export default function PostActions({
   return (
     <div>
       {/* Top Counts & Reaction icons row */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          fontSize: '12px',
-          color: '#64748B',
-          paddingBottom: '10px',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          {/* Reaction icons stack */}
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <span
-              style={{
-                width: '18px',
-                height: '18px',
-                borderRadius: '50%',
-                backgroundColor: '#1463F3',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#FFFFFF',
-                boxShadow: '0 0 0 1.5px #FFFFFF',
-                zIndex: 2,
-              }}
-            >
-              <ThumbsUp size={10} fill="#FFFFFF" />
+      <div className="flex items-center justify-between text-xs text-[#64748B] pb-2.5">
+        <div className="flex items-center gap-1.5">
+          <div className="flex items-center">
+            <span className="w-4.5 h-4.5 rounded-full bg-[#1463F3] inline-flex items-center justify-center text-white ring-1.5 ring-white z-10">
+              <ThumbsUp size={10} />
             </span>
-            <span
-              style={{
-                width: '18px',
-                height: '18px',
-                borderRadius: '50%',
-                backgroundColor: '#EF4444',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#FFFFFF',
-                marginLeft: '-5px',
-                boxShadow: '0 0 0 1.5px #FFFFFF',
-                zIndex: 1,
-                fontSize: '9px',
-              }}
-            >
-              ❤️
+            <span className="w-4.5 h-4.5 rounded-full bg-[#EF4444] inline-flex items-center justify-center text-white ring-1.5 ring-white -ml-1 text-[10px] z-0">
+              &#10084;
             </span>
           </div>
           <span>{currentLikes}</span>
@@ -87,102 +49,46 @@ export default function PostActions({
         </div>
       </div>
 
-      {/* Divider */}
-      <div style={{ height: '1px', backgroundColor: '#F1F5F9', marginBottom: '8px' }} />
+      {/* Action Buttons Row */}
+      <div className="flex items-center justify-between pt-2 border-t border-[#F1F5F9]">
+        <button
+          type="button"
+          onClick={handleLikeToggle}
+          className={`flex items-center gap-2 py-2 px-3 rounded-lg border-none bg-transparent cursor-pointer text-xs font-semibold transition-colors ${
+            liked ? 'text-[#1463F3] bg-[#EAF3FF]' : 'text-[#64748B] hover:bg-[#F1F5F9]'
+          }`}
+        >
+          <ThumbsUp size={16} fill={liked ? '#1463F3' : 'none'} />
+          <span>{liked ? 'Liked' : 'Like'}</span>
+        </button>
 
-      {/* Interactive Action Buttons */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
-          {/* Like */}
-          <button
-            type="button"
-            onClick={handleLikeToggle}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              color: liked ? '#1463F3' : '#64748B',
-              fontWeight: liked ? 600 : 500,
-              fontSize: '13px',
-              padding: '6px 4px',
-              borderRadius: '6px',
-            }}
-          >
-            <ThumbsUp size={16} fill={liked ? '#1463F3' : 'none'} />
-            <span>Like</span>
-          </button>
+        <button
+          type="button"
+          onClick={onComment}
+          className="flex items-center gap-2 py-2 px-3 rounded-lg border-none bg-transparent cursor-pointer text-xs font-semibold text-[#64748B] hover:bg-[#F1F5F9] transition-colors"
+        >
+          <MessageSquare size={16} />
+          <span>Comment</span>
+        </button>
 
-          {/* Comment */}
-          <button
-            type="button"
-            onClick={onComment}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              color: '#64748B',
-              fontWeight: 500,
-              fontSize: '13px',
-              padding: '6px 4px',
-              borderRadius: '6px',
-            }}
-          >
-            <MessageSquare size={16} />
-            <span>Comment</span>
-          </button>
+        <button
+          type="button"
+          onClick={onShare}
+          className="flex items-center gap-2 py-2 px-3 rounded-lg border-none bg-transparent cursor-pointer text-xs font-semibold text-[#64748B] hover:bg-[#F1F5F9] transition-colors"
+        >
+          <Share2 size={16} />
+          <span>Share</span>
+        </button>
 
-          {/* Share */}
-          <button
-            type="button"
-            onClick={onShare}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              color: '#64748B',
-              fontWeight: 500,
-              fontSize: '13px',
-              padding: '6px 4px',
-              borderRadius: '6px',
-            }}
-          >
-            <Share2 size={16} />
-            <span>Share</span>
-          </button>
-        </div>
-
-        {/* Bookmark / Save */}
         <button
           type="button"
           onClick={handleSaveToggle}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            color: saved ? '#1463F3' : '#64748B',
-            padding: '6px 4px',
-            borderRadius: '6px',
-          }}
-          title={saved ? 'Unsave' : 'Save post'}
+          className={`flex items-center gap-2 py-2 px-3 rounded-lg border-none bg-transparent cursor-pointer text-xs font-semibold transition-colors ${
+            saved ? 'text-[#1463F3] bg-[#EAF3FF]' : 'text-[#64748B] hover:bg-[#F1F5F9]'
+          }`}
         >
-          <Bookmark size={17} fill={saved ? '#1463F3' : 'none'} />
+          <Bookmark size={16} fill={saved ? '#1463F3' : 'none'} />
+          <span>{saved ? 'Saved' : 'Save'}</span>
         </button>
       </div>
     </div>

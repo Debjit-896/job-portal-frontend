@@ -1,16 +1,5 @@
 import { useEffect, useRef } from 'react';
 
-/**
- * Reusable modern 6-Digit OTP input component.
- * Features:
- * - 6 split digit boxes
- * - Auto-focus first input on mount
- * - Full paste handling (splits 6 digits across inputs)
- * - Backspace / Delete backwards navigation
- * - Left/Right arrow key navigation
- * - Numeric-only filtering
- * - Disabled state support
- */
 export default function OtpInput({
   value = ['', '', '', '', '', ''],
   onChange,
@@ -22,7 +11,6 @@ export default function OtpInput({
 }) {
   const inputRefs = useRef([]);
 
-  // Auto-focus first input on mount
   useEffect(() => {
     if (autoFocus && inputRefs.current[0] && !disabled) {
       inputRefs.current[0].focus();
@@ -33,7 +21,6 @@ export default function OtpInput({
     const rawVal = e.target.value;
     const cleanVal = rawVal.replace(/[^0-9]/g, '');
 
-    // Handle full paste into a single input
     if (cleanVal.length > 1) {
       handlePastedDigits(cleanVal, index);
       return;
@@ -43,7 +30,6 @@ export default function OtpInput({
     nextOtp[index] = cleanVal ? cleanVal.slice(-1) : '';
     onChange(nextOtp);
 
-    // Auto-focus next input if a digit was entered
     if (cleanVal && index < length - 1) {
       inputRefs.current[index + 1]?.focus();
     }
@@ -62,8 +48,6 @@ export default function OtpInput({
     });
 
     onChange(nextOtp);
-
-    // Focus the box immediately after the pasted content or the last box
     const nextIndex = Math.min(startIndex + digitsArr.length, length - 1);
     inputRefs.current[nextIndex]?.focus();
   };
@@ -77,14 +61,12 @@ export default function OtpInput({
   const handleKeyDown = (index, e) => {
     if (e.key === 'Backspace') {
       if (!value[index] && index > 0) {
-        // Move back to previous input and clear it
         e.preventDefault();
         const nextOtp = [...value];
         nextOtp[index - 1] = '';
         onChange(nextOtp);
         inputRefs.current[index - 1]?.focus();
       } else if (value[index]) {
-        // Clear current input
         e.preventDefault();
         const nextOtp = [...value];
         nextOtp[index] = '';
@@ -101,14 +83,8 @@ export default function OtpInput({
 
   return (
     <div
-      className={`otp-container ${className}`}
+      className={`flex justify-center gap-2.5 my-4 ${className}`}
       onPaste={handlePaste}
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '10px',
-        margin: '1rem 0'
-      }}
     >
       {Array.from({ length }).map((_, index) => (
         <input
@@ -120,29 +96,19 @@ export default function OtpInput({
           maxLength={1}
           autoComplete="one-time-code"
           aria-label={`Digit ${index + 1} of verification code`}
-          className="otp-input"
           value={value[index] || ''}
           onChange={(e) => handleChange(index, e)}
           onKeyDown={(e) => handleKeyDown(index, e)}
           disabled={disabled}
-          style={{
-            width: '46px',
-            height: '52px',
-            textAlign: 'center',
-            fontSize: '1.4rem',
-            fontWeight: '700',
-            color: 'var(--dark-navy)',
-            backgroundColor: disabled ? 'var(--pale-blue)' : 'var(--white)',
-            border: hasError
-              ? '2px solid var(--error-red)'
+          className={`w-[46px] h-[52px] text-center text-2xl font-bold rounded-[10px] outline-none transition-all duration-200 ${
+            disabled ? 'bg-[#F4F8FF] text-gray-400' : 'bg-white text-[#102E6D]'
+          } ${
+            hasError
+              ? 'border-2 border-[#E11D48]'
               : value[index]
-                ? '2px solid var(--primary-blue)'
-                : '1.5px solid var(--input-border)',
-            borderRadius: '10px',
-            outline: 'none',
-            boxShadow: value[index] ? '0 2px 8px rgba(20, 99, 243, 0.12)' : 'none',
-            transition: 'border-color 0.2s, box-shadow 0.2s, background-color 0.2s'
-          }}
+              ? 'border-2 border-[#1463F3] shadow-[0_2px_8px_rgba(20,99,243,0.12)]'
+              : 'border-[1.5px] border-[#D8E6FF] focus:border-[#1463F3] focus:ring-2 focus:ring-[#1463F3]/15'
+          }`}
         />
       ))}
     </div>

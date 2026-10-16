@@ -7,7 +7,7 @@ export default function RoleBasedRoute({ children, allowedRoles }) {
 
   if (isLoading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', color: 'var(--primary-blue)' }}>
+      <div className="flex justify-center items-center min-h-screen text-[#1463F3]">
         <div>Validating permissions...</div>
       </div>
     );
