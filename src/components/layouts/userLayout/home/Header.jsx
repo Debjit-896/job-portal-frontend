@@ -34,7 +34,9 @@ export default function Header({
 
   const currentActiveNav =
     activeNav ||
-    (location.pathname.startsWith('/candidate/network') || location.pathname.startsWith('/user/network')
+    (location.pathname.startsWith('/candidate/messages') || location.pathname.startsWith('/user/messages')
+      ? 'messages'
+      : location.pathname.startsWith('/candidate/network') || location.pathname.startsWith('/user/network')
       ? 'network'
       : location.pathname.startsWith('/candidate/companies') || location.pathname.startsWith('/user/companies')
       ? 'companies'
@@ -47,7 +49,7 @@ export default function Header({
     { id: 'jobs', label: 'Jobs', icon: BriefcaseBusiness, path: '/candidate/jobs', badge: null },
     { id: 'companies', label: 'Companies', icon: Building2, path: '/candidate/companies', badge: null },
     { id: 'network', label: 'Network', icon: Users2, path: '/candidate/network', badge: null },
-    { id: 'messages', label: 'Messages', icon: MessageSquare, path: null, badge: unreadMessages },
+    { id: 'messages', label: 'Messages', icon: MessageSquare, path: '/candidate/messages', badge: unreadMessages },
     { id: 'notifications', label: 'Notifications', icon: Bell, path: null, badge: unreadNotifications },
   ];
 
