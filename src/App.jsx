@@ -14,6 +14,7 @@ import UserJobPage from './panels/users/pages/UserJobPage';
 import UserCompaniesPage from './panels/users/pages/UserCompaniesPage';
 import UserSavedJobsPage from './panels/users/pages/UserSavedJobsPage';
 import UserNetworkPage from './panels/users/pages/UserNetworkPage';
+import UserSettingsPage from './panels/users/pages/UserSettingsPage';
 import RecruiterDashboard from './panels/recruiter/pages/RecruiterDashboard';
 import AdminDashboard from './panels/admin/pages/AdminDashboard';
 import ProtectedRoute from './components/routing/ProtectedRoute';
@@ -157,6 +158,15 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/user/network" element={<Navigate to="/candidate/network" replace />} />
+
+            <Route path="/candidate/settings" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <UserSettingsPage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
+            <Route path="/user/settings" element={<Navigate to="/candidate/settings" replace />} />
 
             {/* Employer / Recruiter */}
             <Route path="/employer/dashboard" element={

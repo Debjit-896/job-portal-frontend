@@ -172,7 +172,10 @@ export default function Header({
                 </div>
                 <div
                   className="flex items-center gap-2 px-3 py-2 rounded-lg text-[13px] text-[#334155] cursor-pointer hover:bg-[#F8FAFC]"
-                  onClick={() => setIsDropdownOpen(false)}
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    navigate('/candidate/settings');
+                  }}
                 >
                   <Settings size={15} /> Account Settings
                 </div>
