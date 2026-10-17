@@ -284,6 +284,7 @@ export default function UserCompaniesPage() {
       <TopCompaniesSection
         companies={topCompanies}
         onFollowToggle={handleTopCompanyFollowToggle}
+        onCompanyClick={(companyId) => navigate(`/candidate/companies/${companyId}`)}
         onViewAll={() => console.log('View all top companies')}
       />
 
@@ -297,6 +298,7 @@ export default function UserCompaniesPage() {
         selectedSort={sortFilter}
         onSortChange={setSortFilter}
         onFollowToggle={handleAllCompanyFollowToggle}
+        onCompanyClick={(companyId) => navigate(`/candidate/companies/${companyId}`)}
       />
     </CompaniesLayout>
   );

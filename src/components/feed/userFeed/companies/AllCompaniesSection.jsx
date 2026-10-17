@@ -10,6 +10,7 @@ export default function AllCompaniesSection({
   selectedSort,
   onSortChange,
   onFollowToggle,
+  onCompanyClick,
 }) {
   return (
     <section id="all-companies-section" className="flex flex-col gap-3.5 mt-1.5">
@@ -93,7 +94,8 @@ export default function AllCompaniesSection({
           return (
             <div
               key={company.id}
-              className="bg-white rounded-[14px] border border-[#E2E8F0] p-[16px_16px_14px_16px] flex flex-col justify-between transition-all duration-150 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(0,0,0,0.07)]"
+              onClick={() => onCompanyClick && onCompanyClick(company.id)}
+              className="bg-white rounded-[14px] border border-[#E2E8F0] p-[16px_16px_14px_16px] flex flex-col justify-between transition-all duration-150 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(0,0,0,0.07)] cursor-pointer"
             >
               <div>
                 {/* Top: Logo + Name + Follow button */}
@@ -101,7 +103,7 @@ export default function AllCompaniesSection({
                   <div className="flex items-start gap-2.5 min-w-0 flex-1">
                     <CompanyLogo company={company} size={38} />
                     <div className="min-w-0">
-                      <h3 className="text-[13.5px] font-bold text-[#102E6D] truncate leading-tight">
+                      <h3 className="text-[13.5px] font-bold text-[#102E6D] hover:text-[#1463F3] transition-colors truncate leading-tight">
                         {company.name}
                       </h3>
                       <p className="text-[11px] text-[#64748B] mt-0.5 truncate">
@@ -112,7 +114,10 @@ export default function AllCompaniesSection({
 
                   <button
                     type="button"
-                    onClick={() => onFollowToggle && onFollowToggle(company.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onFollowToggle) onFollowToggle(company.id);
+                    }}
                     className={`py-1.5 px-3.5 rounded-lg text-[11.5px] font-semibold cursor-pointer transition-all inline-flex items-center gap-1 shrink-0 ${
                       isFollowed
                         ? 'border-0 bg-[#1463F3] text-white'

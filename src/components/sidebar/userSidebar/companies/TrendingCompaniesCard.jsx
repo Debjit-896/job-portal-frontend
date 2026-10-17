@@ -26,12 +26,13 @@ export default function TrendingCompaniesCard({ companies = [], onFollowToggle, 
           return (
             <div
               key={company.id}
-              className="flex items-center justify-between gap-2.5"
+              onClick={() => onCompanyClick ? onCompanyClick(company.id) : (window.location.href = `/candidate/companies/${company.id}`)}
+              className="flex items-center justify-between gap-2.5 p-1 -mx-1 rounded-lg hover:bg-[#F8FAFC] transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-2.5 min-w-0 flex-1">
                 <CompanyLogo company={company} size={34} />
                 <div className="min-w-0">
-                  <h5 className="text-[12.5px] font-semibold text-[#102E6D] truncate leading-tight">
+                  <h5 className="text-[12.5px] font-semibold text-[#102E6D] hover:text-[#1463F3] truncate leading-tight">
                     {company.name}
                   </h5>
                   <p className="text-[10.5px] text-[#64748B] truncate mt-0.5">
@@ -42,7 +43,10 @@ export default function TrendingCompaniesCard({ companies = [], onFollowToggle, 
 
               <button
                 type="button"
-                onClick={() => onFollowToggle && onFollowToggle(company.id)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (onFollowToggle) onFollowToggle(company.id);
+                }}
                 className={`py-1 px-3 rounded-2xl border text-[11px] font-semibold cursor-pointer transition-all shrink-0 inline-flex items-center gap-1 ${
                   isFollowed
                     ? 'border-[#10B981] bg-[#ECFDF5] text-[#059669]'

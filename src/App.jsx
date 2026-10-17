@@ -18,6 +18,7 @@ import UserSettingsPage from './panels/users/pages/UserSettingsPage';
 import UserMessagesPage from './panels/users/pages/UserMessagesPage';
 import UserNotificationsPage from './panels/users/pages/UserNotificationsPage';
 import UserApplicationsPage from './panels/users/pages/UserApplicationsPage';
+import UserCompanyInfoPage from './panels/users/pages/UserCompanyInfoPage';
 import RecruiterDashboard from './panels/recruiter/pages/RecruiterDashboard';
 import AdminDashboard from './panels/admin/pages/AdminDashboard';
 import ProtectedRoute from './components/routing/ProtectedRoute';
@@ -143,6 +144,30 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/user/companies" element={<Navigate to="/candidate/companies" replace />} />
+
+            {/* Company Info Pages */}
+            <Route path="/candidate/companies/:id" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <UserCompanyInfoPage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
+            <Route path="/user/companies/:id" element={<Navigate to="/candidate/companies/:id" replace />} />
+            <Route path="/candidate/company-info" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <UserCompanyInfoPage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
+            <Route path="/candidate/company-info/:id" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <UserCompanyInfoPage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
 
             <Route path="/candidate/saved-jobs" element={
               <ProtectedRoute>

@@ -1,7 +1,7 @@
 import { Flame, ArrowRight } from 'lucide-react';
 import TopCompanyCard from './TopCompanyCard';
 
-export default function TopCompaniesSection({ companies = [], onFollowToggle, onViewAll }) {
+export default function TopCompaniesSection({ companies = [], onFollowToggle, onCompanyClick, onViewAll }) {
   return (
     <section className="flex flex-col gap-3.5">
       {/* Header */}
@@ -36,6 +36,7 @@ export default function TopCompaniesSection({ companies = [], onFollowToggle, on
             key={company.id}
             company={company}
             onFollowToggle={onFollowToggle}
+            onCompanyClick={onCompanyClick}
           />
         ))}
       </div>

@@ -1,11 +1,14 @@
 import { Users, Check } from 'lucide-react';
 import CompanyLogo from './CompanyLogo';
 
-export default function TopCompanyCard({ company, onFollowToggle }) {
+export default function TopCompanyCard({ company, onFollowToggle, onCompanyClick }) {
   const isFollowed = !!company.isFollowed;
 
   return (
-    <div className="bg-white rounded-[14px] border border-[#E2E8F0] p-[18px_18px_16px_18px] flex flex-col justify-between transition-all duration-150 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(0,0,0,0.07)]">
+    <div
+      onClick={() => onCompanyClick && onCompanyClick(company.id)}
+      className="bg-white rounded-[14px] border border-[#E2E8F0] p-[18px_18px_16px_18px] flex flex-col justify-between transition-all duration-150 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(0,0,0,0.07)] cursor-pointer"
+    >
       <div>
         {/* Top: Logo + Name with verified check + Subtitle */}
         <div className="flex items-start gap-3 mb-3">
@@ -13,7 +16,7 @@ export default function TopCompanyCard({ company, onFollowToggle }) {
 
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-1.5">
-              <h3 className="text-[14.5px] font-bold text-[#102E6D] leading-tight">
+              <h3 className="text-[14.5px] font-bold text-[#102E6D] hover:text-[#1463F3] transition-colors leading-tight">
                 {company.name}
               </h3>
               {company.isVerified && (

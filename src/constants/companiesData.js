@@ -1,0 +1,260 @@
+export const companiesData = {
+  cloudwind: {
+    id: 'cloudwind',
+    name: 'CloudWind Technologies LLP',
+    tagline: 'Innovate • Build • Grow',
+    subTagline: 'Technology solutions for a better tomorrow',
+    badgeText: 'Your Ideas Our Technology',
+    isVerified: true,
+    isCloudWind: true,
+    industry: 'IT Services and Consulting',
+    location: 'Kolkata, West Bengal, India',
+    employeesCount: '51-200 employees',
+    headline:
+      'We build modern web and mobile applications, provide cloud solutions, and help businesses grow with technology.',
+    website: 'https://www.cloudwind.in',
+    founded: '2019',
+    headquarters: 'Kolkata, West Bengal, India',
+    companySize: '51-200 employees',
+    about:
+      'CloudWind Technologies LLP is a passionate team of developers, designers and problem solvers. We specialize in building scalable web applications, mobile apps, and cloud-based solutions for startups and established businesses. Our mission is to deliver high-quality, innovative and reliable technology solutions that create real value.',
+    stats: {
+      employees: '51–200',
+      headquarters: 'Kolkata, West Bengal',
+      industry: 'IT Services & Consulting',
+    },
+    employeesPreview: [
+      { id: 1, name: 'Aman', avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80' },
+      { id: 2, name: 'Priya', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80' },
+      { id: 3, name: 'Debjit', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80' },
+      { id: 4, name: 'Ananya', avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80' },
+      { id: 5, name: 'Rahul', avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&q=80' },
+      { id: 6, name: 'Sneha', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80' },
+    ],
+    employeesTotalCount: 46,
+    similarCompanies: [
+      { id: 'technova', name: 'TechNova Solutions', industry: 'IT Services & Consulting', size: '51–200', isTechNova: true, iconBg: '#1E293B', iconText: 'A' },
+      { id: 'brightbyte', name: 'BrightByte Labs', industry: 'Software Development', size: '11–50', isBrightByte: true, iconBg: '#7C3AED', iconText: 'A' },
+      { id: 'nextgen', name: 'NextGen Systems', industry: 'IT Consulting', size: '51–200', isNextGen: true, iconBg: '#2563EB', iconText: 'M' },
+      { id: 'pixelforge', name: 'PixelForge Technologies', industry: 'Software Development', size: '51–200', isPixelForge: true, iconBg: '#EA580C', iconText: 'P' },
+      { id: 'zenith', name: 'Zenith Digital', industry: 'Digital Marketing', size: '11–50', isZenith: true, iconBg: '#18181B', iconText: 'Z' },
+    ],
+    photos: [
+      { id: 1, url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80', alt: 'Modern Office Space' },
+      { id: 2, url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80', alt: 'Team Discussion Meeting' },
+      { id: 3, url: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=600&q=80', alt: 'CloudWind Reception Lounge' },
+      { id: 4, url: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80', alt: 'Group Photo Team' },
+    ],
+    recentPost: {
+      date: '2 days ago',
+      content:
+        'We\'re excited to share that our team has successfully delivered a new feature in our platform using React, Laravel and PostgreSQL. 🚀\n\nTechnology keeps evolving, and so do we!',
+      tags: ['#CloudWind', '#React', '#Laravel', '#PostgreSQL', '#Innovation'],
+      likes: 128,
+      comments: 12,
+      shares: 5,
+      bannerTitle: 'Better Solutions Together',
+    },
+  },
+
+  google: {
+    id: 'google',
+    name: 'Google',
+    tagline: 'Organize • Connect • Empower',
+    subTagline: 'Organizing the world’s information and making it universally accessible',
+    badgeText: 'Do the right thing',
+    isVerified: true,
+    isGoogle: true,
+    industry: 'Internet Services & Software',
+    location: 'Mountain View, CA, USA',
+    employeesCount: '10,000+ employees',
+    headline:
+      'Build products that help billions of people find information, solve problems and make life better.',
+    website: 'https://www.google.com',
+    founded: '1998',
+    headquarters: 'Mountain View, CA, USA',
+    companySize: '10,000+ employees',
+    about:
+      'Google is an American multinational technology company focusing on search engine technology, online advertising, cloud computing, computer software, quantum computing, e-commerce, and artificial intelligence.',
+    stats: {
+      employees: '10K+',
+      headquarters: 'Mountain View, CA',
+      industry: 'Internet Services & Software',
+    },
+    employeesPreview: [
+      { id: 1, name: 'Sundar', avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80' },
+      { id: 2, name: 'Sarah', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80' },
+      { id: 3, name: 'Amit', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80' },
+      { id: 4, name: 'Lisa', avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80' },
+    ],
+    employeesTotalCount: 1500,
+    similarCompanies: [
+      { id: 'microsoft', name: 'Microsoft', industry: 'Software & Cloud', size: '10K+', isMicrosoft: true },
+      { id: 'meta', name: 'Meta', industry: 'Social Media & Technology', size: '10K+', isMeta: true },
+      { id: 'apple', name: 'Apple', industry: 'Consumer Electronics & Software', size: '10K+', isApple: true },
+    ],
+    photos: [
+      { id: 1, url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80', alt: 'Googleplex' },
+      { id: 2, url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80', alt: 'Team meeting' },
+    ],
+    recentPost: {
+      date: '1 day ago',
+      content: 'Excited to announce our latest developments in Gemini and AI assistance for developers across the globe! 🚀',
+      tags: ['#Google', '#AI', '#Gemini', '#Innovation'],
+      likes: 2450,
+      comments: 180,
+      shares: 95,
+      bannerTitle: 'Building for Everyone',
+    },
+  },
+
+  microsoft: {
+    id: 'microsoft',
+    name: 'Microsoft',
+    tagline: 'Empower • Transform • Innovate',
+    subTagline: 'Empowering every person and every organization on the planet to achieve more',
+    badgeText: 'Technology for Good',
+    isVerified: true,
+    isMicrosoft: true,
+    industry: 'Software & Cloud',
+    location: 'Redmond, WA, USA',
+    employeesCount: '10,000+ employees',
+    headline: 'Empowering every person and organization on the planet to achieve more.',
+    website: 'https://www.microsoft.com',
+    founded: '1975',
+    headquarters: 'Redmond, WA, USA',
+    companySize: '10,000+ employees',
+    about: 'Microsoft Corporation is an American multinational technology corporation producing computer software, consumer electronics, personal computers, and related services.',
+    stats: {
+      employees: '10K+',
+      headquarters: 'Redmond, WA',
+      industry: 'Software & Cloud',
+    },
+    employeesPreview: [
+      { id: 1, name: 'Satya', avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80' },
+      { id: 2, name: 'Elena', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80' },
+    ],
+    employeesTotalCount: 1200,
+    similarCompanies: [
+      { id: 'google', name: 'Google', industry: 'Internet Services & Software', size: '10K+', isGoogle: true },
+      { id: 'amazon', name: 'Amazon', industry: 'E-commerce & Cloud', size: '10K+', isAmazon: true },
+    ],
+    photos: [
+      { id: 1, url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80', alt: 'Microsoft Campus' },
+    ],
+    recentPost: {
+      date: '3 days ago',
+      content: 'Azure Copilot is expanding with new cloud optimization features. Build faster and with confidence!',
+      tags: ['#Microsoft', '#Azure', '#Copilot'],
+      likes: 1840,
+      comments: 92,
+      shares: 40,
+      bannerTitle: 'Cloud Solutions',
+    },
+  },
+
+  amazon: {
+    id: 'amazon',
+    name: 'Amazon',
+    tagline: 'Customer Obsession • Invent • Deliver',
+    subTagline: 'We pioneer on behalf of customers across the globe',
+    badgeText: 'Work hard, have fun, make history',
+    isVerified: true,
+    isAmazon: true,
+    industry: 'E-commerce & Cloud',
+    location: 'Seattle, WA, USA',
+    employeesCount: '10,000+ employees',
+    headline: 'We work to be Earth\'s most customer-centric company, where customers can find and discover anything.',
+    website: 'https://www.amazon.com',
+    founded: '1994',
+    headquarters: 'Seattle, WA, USA',
+    companySize: '10,000+ employees',
+    about: 'Amazon is guided by four principles: customer obsession rather than competitor focus, passion for invention, commitment to operational excellence, and long-term thinking.',
+    stats: {
+      employees: '10K+',
+      headquarters: 'Seattle, WA',
+      industry: 'E-commerce & Cloud',
+    },
+    employeesPreview: [
+      { id: 1, name: 'Andy', avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80' },
+    ],
+    employeesTotalCount: 2000,
+    similarCompanies: [
+      { id: 'google', name: 'Google', industry: 'Internet Services & Software', size: '10K+', isGoogle: true },
+      { id: 'microsoft', name: 'Microsoft', industry: 'Software & Cloud', size: '10K+', isMicrosoft: true },
+    ],
+    photos: [
+      { id: 1, url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80', alt: 'Amazon Spheres' },
+    ],
+    recentPost: {
+      date: '4 days ago',
+      content: 'AWS continues to power innovative startups worldwide. Read how companies scale efficiently on AWS.',
+      tags: ['#Amazon', '#AWS', '#Cloud'],
+      likes: 1200,
+      comments: 45,
+      shares: 20,
+      bannerTitle: 'Scale on AWS',
+    },
+  },
+
+  tcs: {
+    id: 'tcs',
+    name: 'TCS',
+    tagline: 'Building on belief',
+    subTagline: 'Helping global businesses transform with technology',
+    badgeText: 'Tata Consultancy Services',
+    isVerified: false,
+    isTcs: true,
+    industry: 'IT Services & Consulting',
+    location: 'Mumbai, India',
+    employeesCount: '10,000+ employees',
+    headline: 'Building on belief, TCS helps global businesses transform with technology.',
+    website: 'https://www.tcs.com',
+    founded: '1968',
+    headquarters: 'Mumbai, India',
+    companySize: '10,000+ employees',
+    about: 'Tata Consultancy Services is an Indian multinational information technology services and consulting company headquartered in Mumbai.',
+    stats: {
+      employees: '10K+',
+      headquarters: 'Mumbai, India',
+      industry: 'IT Services & Consulting',
+    },
+    employeesPreview: [
+      { id: 1, name: 'Raj', avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80' },
+    ],
+    employeesTotalCount: 3000,
+    similarCompanies: [
+      { id: 'infosys', name: 'Infosys', industry: 'IT Services & Consulting', size: '10K+', isInfosys: true },
+      { id: 'wipro', name: 'Wipro', industry: 'IT Services & Consulting', size: '10K+', isWipro: true },
+    ],
+    photos: [
+      { id: 1, url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80', alt: 'TCS Campus' },
+    ],
+    recentPost: {
+      date: '5 days ago',
+      content: 'Accelerating digital transformation for enterprise leaders around the world.',
+      tags: ['#TCS', '#DigitalTransformation', '#Technology'],
+      likes: 850,
+      comments: 32,
+      shares: 14,
+      bannerTitle: 'Transforming Together',
+    },
+  },
+};
+
+export const getCompanyById = (id) => {
+  const normalizedId = id ? id.toLowerCase() : 'cloudwind';
+  if (companiesData[normalizedId]) {
+    return companiesData[normalizedId];
+  }
+  // Default fallback generator
+  return {
+    ...companiesData.cloudwind,
+    id: normalizedId,
+    name: id ? id.charAt(0).toUpperCase() + id.slice(1) : 'Company',
+    tagline: 'Innovate • Build • Grow',
+    isCloudWind: false,
+    iconText: id ? id.charAt(0).toUpperCase() : 'C',
+    website: `https://www.${normalizedId}.com`,
+  };
+};
