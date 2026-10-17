@@ -29,6 +29,10 @@ export default function UserCompaniesPage() {
       navigate('/candidate/jobs');
     } else if (menuId === 'network') {
       navigate('/candidate/network');
+    } else if (menuId === 'messages') {
+      navigate('/candidate/messages');
+    } else if (menuId === 'notifications') {
+      navigate('/candidate/notifications');
     }
   };
 

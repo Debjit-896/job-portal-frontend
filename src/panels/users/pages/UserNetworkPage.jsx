@@ -176,6 +176,10 @@ export default function UserNetworkPage() {
       navigate('/candidate/jobs');
     } else if (menuId === 'companies') {
       navigate('/candidate/companies');
+    } else if (menuId === 'messages') {
+      navigate('/candidate/messages');
+    } else if (menuId === 'notifications') {
+      navigate('/candidate/notifications');
     }
   };
 

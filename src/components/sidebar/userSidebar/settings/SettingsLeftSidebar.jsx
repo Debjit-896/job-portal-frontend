@@ -25,8 +25,8 @@ export default function SettingsLeftSidebar({
     { id: 'jobs', label: 'Jobs', icon: BriefcaseBusiness, path: '/candidate/jobs' },
     { id: 'companies', label: 'Companies', icon: Building2, path: '/candidate/companies' },
     { id: 'network', label: 'Network', icon: Users2, path: '/candidate/network' },
-    { id: 'messages', label: 'Messages', icon: MessageSquare, path: '#', badge: unreadMessages },
-    { id: 'notifications', label: 'Notifications', icon: Bell, path: '#', badge: unreadNotifications },
+    { id: 'messages', label: 'Messages', icon: MessageSquare, path: '/candidate/messages', badge: unreadMessages },
+    { id: 'notifications', label: 'Notifications', icon: Bell, path: '/candidate/notifications', badge: unreadNotifications },
   ];
 
   const secondaryNavItems = [

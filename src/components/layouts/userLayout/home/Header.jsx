@@ -34,7 +34,9 @@ export default function Header({
 
   const currentActiveNav =
     activeNav ||
-    (location.pathname.startsWith('/candidate/messages') || location.pathname.startsWith('/user/messages')
+    (location.pathname.startsWith('/candidate/notifications') || location.pathname.startsWith('/user/notifications')
+      ? 'notifications'
+      : location.pathname.startsWith('/candidate/messages') || location.pathname.startsWith('/user/messages')
       ? 'messages'
       : location.pathname.startsWith('/candidate/network') || location.pathname.startsWith('/user/network')
       ? 'network'
@@ -50,7 +52,7 @@ export default function Header({
     { id: 'companies', label: 'Companies', icon: Building2, path: '/candidate/companies', badge: null },
     { id: 'network', label: 'Network', icon: Users2, path: '/candidate/network', badge: null },
     { id: 'messages', label: 'Messages', icon: MessageSquare, path: '/candidate/messages', badge: unreadMessages },
-    { id: 'notifications', label: 'Notifications', icon: Bell, path: null, badge: unreadNotifications },
+    { id: 'notifications', label: 'Notifications', icon: Bell, path: '/candidate/notifications', badge: unreadNotifications },
   ];
 
   const handleNavItemClick = (item) => {

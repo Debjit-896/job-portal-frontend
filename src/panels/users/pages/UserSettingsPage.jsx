@@ -58,6 +58,10 @@ export default function UserSettingsPage() {
       navigate('/candidate/network');
     } else if (menuId === 'saved-jobs' || menuId === 'saved') {
       navigate('/candidate/saved-jobs');
+    } else if (menuId === 'messages') {
+      navigate('/candidate/messages');
+    } else if (menuId === 'notifications') {
+      navigate('/candidate/notifications');
     } else if (menuId === 'settings') {
       navigate('/candidate/settings');
     }
