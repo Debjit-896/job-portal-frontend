@@ -114,6 +114,8 @@ export default function UserDashboard() {
       navigate('/candidate/companies');
     } else if (menuId === 'saved-jobs') {
       navigate('/candidate/saved-jobs');
+    } else if (menuId === 'my-applications') {
+      navigate('/candidate/applications');
     } else if (menuId === 'network') {
       navigate('/candidate/network');
     } else if (menuId === 'settings') {

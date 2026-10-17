@@ -38,10 +38,6 @@ export default function Header({
       ? 'notifications'
       : location.pathname.startsWith('/candidate/messages') || location.pathname.startsWith('/user/messages')
       ? 'messages'
-      : location.pathname.startsWith('/candidate/network') || location.pathname.startsWith('/user/network')
-      ? 'network'
-      : location.pathname.startsWith('/candidate/companies') || location.pathname.startsWith('/user/companies')
-      ? 'companies'
       : location.pathname.startsWith('/candidate/jobs') || location.pathname.startsWith('/user/jobs')
       ? 'jobs'
       : 'home');
@@ -49,8 +45,6 @@ export default function Header({
   const navItems = [
     { id: 'home', label: 'Home', icon: Home, path: '/candidate/dashboard', badge: null },
     { id: 'jobs', label: 'Jobs', icon: BriefcaseBusiness, path: '/candidate/jobs', badge: null },
-    { id: 'companies', label: 'Companies', icon: Building2, path: '/candidate/companies', badge: null },
-    { id: 'network', label: 'Network', icon: Users2, path: '/candidate/network', badge: null },
     { id: 'messages', label: 'Messages', icon: MessageSquare, path: '/candidate/messages', badge: unreadMessages },
     { id: 'notifications', label: 'Notifications', icon: Bell, path: '/candidate/notifications', badge: unreadNotifications },
   ];
@@ -87,20 +81,6 @@ export default function Header({
               className="cursor-pointer transition-colors hover:text-[#1463F3]"
             >
               Jobs
-            </span>
-            <span className="text-[#CBD5E1]">&bull;</span>
-            <span
-              onClick={() => navigate('/candidate/network')}
-              className="cursor-pointer transition-colors hover:text-[#1463F3]"
-            >
-              Network
-            </span>
-            <span className="text-[#CBD5E1]">&bull;</span>
-            <span
-              onClick={() => navigate('/candidate/companies')}
-              className="cursor-pointer transition-colors hover:text-[#1463F3]"
-            >
-              Grow
             </span>
           </nav>
         </div>

@@ -35,7 +35,7 @@ export default function NotificationsLeftSidebar({
   const quickLinks = [
     { id: 'profile', label: 'My Profile', icon: User, path: '#' },
     { id: 'saved-jobs', label: 'Saved Jobs', icon: Bookmark, path: '/candidate/saved-jobs' },
-    { id: 'applied-jobs', label: 'Applied Jobs', icon: CheckSquare, path: '#' },
+    { id: 'applied-jobs', label: 'Applied Jobs', icon: CheckSquare, path: '/candidate/applications' },
     { id: 'my-posts', label: 'My Posts', icon: FileEdit, path: '#' },
     { id: 'settings', label: 'Settings', icon: Settings, path: '/candidate/settings' },
   ];

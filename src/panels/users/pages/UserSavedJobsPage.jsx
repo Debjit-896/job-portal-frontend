@@ -158,7 +158,9 @@ export default function UserSavedJobsPage() {
         appliedCount={appliedCount}
         recommendedCount={12}
         alertsCount={5}
-        onItemClick={(linkId) => console.log('Quick link clicked:', linkId)}
+        onItemClick={(linkId) => {
+          if (linkId === 'applied-jobs') window.location.href = '/candidate/applications';
+        }}
       />
       <TipsForYouCard
         onTipClick={(tipId) => console.log('Tip clicked:', tipId)}
