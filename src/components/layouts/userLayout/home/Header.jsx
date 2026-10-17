@@ -150,7 +150,10 @@ export default function Header({
               <div className="absolute right-0 top-12 w-48 bg-white rounded-xl shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.05)] border border-[#E2E8F0] p-1.5 z-50">
                 <div
                   className="flex items-center gap-2 px-3 py-2 rounded-lg text-[13px] text-[#334155] cursor-pointer hover:bg-[#F8FAFC]"
-                  onClick={() => setIsDropdownOpen(false)}
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    navigate('/candidate/profile');
+                  }}
                 >
                   <User size={15} /> View Profile
                 </div>

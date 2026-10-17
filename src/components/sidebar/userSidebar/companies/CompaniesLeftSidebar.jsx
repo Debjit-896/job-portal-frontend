@@ -33,7 +33,6 @@ export default function CompaniesLeftSidebar({
   const exploreNavItems = [
     { id: 'for-you', label: 'For You', icon: Compass, path: '#' },
     { id: 'trending', label: 'Trending', icon: TrendingUp, path: '#' },
-    { id: 'saved', label: 'Saved', icon: Bookmark, path: '/candidate/saved-jobs' },
     { id: 'following', label: 'Following', icon: Users, path: '#' },
   ];
 

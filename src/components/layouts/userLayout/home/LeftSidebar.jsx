@@ -39,15 +39,26 @@ export default function LeftSidebar({
       {/* 1. Profile Mini Card */}
       <SectionCard padding="p-4">
         <div className="flex items-center gap-3">
-          <Avatar src={userProfile.avatar} name={userProfile.name} size={46} />
+          <div
+            onClick={() => window.location.href = '/candidate/profile'}
+            className="cursor-pointer transition-transform hover:scale-105 shrink-0"
+          >
+            <Avatar src={userProfile.avatar} name={userProfile.name} size={46} />
+          </div>
           <div className="min-w-0 flex-1">
-            <h3 className="text-[14.5px] font-bold text-[#102E6D] mb-0.5 truncate">
+            <h3
+              onClick={() => window.location.href = '/candidate/profile'}
+              className="text-[14.5px] font-bold text-[#102E6D] hover:text-[#1463F3] mb-0.5 truncate cursor-pointer transition-colors"
+            >
               {userProfile.name}
             </h3>
             <p className="text-xs text-[#64748B] mb-1 truncate">
               {userProfile.headline}
             </p>
-            <div className="inline-flex items-center gap-0.5 text-[11.5px] text-[#1463F3] font-semibold cursor-pointer hover:underline">
+            <div
+              onClick={() => window.location.href = '/candidate/profile'}
+              className="inline-flex items-center gap-0.5 text-[11.5px] text-[#1463F3] font-semibold cursor-pointer hover:underline"
+            >
               View Profile <ArrowRight size={12} />
             </div>
           </div>
