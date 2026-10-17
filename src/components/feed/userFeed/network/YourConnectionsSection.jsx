@@ -96,8 +96,11 @@ export default function YourConnectionsSection({
             className="bg-white rounded-xl border border-[#E2E8F0] px-[18px] py-3.5 flex items-center justify-between gap-4 shadow-xs hover:shadow-sm transition-shadow duration-150"
           >
             {/* Left: Avatar + Name + Title */}
-            <div className="flex items-center gap-3.5 min-w-0 flex-1">
-              <div className="w-[42px] h-[42px] rounded-full overflow-hidden shrink-0 border border-[#E2E8F0]">
+            <div
+              onClick={() => onMemberClick ? onMemberClick(person) : (window.location.href = `/candidate/network/${person.name.toLowerCase().replace(/\s+/g, '-')}`)}
+              className="flex items-center gap-3.5 min-w-0 flex-1 cursor-pointer group"
+            >
+              <div className="w-[42px] h-[42px] rounded-full overflow-hidden shrink-0 border border-[#E2E8F0] group-hover:scale-105 transition-transform">
                 <img
                   src={person.avatar}
                   alt={person.name}
@@ -106,7 +109,7 @@ export default function YourConnectionsSection({
               </div>
 
               <div className="min-w-0">
-                <h4 className="text-[13px] font-bold text-[#102E6D] m-0 truncate">
+                <h4 className="text-[13px] font-bold text-[#102E6D] group-hover:text-[#1463F3] transition-colors m-0 truncate">
                   {person.name}
                 </h4>
                 <p className="text-[11px] text-[#64748B] mt-0.5 mb-0 truncate">

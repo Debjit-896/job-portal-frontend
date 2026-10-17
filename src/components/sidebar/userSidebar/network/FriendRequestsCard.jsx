@@ -31,8 +31,11 @@ export default function FriendRequestsCard({
       <div className="flex flex-col gap-3.5">
         {requests.map((req) => (
           <div key={req.id} className="flex flex-col gap-2">
-            <div className="flex items-center gap-2.5">
-              <div className="w-[38px] h-[38px] rounded-full overflow-hidden shrink-0 border border-[#E2E8F0]">
+            <div
+              onClick={() => onMemberClick ? onMemberClick(req) : (window.location.href = `/candidate/network/${req.name.toLowerCase().replace(/\s+/g, '-')}`)}
+              className="flex items-center gap-2.5 cursor-pointer group"
+            >
+              <div className="w-[38px] h-[38px] rounded-full overflow-hidden shrink-0 border border-[#E2E8F0] group-hover:scale-105 transition-transform">
                 <img
                   src={req.avatar}
                   alt={req.name}
@@ -41,7 +44,7 @@ export default function FriendRequestsCard({
               </div>
 
               <div className="min-w-0">
-                <h5 className="text-[12.5px] font-bold text-[#102E6D] m-0 leading-tight">
+                <h5 className="text-[12.5px] font-bold text-[#102E6D] group-hover:text-[#1463F3] transition-colors m-0 leading-tight">
                   {req.name}
                 </h5>
                 <p className="text-[10.5px] text-[#64748B] mt-0.5 mb-0 whitespace-nowrap overflow-hidden text-ellipsis">

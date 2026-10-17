@@ -234,12 +234,14 @@ export default function UserNetworkPage() {
       <PeopleYouMayKnowSection
         people={peopleMayKnow}
         onConnectToggle={handleConnectToggle}
+        onMemberClick={(person) => navigate(`/candidate/network/${person.name.toLowerCase().replace(/\s+/g, '-')}`)}
         onViewAll={() => console.log('View all people you may know')}
       />
 
       {/* 4. Your Connections Section */}
       <YourConnectionsSection
         connections={connections}
+        onMemberClick={(person) => navigate(`/candidate/network/${person.name.toLowerCase().replace(/\s+/g, '-')}`)}
         onMessage={(id) => console.log('Message user:', id)}
         onMoreOptions={(id) => console.log('More options for:', id)}
       />

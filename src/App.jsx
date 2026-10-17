@@ -20,6 +20,7 @@ import UserNotificationsPage from './panels/users/pages/UserNotificationsPage';
 import UserApplicationsPage from './panels/users/pages/UserApplicationsPage';
 import UserCompanyInfoPage from './panels/users/pages/UserCompanyInfoPage';
 import UserProfilePage from './panels/users/pages/UserProfilePage';
+import UserNetworkProfilePage from './panels/users/pages/UserNetworkProfilePage';
 import RecruiterDashboard from './panels/recruiter/pages/RecruiterDashboard';
 import AdminDashboard from './panels/admin/pages/AdminDashboard';
 import ProtectedRoute from './components/routing/ProtectedRoute';
@@ -208,6 +209,30 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/user/network" element={<Navigate to="/candidate/network" replace />} />
+
+            {/* Network Member Profile Routes */}
+            <Route path="/candidate/network/:id" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <UserNetworkProfilePage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
+            <Route path="/user/network/:id" element={<Navigate to="/candidate/network/:id" replace />} />
+            <Route path="/candidate/network-profile" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <UserNetworkProfilePage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
+            <Route path="/candidate/network-profile/:id" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <UserNetworkProfilePage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
 
             <Route path="/candidate/settings" element={
               <ProtectedRoute>

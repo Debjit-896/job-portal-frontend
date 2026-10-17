@@ -3,6 +3,7 @@ import { MoreHorizontal, Users, UserPlus, Check } from 'lucide-react';
 export default function PeopleYouMayKnowSection({
   people = [],
   onConnectToggle,
+  onMemberClick,
   onViewAll,
 }) {
   return (
@@ -34,11 +35,13 @@ export default function PeopleYouMayKnowSection({
           return (
             <div
               key={person.id}
-              className="bg-white rounded-[14px] border border-[#E2E8F0] p-4 sm:p-3.5 flex flex-col items-center text-center relative shadow-xs hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150"
+              onClick={() => onMemberClick && onMemberClick(person)}
+              className="bg-white rounded-[14px] border border-[#E2E8F0] p-4 sm:p-3.5 flex flex-col items-center text-center relative shadow-xs hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 cursor-pointer"
             >
               {/* 3 dots menu button top right */}
               <button
                 type="button"
+                onClick={(e) => e.stopPropagation()}
                 className="absolute top-2.5 right-2.5 bg-transparent border-0 text-[#94A3B8] hover:text-[#475569] cursor-pointer p-0.5"
               >
                 <MoreHorizontal size={16} />
@@ -54,7 +57,7 @@ export default function PeopleYouMayKnowSection({
               </div>
 
               {/* Name & Roles */}
-              <h4 className="text-[13.5px] font-bold text-[#102E6D] mb-0.5">
+              <h4 className="text-[13.5px] font-bold text-[#102E6D] hover:text-[#1463F3] transition-colors mb-0.5">
                 {person.name}
               </h4>
               <p className="text-[11px] text-[#475569] m-0 font-medium">

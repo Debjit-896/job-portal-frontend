@@ -26,8 +26,11 @@ export default function PeopleYouMayKnowSidebarCard({
             key={person.id}
             className="flex items-center justify-between gap-2.5"
           >
-            <div className="flex items-center gap-2.5 min-w-0 flex-1">
-              <div className="w-9 h-9 rounded-full overflow-hidden shrink-0 border border-[#E2E8F0]">
+            <div
+              onClick={() => onMemberClick ? onMemberClick(person) : (window.location.href = `/candidate/network/${person.name.toLowerCase().replace(/\s+/g, '-')}`)}
+              className="flex items-center gap-2.5 min-w-0 flex-1 cursor-pointer group"
+            >
+              <div className="w-9 h-9 rounded-full overflow-hidden shrink-0 border border-[#E2E8F0] group-hover:scale-105 transition-transform">
                 <img
                   src={person.avatar}
                   alt={person.name}
@@ -36,7 +39,7 @@ export default function PeopleYouMayKnowSidebarCard({
               </div>
 
               <div className="min-w-0">
-                <h5 className="text-xs font-bold text-[#102E6D] m-0 whitespace-nowrap overflow-hidden text-ellipsis">
+                <h5 className="text-xs font-bold text-[#102E6D] group-hover:text-[#1463F3] transition-colors m-0 whitespace-nowrap overflow-hidden text-ellipsis">
                   {person.name}
                 </h5>
                 <p className="text-[10.5px] text-[#64748B] mt-px mb-0 whitespace-nowrap overflow-hidden text-ellipsis">
