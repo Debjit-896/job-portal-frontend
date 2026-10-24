@@ -47,6 +47,11 @@ export const authApi = {
     return response.data;
   },
 
+  /** Alias for sendEmailVerification */
+  async sendVerificationOtp(email) {
+    return this.sendEmailVerification(email);
+  },
+
   /**
    * Confirm email verification using OTP or token.
    * Backend DTO: ConfirmEmailRequest { email?, otp?, token? }
@@ -58,6 +63,14 @@ export const authApi = {
     if (token) body.token = String(token).trim();
     const response = await apiClient.post('/api/v1/auth/email-verification/confirm', body);
     return response.data;
+  },
+
+  /** Alias for confirmEmail accepting (email, otp) or ({ email, otp, token }) */
+  async verifyEmail(emailOrPayload, otp) {
+    if (typeof emailOrPayload === 'object' && emailOrPayload !== null) {
+      return this.confirmEmail(emailOrPayload);
+    }
+    return this.confirmEmail({ email: emailOrPayload, otp });
   },
 
   /**
@@ -100,12 +113,12 @@ export const authApi = {
   /**
    * Change password for logged-in user.
    * Requires Bearer token in header.
+   * Backend DTO: { oldPassword, newPassword }
    */
-  async changePassword({ currentPassword, newPassword, confirmPassword }) {
+  async changePassword({ oldPassword, newPassword }) {
     const response = await apiClient.post('/api/v1/auth/change-password', {
-      currentPassword,
+      oldPassword,
       newPassword,
-      confirmPassword,
     });
     return response.data;
   },
@@ -163,10 +176,11 @@ export const authApi = {
   },
 
   /**
-   * GitHub OAuth login with GitHub token.
+   * GitHub OAuth login with GitHub authorization code.
+   * Backend DTO: { code }
    */
-  async githubLogin(token) {
-    const response = await apiClient.post('/api/v1/auth/github-login', { token });
+  async githubLogin(code) {
+    const response = await apiClient.post('/api/v1/auth/github-login', { code });
     return response.data;
   },
 

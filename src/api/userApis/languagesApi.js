@@ -7,11 +7,12 @@ import { apiClient } from '../services/api/apiClient';
  */
 export const languagesApi = {
   /**
-   * POST /api/v1/users/me/languages — Add one or more languages.
-   * @param {object|object[]} payload — single language object or array.
+   * POST /api/v1/users/me/languages — Add languages (backend expects array of language entries).
+   * @param {object|object[]} payload — language object or array of { languageId (UUID), proficiency? }
    */
   async addLanguages(payload) {
-    const res = await apiClient.post('/api/v1/users/me/languages', payload);
+    const body = Array.isArray(payload) ? payload : [payload];
+    const res = await apiClient.post('/api/v1/users/me/languages', body);
     return res.data;
   },
 

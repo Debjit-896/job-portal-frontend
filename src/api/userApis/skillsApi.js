@@ -7,11 +7,12 @@ import { apiClient } from '../services/api/apiClient';
  */
 export const skillsApi = {
   /**
-   * POST /api/v1/users/me/skills — Add one or more skills.
-   * @param {object|object[]} payload — single skill object or array of skill objects.
+   * POST /api/v1/users/me/skills — Add skills (backend expects array of skill entries).
+   * @param {object|object[]} payload — skill object or array of { skillId (UUID), proficiency?, yearsOfExperience? }
    */
   async addSkills(payload) {
-    const res = await apiClient.post('/api/v1/users/me/skills', payload);
+    const body = Array.isArray(payload) ? payload : [payload];
+    const res = await apiClient.post('/api/v1/users/me/skills', body);
     return res.data;
   },
 

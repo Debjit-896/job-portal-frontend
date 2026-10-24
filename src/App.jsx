@@ -9,6 +9,7 @@ import LoginForm from './components/forms/authentication/login/LoginForm';
 import VerifyEmailForm from './components/forms/authentication/otp/VerifyEmailForm';
 import ForgotPasswordForm from './components/forms/authentication/password/ForgotPasswordForm';
 import ResetPasswordForm from './components/forms/authentication/password/ResetPasswordForm';
+import OAuth2RedirectHandler from './components/forms/authentication/oauth/OAuth2RedirectHandler';
 import UserDashboard from './panels/users/pages/UserDashboard';
 import UserJobPage from './panels/users/pages/UserJobPage';
 import UserCompaniesPage from './panels/users/pages/UserCompaniesPage';
@@ -82,6 +83,9 @@ function App() {
                 </AuthPage>
               </PublicOnlyRoute>
             } />
+
+            {/* OAuth2 Callback Redirect Route */}
+            <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
 
             {/* Feature 1: Email OTP Verification */}
             <Route path="/verify-email" element={

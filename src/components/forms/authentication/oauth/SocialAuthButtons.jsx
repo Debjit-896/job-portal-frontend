@@ -1,10 +1,20 @@
+const AUTH_URL = import.meta.env.VITE_AUTH_SERVICE_URL || 'http://localhost:8001';
+
 export default function SocialAuthButtons() {
+  const signInWithGoogle = () => {
+    window.location.href = `${AUTH_URL}/oauth2/authorization/google`;
+  };
+
+  const signInWithGitHub = () => {
+    window.location.href = `${AUTH_URL}/oauth2/authorization/github`;
+  };
+
   return (
     <div className="flex flex-col gap-2.5 my-4 w-full">
       <button
         className="flex items-center justify-center gap-3 w-full py-2.5 px-4 bg-white border border-[#D8E6FF] rounded-lg text-sm font-semibold text-[#102E6D] hover:bg-[#F8FAFC] transition-colors cursor-pointer"
         type="button"
-        onClick={() => alert('Google OAuth integration pending')}
+        onClick={signInWithGoogle}
       >
         <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" />
         Continue with Google
@@ -12,7 +22,7 @@ export default function SocialAuthButtons() {
       <button
         className="flex items-center justify-center gap-3 w-full py-2.5 px-4 bg-white border border-[#D8E6FF] rounded-lg text-sm font-semibold text-[#102E6D] hover:bg-[#F8FAFC] transition-colors cursor-pointer"
         type="button"
-        onClick={() => alert('GitHub OAuth integration pending')}
+        onClick={signInWithGitHub}
       >
         <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" className="w-5 h-5" />
         Continue with GitHub

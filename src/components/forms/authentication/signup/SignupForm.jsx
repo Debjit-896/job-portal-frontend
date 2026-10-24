@@ -78,7 +78,24 @@ export default function SignupForm() {
       });
     } catch (err) {
       const message = getErrorMessage(err, 'Failed to create account. Please try again.');
-      toast.error(message, 'Registration Failed');
+      
+      // If the backend response indicates the account was created but downstream profile provisioning is pending
+      const isAccountCreatedPending =
+        typeof message === 'string' &&
+        message.toLowerCase().includes('account created');
+
+      if (isAccountCreatedPending) {
+        toast.info(message, 'Account Created');
+        navigate(`/verify-email?email=${encodeURIComponent(trimmedEmail)}`, {
+          state: {
+            email: trimmedEmail,
+            role,
+            registered: true,
+          },
+        });
+      } else {
+        toast.error(message, 'Registration Failed');
+      }
     } finally {
       setIsLoading(false);
     }
