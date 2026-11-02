@@ -3,9 +3,9 @@ import ProfileLeftSidebar from '../../../sidebar/userSidebar/profile/ProfileLeft
 
 export default function ProfileLayout({
   children,
-  activeNav,
+  activeNav = undefined,
   activeMenu = 'view-profile',
-  onMenuClick,
+  onMenuClick = undefined,
 }) {
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">

@@ -32,7 +32,7 @@ export default function ProfileLeftSidebar({
   const subNavItems = [
     { id: 'view-profile', label: 'View Profile', icon: User, path: '/candidate/profile' },
     { id: 'saved-jobs', label: 'Saved Jobs', icon: Bookmark, path: '/candidate/saved-jobs' },
-    { id: 'my-posts', label: 'My Posts', icon: FileEdit, path: '#' },
+    { id: 'my-posts', label: 'My Posts', icon: FileEdit, path: '/candidate/activity' },
     { id: 'settings', label: 'Settings', icon: Settings, path: '/candidate/settings' },
   ];
 

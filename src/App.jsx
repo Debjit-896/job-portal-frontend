@@ -21,6 +21,8 @@ import UserNotificationsPage from './panels/users/pages/UserNotificationsPage';
 import UserApplicationsPage from './panels/users/pages/UserApplicationsPage';
 import UserCompanyInfoPage from './panels/users/pages/UserCompanyInfoPage';
 import UserProfilePage from './panels/users/pages/UserProfilePage';
+import ProfileDetailsPage from './pages/ProfileDetailsPage';
+import UserActivityPage from './panels/users/pages/UserActivityPage';
 import UserNetworkProfilePage from './panels/users/pages/UserNetworkProfilePage';
 import RecruiterDashboard from './panels/recruiter/pages/RecruiterDashboard';
 import AdminDashboard from './panels/admin/pages/AdminDashboard';
@@ -184,6 +186,36 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/user/profile" element={<Navigate to="/candidate/profile" replace />} />
+
+            {/* Candidate Profile Details Page (Show All) */}
+            <Route path="/candidate/profile/details/:section" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <ProfileDetailsPage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
+            <Route path="/candidate/profile/details" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <ProfileDetailsPage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
+            <Route path="/user/profile/details/:section" element={<Navigate to="/candidate/profile/details/:section" replace />} />
+            <Route path="/user/profile/details" element={<Navigate to="/candidate/profile/details" replace />} />
+
+            {/* Candidate Activity Page */}
+            <Route path="/candidate/activity" element={
+              <ProtectedRoute>
+                <RoleBasedRoute allowedRoles={['JOB_SEEKER']}>
+                  <UserActivityPage />
+                </RoleBasedRoute>
+              </ProtectedRoute>
+            } />
+            <Route path="/user/activity" element={<Navigate to="/candidate/activity" replace />} />
+            <Route path="/candidate/posts" element={<Navigate to="/candidate/activity" replace />} />
+            <Route path="/user/posts" element={<Navigate to="/candidate/activity" replace />} />
 
             <Route path="/candidate/saved-jobs" element={
               <ProtectedRoute>
